@@ -70,7 +70,7 @@ export const AmenitiesSection = () => {
 
   return (
     <>
-      <section className="py-20 bg-muted/30">
+      <section className="py-12 bg-muted/30">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">

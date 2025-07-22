@@ -19,7 +19,7 @@ export const AboutSection = () => {
 
   return (
     <>
-      <section className="py-20 bg-gradient-to-br from-muted/50 to-accent/10">
+      <section className="py-12 bg-gradient-to-br from-muted/50 to-accent/10">
         <div className="max-w-6xl mx-auto px-4">
           <div ref={titleRef} className={`text-center mb-12 ${titleVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             <Badge variant="outline" className="mb-4">

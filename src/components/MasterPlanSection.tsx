@@ -16,31 +16,17 @@ export const MasterPlanSection = () => {
       size: "2.3 MB"
     },
     {
-      title: "Floor Plans",
-      description: "Detailed floor plans for all configurations",
-      icon: FileText,
-      format: "PDF",
-      size: "4.1 MB"
-    },
-    {
       title: "Brochure",
       description: "Complete project brochure with details",
       icon: Download,
       format: "PDF",
       size: "8.5 MB"
-    },
-    {
-      title: "Price List",
-      description: "Updated pricing for all apartment types",
-      icon: FileText,
-      format: "PDF",
-      size: "1.2 MB"
     }
   ];
 
   return (
     <>
-      <section className="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+      <section className="py-12 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
@@ -132,33 +118,6 @@ export const MasterPlanSection = () => {
                   Request Physical Copy
                 </Button>
               </div>
-            </div>
-          </div>
-
-          {/* Features Grid */}
-          <div className="bg-background rounded-3xl p-8 md:p-12 shadow-xl">
-            <h3 className="text-2xl md:text-3xl font-bold text-center mb-8">
-              What's Included in the <span className="text-primary">Master Plan</span>
-            </h3>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                "Site Layout & Design",
-                "Apartment Configurations",
-                "Amenity Locations",
-                "Landscaping Details",
-                "Parking Layout",
-                "Security Features",
-                "Utility Infrastructure",
-                "Recreation Areas"
-              ].map((feature, index) => (
-                <div key={index} className="text-center p-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-3">
-                    <span className="text-white font-bold text-lg">{index + 1}</span>
-                  </div>
-                  <p className="font-medium text-foreground">{feature}</p>
-                </div>
-              ))}
             </div>
           </div>
         </div>
