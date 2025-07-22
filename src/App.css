@@ -40,3 +40,16 @@
 .read-the-docs {
   color: #888;
 }
+
+@keyframes enquireColorPulse {
+  0% {
+    background: linear-gradient(to right, #4f46e5, #06b6d4);
+  }
+  100% {
+    background: linear-gradient(to right, #f59e42, #eab308);
+  }
+}
+
+.enquire-now-animate {
+  animation: enquireColorPulse 2s infinite alternate;
+}
