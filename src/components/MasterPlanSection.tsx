@@ -116,7 +116,7 @@ export const MasterPlanSection = () => {
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
-                  variant="cta" 
+                  variant="default" 
                   size="lg"
                   className="gap-2"
                   onClick={() => setIsFormOpen(true)}

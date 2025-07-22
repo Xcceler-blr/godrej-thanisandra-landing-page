@@ -3,9 +3,12 @@ import { Button } from "@/components/ui/button";
 import { ContactForm } from "./ContactForm";
 import { Badge } from "@/components/ui/badge";
 import { Building, Award, Users, Calendar } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export const AboutSection = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
+  const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation();
 
   const achievements = [
     { icon: Building, label: "125+ Years", desc: "of Trust & Excellence" },
@@ -18,7 +21,7 @@ export const AboutSection = () => {
     <>
       <section className="py-20 bg-gradient-to-br from-muted/50 to-accent/10">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
+          <div ref={titleRef} className={`text-center mb-12 ${titleVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             <Badge variant="outline" className="mb-4">
               About Godrej
             </Badge>
@@ -32,7 +35,7 @@ export const AboutSection = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <div ref={contentRef} className={`grid lg:grid-cols-2 gap-12 items-center mb-16 ${contentVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             <div>
               <img 
                 src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -69,7 +72,7 @@ export const AboutSection = () => {
                 </div>
               </div>
               
-              <Button 
+              <Button
                 variant="cta" 
                 size="lg"
                 onClick={() => setIsFormOpen(true)}

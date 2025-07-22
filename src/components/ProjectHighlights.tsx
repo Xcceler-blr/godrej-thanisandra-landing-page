@@ -136,13 +136,13 @@ export const ProjectHighlights = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-white text-white hover:bg-white hover:text-primary"
+                className="border-white text-white hover:bg-white hover:text-tertiary"
                 onClick={() => setIsFormOpen(true)}
               >
                 Schedule Site Visit
               </Button>
               <Button 
-                variant="secondary" 
+                variant="default" 
                 size="lg"
                 onClick={() => setIsFormOpen(true)}
               >

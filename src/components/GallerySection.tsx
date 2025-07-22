@@ -111,7 +111,7 @@ export const GallerySection = () => {
           <div className="text-center space-y-6">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                variant="cta" 
+                variant="default" 
                 size="lg"
                 className="gap-2"
                 onClick={() => setIsFormOpen(true)}
@@ -162,7 +162,7 @@ export const GallerySection = () => {
             
             <div className="text-center mt-8">
               <Button 
-                variant="secondary" 
+                variant="default" 
                 size="lg"
                 onClick={() => setIsFormOpen(true)}
               >

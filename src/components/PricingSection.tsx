@@ -128,7 +128,7 @@ export const PricingSection = () => {
                     </ul>
                     
                     <Button 
-                      variant={plan.popular ? "cta" : "outline"} 
+                      variant={plan.popular ? "default" : "outline"} 
                       className="w-full"
                       onClick={() => setIsFormOpen(true)}
                     >
@@ -168,7 +168,7 @@ export const PricingSection = () => {
             
             <div className="text-center">
               <Button 
-                variant="cta" 
+                variant="default" 
                 size="lg"
                 onClick={() => setIsFormOpen(true)}
               >

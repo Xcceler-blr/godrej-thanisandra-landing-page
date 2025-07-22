@@ -184,7 +184,7 @@ export const LocationSection = () => {
             
             <div className="text-center">
               <Button 
-                variant="cta" 
+                variant="default" 
                 size="lg"
                 onClick={() => setIsFormOpen(true)}
               >

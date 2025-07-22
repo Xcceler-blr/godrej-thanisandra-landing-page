@@ -8,13 +8,16 @@ export const HeroSection = () => {
   return (
     <>
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image with Overlay */}
+        {/* Background Image with Better Showcase */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `linear-gradient(135deg, rgba(106, 182, 55, 0.8), rgba(55, 119, 197, 0.7)), url('https://images.unsplash.com/photo-1524230572899-a752b3835840?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')`
+            backgroundImage: `linear-gradient(135deg, rgba(106, 182, 55, 0.3), rgba(55, 119, 197, 0.2)), url('https://images.unsplash.com/photo-1524230572899-a752b3835840?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')`
           }}
         />
+        
+        {/* Property Showcase Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20"></div>
         
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
@@ -53,7 +56,7 @@ export const HeroSection = () => {
           {/* Call to Action */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
             <Button 
-              variant="cta" 
+              variant="hero" 
               size="lg"
               className="px-12 py-4 text-xl font-semibold transform hover:scale-105 transition-all duration-300 shadow-2xl"
               onClick={() => setIsFormOpen(true)}
@@ -62,9 +65,9 @@ export const HeroSection = () => {
             </Button>
             
             <Button 
-              variant="outline" 
+              variant="heroBrochure" 
               size="lg"
-              className="px-12 py-4 text-xl font-semibold border-2 border-white text-white hover:bg-white hover:text-primary transform hover:scale-105 transition-all duration-300 backdrop-blur-sm"
+              className="px-12 py-4 text-xl font-semibold transform hover:scale-105 transition-all duration-300 backdrop-blur-sm"
               onClick={() => setIsFormOpen(true)}
             >
               Download Brochure

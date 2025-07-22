@@ -135,7 +135,7 @@ export const FloorPlanSection = () => {
                         
                         <div className="pt-4 space-y-3">
                           <Button 
-                            variant="cta" 
+                            variant="default" 
                             className="w-full gap-2"
                             onClick={() => setIsFormOpen(true)}
                           >

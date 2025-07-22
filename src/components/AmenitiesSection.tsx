@@ -128,14 +128,15 @@ export const AmenitiesSection = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-white text-white hover:bg-white hover:text-primary"
+                className="border-white text-white hover:bg-white hover:text-tertiary"
                 onClick={() => setIsFormOpen(true)}
               >
                 View All Amenities
               </Button>
               <Button 
-                variant="secondary" 
+                variant="default" 
                 size="lg"
+                className="bg-white text-tertiary hover:bg-white/90"
                 onClick={() => setIsFormOpen(true)}
               >
                 Schedule Amenities Tour
