@@ -58,14 +58,6 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
           <DialogTitle className="text-center text-xl font-bold text-primary">
             {title}
           </DialogTitle>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-4 top-4"
-            onClick={onClose}
-          >
-            <X className="h-4 w-4" />
-          </Button>
         </DialogHeader>
         
         <form onSubmit={handleSubmit} className="space-y-4">

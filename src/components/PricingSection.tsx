@@ -70,7 +70,7 @@ export const PricingSection = () => {
 
   return (
     <>
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-secondary/10">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">

@@ -59,7 +59,7 @@ export const FloorPlanSection = () => {
 
   return (
     <>
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-gradient-to-br from-accent/5 to-muted/30">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
