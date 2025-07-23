@@ -67,10 +67,10 @@ export const LocationSection = () => {
               return (
                 <div
                   key={idx}
-                  className="flex items-start gap-3 sm:gap-4 bg-white rounded-2xl shadow-md p-4 sm:p-5 hover:shadow-xl hover:scale-105 transition-transform duration-300 min-w-0 w-full"
+                  className="flex items-start gap-3 sm:gap-4 bg-white rounded-2xl shadow-md p-3 sm:p-4 hover:shadow-xl hover:scale-105 transition-transform duration-300 min-w-0 w-full"
                 >
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full flex-shrink-0" style={{background: iconColor}}>
-                    <Icon className="h-6 w-6 text-white" />
+                  <div className="w-10 h-10 flex items-center justify-center rounded-full flex-shrink-0" style={{background: iconColor}}>
+                    <Icon className="h-5 w-5 text-white" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <h4 className="font-bold text-base mb-1 text-primary break-words">{loc.title}</h4>
