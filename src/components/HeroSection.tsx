@@ -14,12 +14,24 @@ export const HeroSection = () => {
           alt="Godrej Logo" 
           className="absolute top-4 left-4 w-32 h-auto md:w-40 z-20"
         />
-        {/* Sticky ENQUIRE NOW Button */}
+        {/* Sticky ENQUIRE NOW Button - Desktop */}
         <button
           onClick={() => setIsFormOpen(true)}
-          className="fixed top-1/2 right-0 z-50 transform -translate-y-1/2 bg-gradient-to-r from-primary to-secondary text-white font-bold py-3 px-2 rounded-l-2xl shadow-xl animate-none hover:scale-105 transition-all duration-300 flex items-center justify-center enquire-now-animate"
+          className="hidden md:flex fixed top-1/2 right-0 z-50 transform -translate-y-1/2 bg-gradient-to-r from-primary to-secondary text-white font-bold py-3 px-2 rounded-l-2xl shadow-xl animate-none hover:scale-105 transition-all duration-300 flex items-center justify-center enquire-now-animate"
           style={{ marginRight: 0, writingMode: 'vertical-rl', textOrientation: 'mixed', letterSpacing: '0.1em', height: '200px', minWidth: '48px' }}
         >
+          ENQUIRE NOW
+        </button>
+        {/* Sticky ENQUIRE NOW Button - Mobile */}
+        <button
+          onClick={() => setIsFormOpen(true)}
+          className="md:hidden fixed bottom-6 right-6 z-50 bg-gradient-to-r from-primary to-secondary text-white font-bold py-4 px-6 rounded-full shadow-xl flex items-center gap-2 animate-pulse"
+          style={{ minWidth: '56px', minHeight: '56px' }}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12H9m0 0l3-3m-3 3l3 3" />
+          </svg>
           ENQUIRE NOW
         </button>
         {/* Background Image */}

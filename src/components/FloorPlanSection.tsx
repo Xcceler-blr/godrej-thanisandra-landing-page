@@ -34,8 +34,8 @@ export const FloorPlanSection = () => {
 
   return (
     <>
-      <section className="py-12 bg-gradient-to-br from-accent/5 to-muted/30">
-        <div className="max-w-6xl mx-auto px-4">
+      <section className="py-12 bg-gradient-to-br from-accent/5 to-muted/30 overflow-x-hidden">
+        <div className="max-w-6xl mx-auto px-2 sm:px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
               Floor Plans
@@ -51,66 +51,29 @@ export const FloorPlanSection = () => {
           </div>
 
           {/* Floor Plan Tiles Grid */}
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {floorPlanTiles.map((plan, idx) => {
-              // For the last two tiles, if they are in the last row, wrap them in a flex container to center
-              if (floorPlanTiles.length % 3 !== 0 && idx >= floorPlanTiles.length - (floorPlanTiles.length % 3)) {
-                if (idx === floorPlanTiles.length - (floorPlanTiles.length % 3)) {
-                  return (
-                    <div key={"centered-row"} className="col-span-3 flex justify-center gap-8">
-                      {floorPlanTiles.slice(-2).map((plan2, i2) => {
-                        let price = "";
-                        if (plan2.type.startsWith("2BHK")) price = "1.53 Cr* ONWARDS";
-                        else if (plan2.type.startsWith("3BHK")) price = "1.93Cr* ONWARDS";
-                        else if (plan2.type.startsWith("4BHK")) price = "2.23Cr* ONWARDS";
-                        return (
-                          <div key={plan2.type} className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col w-full max-w-sm relative">
-                            <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-xs font-semibold z-10" style={{background: '#B9105E'}}>{price}</span>
-                            <img src={plan2.image} alt={plan2.type} className="w-full h-56 object-cover" />
-                            <div className="p-6 flex-1 flex flex-col justify-between">
-                              <h3 className="text-xl font-bold mb-4 text-primary">{plan2.type}</h3>
-                              <Button 
-                                variant="default" 
-                                className="w-full gap-2 mt-auto"
-                                onClick={() => setIsFormOpen(true)}
-                              >
-                                <Download className="h-4 w-4" />
-                                Download Floor Plan
-                              </Button>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  );
-                }
-                return null;
-              }
-              // Only render the first 3 tiles as normal
-              if (idx < 3) {
-                let price = "";
-                if (plan.type.startsWith("2BHK")) price = "1.53 Cr* ONWARDS";
-                else if (plan.type.startsWith("3BHK")) price = "1.93Cr* ONWARDS";
-                else if (plan.type.startsWith("4BHK")) price = "2.23Cr* ONWARDS";
-                return (
-                  <div key={plan.type} className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col relative">
-                    <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-xs font-semibold z-10" style={{background: '#B9105E'}}>{price}</span>
-                    <img src={plan.image} alt={plan.type} className="w-full h-56 object-cover" />
-                    <div className="p-6 flex-1 flex flex-col justify-between">
-                      <h3 className="text-xl font-bold mb-4 text-primary">{plan.type}</h3>
-                      <Button 
-                        variant="default" 
-                        className="w-full gap-2 mt-auto"
-                        onClick={() => setIsFormOpen(true)}
-                      >
-                        <Download className="h-4 w-4" />
-                        Download Floor Plan
-                      </Button>
-                    </div>
+              let price = "";
+              if (plan.type.startsWith("2BHK")) price = "1.53 Cr* ONWARDS";
+              else if (plan.type.startsWith("3BHK")) price = "1.93Cr* ONWARDS";
+              else if (plan.type.startsWith("4BHK")) price = "2.23Cr* ONWARDS";
+              return (
+                <div key={plan.type} className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col relative w-full max-w-xs sm:max-w-sm min-w-0 mx-auto">
+                  <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-xs font-semibold z-10" style={{background: '#B9105E'}}>{price}</span>
+                  <img src={plan.image} alt={plan.type} className="w-full h-56 object-cover" />
+                  <div className="p-6 flex-1 flex flex-col justify-between min-w-0">
+                    <h3 className="text-xl font-bold mb-4 text-primary break-words">{plan.type}</h3>
+                    <Button 
+                      variant="default" 
+                      className="w-full gap-2 mt-auto"
+                      onClick={() => setIsFormOpen(true)}
+                    >
+                      <Download className="h-4 w-4" />
+                      Download Floor Plan
+                    </Button>
                   </div>
-                );
-              }
-              return null;
+                </div>
+              );
             })}
           </div>
 

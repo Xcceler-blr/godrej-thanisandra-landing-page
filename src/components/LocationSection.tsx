@@ -60,30 +60,23 @@ export const LocationSection = () => {
           </div>
 
           {/* Location Advantages Tiles Grid */}
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-16">
             {locations.map((loc, idx) => {
               const Icon = loc.icon;
               const iconColor = idx % 2 === 0 ? '#3777C5' : '#B9105E';
-              const controls = useAnimation();
-              const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
-              if (inView) controls.start({ opacity: 1, y: 0, scale: 1 });
               return (
-                <motion.div
+                <div
                   key={idx}
-                  ref={ref}
-                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
-                  animate={controls}
-                  transition={{ duration: 0.6, delay: idx * 0.08, type: "spring", bounce: 0.2 }}
-                  className="flex items-start gap-4 bg-white rounded-2xl shadow-md p-5 hover:shadow-xl transition-all duration-300"
+                  className="flex items-start gap-3 sm:gap-4 bg-white rounded-2xl shadow-md p-4 sm:p-5 hover:shadow-xl hover:scale-105 transition-transform duration-300 min-w-0 w-full"
                 >
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full" style={{background: iconColor}}>
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full flex-shrink-0" style={{background: iconColor}}>
                     <Icon className="h-6 w-6 text-white" />
                   </div>
-                  <div>
-                    <h4 className="font-bold text-base mb-1 text-primary">{loc.title}</h4>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{loc.desc}</p>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="font-bold text-base mb-1 text-primary break-words">{loc.title}</h4>
+                    <p className="text-muted-foreground text-sm leading-relaxed break-words">{loc.desc}</p>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
