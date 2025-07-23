@@ -21,64 +21,39 @@ export const ProjectHighlights = () => {
 
   const highlights = [
     {
-      icon: MapPin,
-      title: "Prime Location",
-      description: "Strategic location in North Bangalore with excellent connectivity to IT hubs",
-      color: "text-primary"
+      title: "Expansive 7-Acre Low-Density Community",
+      description: "A thoughtfully designed premium enclave with just 558 residences, ensuring abundant open spaces and enhanced privacy.",
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
     },
     {
-      icon: Car,
-      title: "Connectivity",
-      description: "Easy access to Outer Ring Road, Bellary Road, and major IT corridors",
-      color: "text-secondary"
+      title: "Well-Planned 2, 3 & 4 BHK Homes",
+      description: "Generously sized residences featuring large balconies, crafted to offer exceptional comfort, modern amenities, and a prime address near Reva College in North Bangalore.",
+      image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
     },
     {
-      icon: Trees,
-      title: "Green Living",
-      description: "80% open spaces with landscaped gardens and tree-lined walkways",
-      color: "text-primary"
+      title: "Strategic North Bangalore Location",
+      description: "Situated in a thriving growth corridor that perfectly blends the vibrancy of city life with the tranquility of suburban living.",
+      image: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=400&q=80"
     },
     {
-      icon: Shield,
-      title: "Security",
-      description: "24/7 security with CCTV surveillance and controlled access",
-      color: "text-accent"
+      title: "Versatile Floor Plans",
+      description: "Luxury 2, 3, and 4 BHK layouts tailored to suit a variety of family lifestyles and requirements.",
+      image: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=400&q=80"
     },
     {
-      icon: Wifi,
-      title: "Smart Homes",
-      description: "Pre-wired apartments with smart home automation features",
-      color: "text-tertiary"
+      title: "Smart, Spacious Design",
+      description: "Homes emphasize natural ventilation and daylight, seamlessly blending functionality with comfort.",
+      image: "https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=400&q=80"
     },
     {
-      icon: Zap,
-      title: "Power Backup",
-      description: "100% power backup for all common areas and apartments",
-      color: "text-secondary"
+      title: "Modern Architecture with a Green Touch",
+      description: "Contemporary design highlighted by landscaped terraces, merging aesthetics with sustainability.",
+      image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80"
     },
     {
-      icon: Waves,
-      title: "Water Features",
-      description: "Swimming pool, water bodies, and efficient water management system",
-      color: "text-accent"
-    },
-    {
-      icon: Dumbbell,
-      title: "Fitness",
-      description: "State-of-the-art gymnasium and multiple sports facilities",
-      color: "text-primary"
-    },
-    {
-      icon: GraduationCap,
-      title: "Education",
-      description: "Close proximity to renowned schools and educational institutions",
-      color: "text-tertiary"
-    },
-    {
-      icon: ShoppingBag,
-      title: "Retail",
-      description: "Near shopping malls, supermarkets, and entertainment centers",
-      color: "text-secondary"
+      title: "On-Site Commercial Amenities",
+      description: "Integrated retail and convenience spaces within the development, offering everyday essentials at your doorstep.",
+      image: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80"
     }
   ];
 
@@ -100,27 +75,60 @@ export const ProjectHighlights = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {highlights.map((highlight, index) => {
-              const IconComponent = highlight.icon;
-              return (
-                <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <IconComponent className={`h-6 w-6 ${highlight.color}`} />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-bold text-lg mb-2">{highlight.title}</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
-                          {highlight.description}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+          {/* Modern Timeline Highlights Layout */}
+          <style>{`
+            @keyframes timeline-shimmer {
+              0% { background-position: 0% 0%; }
+              100% { background-position: 0% 100%; }
+            }
+            .timeline-animated-line {
+              background: linear-gradient(to bottom, #a5b4fc 0%, #f472b6 100%);
+              background-size: 100% 200%;
+              animation: timeline-shimmer 2s linear infinite alternate;
+            }
+            .timeline-node-animate {
+              animation: timeline-node-pulse 1.2s cubic-bezier(0.4,0,0.2,1) both;
+            }
+            @keyframes timeline-node-pulse {
+              0% { transform: scale(0.7); opacity: 0; }
+              60% { transform: scale(1.15); opacity: 1; }
+              100% { transform: scale(1); opacity: 1; }
+            }
+            .timeline-node-border-animate {
+              position: relative;
+              z-index: 10;
+            }
+            .timeline-node-border-animate::before {
+              content: '';
+              position: absolute;
+              inset: -4px;
+              border-radius: 9999px;
+              background: conic-gradient(from 0deg, #B9105E, #3777C5, #56A7E0, #B9105E 100%);
+              z-index: -1;
+              animation: border-spin 2.5s linear infinite;
+            }
+            @keyframes border-spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+          `}</style>
+          <div className="relative max-w-3xl mx-auto mb-12">
+            {/* Vertical line for timeline */}
+            <div className="absolute left-6 top-0 bottom-0 w-1 rounded-full z-0 timeline-animated-line" />
+            <div className="flex flex-col gap-12">
+              {highlights.map((highlight, index) => (
+                <div key={index} className="relative flex flex-col md:flex-row items-start md:items-center gap-6 z-10">
+                  {/* Timeline dot */}
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg z-10 border-4 border-white timeline-node-animate timeline-node-border-animate">
+                    <img src={highlight.image} alt={highlight.title} className="w-10 h-10 object-cover rounded-full" />
+                  </div>
+                  <div className="flex-1 bg-white rounded-2xl shadow-md p-6 md:ml-4">
+                    <h3 className="text-lg md:text-xl font-bold text-primary mb-2">{highlight.title}</h3>
+                    <p className="text-muted-foreground text-base leading-relaxed">{highlight.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Call to Action */}
@@ -136,7 +144,10 @@ export const ProjectHighlights = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-white text-white hover:bg-white hover:text-tertiary"
+                className="border-white text-white" 
+                style={{background: '#B9105E', border: 'none'}}
+                onMouseOver={e => { e.currentTarget.style.background = '#B9105E'; e.currentTarget.style.color = '#fff'; }}
+                onMouseOut={e => { e.currentTarget.style.background = '#B9105E'; e.currentTarget.style.color = '#fff'; }}
                 onClick={() => setIsFormOpen(true)}
               >
                 Schedule Site Visit

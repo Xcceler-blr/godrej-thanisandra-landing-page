@@ -27,44 +27,54 @@ export const AmenitiesSection = () => {
 
   const amenities = [
     {
-      category: "Recreation & Sports",
-      color: "from-primary to-primary/80",
-      items: [
-        { icon: Waves, name: "Swimming Pool", desc: "Temperature controlled pool" },
-        { icon: Dumbbell, name: "Fitness Center", desc: "Fully equipped gymnasium" },
-        { icon: Gamepad2, name: "Indoor Games", desc: "Table tennis, carrom, chess" },
-        { icon: Users, name: "Clubhouse", desc: "Multi-purpose community hall" }
-      ]
+      name: "CLUB HOUSE",
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+      desc: "Premium club house for recreation and gatherings."
     },
     {
-      category: "Convenience & Safety",
-      color: "from-secondary to-secondary/80",
-      items: [
-        { icon: Shield, name: "24/7 Security", desc: "CCTV & manned security" },
-        { icon: Car, name: "Parking", desc: "Covered & visitor parking" },
-        { icon: Zap, name: "Power Backup", desc: "100% backup for common areas" },
-        { icon: Wifi, name: "High-Speed Internet", desc: "Fiber optic connectivity" }
-      ]
+      name: "MINI THEATRE",
+      image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
+      desc: "Enjoy movies and events in a private mini theatre."
     },
     {
-      category: "Lifestyle & Wellness",
-      color: "from-accent to-accent/80",
-      items: [
-        { icon: TreePine, name: "Landscaped Gardens", desc: "80% green spaces" },
-        { icon: Baby, name: "Kids Play Area", desc: "Safe outdoor playground" },
-        { icon: BookOpen, name: "Library", desc: "Reading room & study area" },
-        { icon: Coffee, name: "Cafe", desc: "In-house coffee shop" }
-      ]
+      name: "LOTUS POND",
+      image: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=400&q=80",
+      desc: "Serene lotus pond for relaxation and scenic beauty."
     },
     {
-      category: "Additional Services",
-      color: "from-tertiary to-tertiary/80",
-      items: [
-        { icon: Bike, name: "Cycling Track", desc: "Dedicated cycling path" },
-        { icon: Camera, name: "Photography Studio", desc: "Professional photo space" },
-        { icon: Clock, name: "Maintenance", desc: "24/7 facility management" },
-        { icon: Home, name: "Guest Rooms", desc: "Furnished guest accommodation" }
-      ]
+      name: "BADMINTON COURT",
+      image: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=400&q=80",
+      desc: "Indoor badminton court for sports enthusiasts."
+    },
+    {
+      name: "BUSINESS CENTRE",
+      image: "https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=400&q=80",
+      desc: "Modern business centre for meetings and work."
+    },
+    {
+      name: "SWIMMING POOL",
+      image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
+      desc: "Large swimming pool for leisure and fitness."
+    },
+    {
+      name: "SPA & SAUNA",
+      image: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80",
+      desc: "Relax and rejuvenate at the spa and sauna."
+    },
+    {
+      name: "YOGA & MEDITATION DECK",
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+      desc: "Dedicated deck for yoga and meditation."
+    },
+    {
+      name: "RESTAURANT",
+      image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
+      desc: "On-site restaurant for fine dining."
+    },
+    {
+      name: "GYM",
+      image: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=400&q=80",
+      desc: "State-of-the-art gym for your fitness needs."
     }
   ];
 
@@ -87,32 +97,16 @@ export const AmenitiesSection = () => {
           </div>
 
           <div className="space-y-12">
-            {amenities.map((category, categoryIndex) => (
-              <div key={categoryIndex}>
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                    {category.category}
-                  </h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {amenities.map((amenity, index) => (
+                <div key={index} className="relative rounded-2xl shadow-xl overflow-hidden group h-48 flex items-end hover:shadow-2xl transition-all duration-300">
+                  <img src={amenity.image} alt={amenity.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/70 via-black/10 to-transparent">
+                    <h4 className="font-bold text-lg text-white drop-shadow-md">{amenity.name}</h4>
+                  </div>
                 </div>
-                
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {category.items.map((amenity, index) => {
-                    const IconComponent = amenity.icon;
-                    return (
-                      <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                        <CardContent className="p-6 text-center">
-                          <div className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
-                            <IconComponent className="h-8 w-8 text-white" />
-                          </div>
-                          <h4 className="font-bold text-lg mb-2">{amenity.name}</h4>
-                          <p className="text-sm text-muted-foreground">{amenity.desc}</p>
-                        </CardContent>
-                      </Card>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/* Amenities Highlight */}
@@ -128,7 +122,10 @@ export const AmenitiesSection = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-white text-white hover:bg-white hover:text-tertiary"
+                className="border-white text-white"
+                style={{background: '#B9105E', border: 'none'}}
+                onMouseOver={e => { e.currentTarget.style.background = '#B9105E'; e.currentTarget.style.color = '#fff'; }}
+                onMouseOut={e => { e.currentTarget.style.background = '#B9105E'; e.currentTarget.style.color = '#fff'; }}
                 onClick={() => setIsFormOpen(true)}
               >
                 View All Amenities
@@ -136,7 +133,10 @@ export const AmenitiesSection = () => {
               <Button 
                 variant="default" 
                 size="lg"
-                className="bg-white text-tertiary hover:bg-white/90"
+                className="text-white"
+                style={{background: '#B9105E', border: 'none'}}
+                onMouseOver={e => { e.currentTarget.style.background = '#B9105E'; e.currentTarget.style.color = '#fff'; }}
+                onMouseOut={e => { e.currentTarget.style.background = '#B9105E'; e.currentTarget.style.color = '#fff'; }}
                 onClick={() => setIsFormOpen(true)}
               >
                 Schedule Amenities Tour

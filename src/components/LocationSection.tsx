@@ -17,55 +17,27 @@ import {
   Clock,
   Route
 } from "lucide-react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 export const LocationSection = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  const locationAdvantages = [
-    {
-      category: "Connectivity",
-      icon: Route,
-      color: "from-primary to-primary/80",
-      items: [
-        { icon: Car, name: "Outer Ring Road", distance: "2 km", desc: "Direct connectivity to IT hubs" },
-        { icon: Train, name: "Yelahanka Railway Station", distance: "8 km", desc: "Main line railway connectivity" },
-        { icon: Plane, name: "Kempegowda Airport", distance: "25 km", desc: "International airport access" },
-        { icon: Car, name: "Bellary Road", distance: "3 km", desc: "Major arterial road" }
-      ]
-    },
-    {
-      category: "IT & Business Hubs",
-      icon: Building,
-      color: "from-secondary to-secondary/80",
-      items: [
-        { icon: Building, name: "Manyata Tech Park", distance: "12 km", desc: "Major IT hub" },
-        { icon: Building, name: "Embassy Tech Village", distance: "15 km", desc: "Premium business district" },
-        { icon: Building, name: "Bagmane Tech Park", distance: "18 km", desc: "IT and biotech companies" },
-        { icon: Building, name: "ITPL Whitefield", distance: "20 km", desc: "Technology corridor" }
-      ]
-    },
-    {
-      category: "Education & Healthcare",
-      icon: GraduationCap,
-      color: "from-accent to-accent/80",
-      items: [
-        { icon: GraduationCap, name: "Canadian International School", distance: "5 km", desc: "Premium international school" },
-        { icon: Hospital, name: "Columbia Asia Hospital", distance: "4 km", desc: "Multi-specialty hospital" },
-        { icon: GraduationCap, name: "Ryan International School", distance: "6 km", desc: "Reputed educational institution" },
-        { icon: Hospital, name: "Manipal Hospital", distance: "8 km", desc: "Advanced healthcare facility" }
-      ]
-    },
-    {
-      category: "Lifestyle & Recreation",
-      icon: Coffee,
-      color: "from-tertiary to-tertiary/80",
-      items: [
-        { icon: ShoppingBag, name: "Phoenix MarketCity", distance: "10 km", desc: "Premium shopping mall" },
-        { icon: TreePine, name: "Lumbini Gardens", distance: "7 km", desc: "Popular recreation park" },
-        { icon: Coffee, name: "Forum Neighbourhood Mall", distance: "8 km", desc: "Local shopping & dining" },
-        { icon: ShoppingBag, name: "Orion Mall", distance: "12 km", desc: "Entertainment & shopping" }
-      ]
-    }
+  const locations = [
+    { icon: MapPin, title: "New Airport Road (Reva College)", desc: "Prime location with excellent connectivity" },
+    { icon: Building, title: "Manyata Tech Park", desc: "10 min drive" },
+    { icon: Car, title: "Hebbal Junction", desc: "15 min drive via ORR" },
+    { icon: Plane, title: "Kempegowda International Airport", desc: "25–30 min drive" },
+    { icon: Car, title: "Outer Ring Road", desc: "Access within minutes" },
+    { icon: Train, title: "Thanisandra Railway Station", desc: "5 min away" },
+    { icon: ShoppingBag, title: "Supers & Local Markets", desc: "Walkable distance" },
+    { icon: GraduationCap, title: "Vidyashilp Academy & Stonehill Intl", desc: "10–15 min" },
+    { icon: Hospital, title: "Columbia Asia & Aster CMI Hospitals", desc: "10–15 min" },
+    { icon: ShoppingBag, title: "Phoenix Market City & Orion Mall", desc: "20 km" },
+    { icon: Car, title: "Whitefield", desc: "Quick access, 20 km" },
+    { icon: MapPin, title: "Nagawara & Kammanahalli", desc: "5–10 min" },
+    { icon: Train, title: "Future Metro", desc: "Upcoming connectivity" },
+    { icon: Building, title: "BCM Vertex (2.3 Km)", desc: "10 min drive" }
   ];
 
   return (
@@ -87,70 +59,31 @@ export const LocationSection = () => {
             </p>
           </div>
 
-          {/* Location Map */}
-          <div className="mb-16">
-            <Card className="overflow-hidden shadow-2xl">
-              <CardContent className="p-0">
-                <div className="relative">
-                  <img 
-                    src="https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                    alt="Location Map"
-                    className="w-full h-[400px] object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <MapPin className="h-12 w-12 mx-auto mb-4" />
-                      <h3 className="text-2xl font-bold mb-2">Prime North Bangalore Location</h3>
-                      <p className="text-lg">Thanisandra, Near Outer Ring Road</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Location Advantages by Category */}
-          <div className="space-y-16">
-            {locationAdvantages.map((category, categoryIndex) => {
-              const CategoryIcon = category.icon;
+          {/* Location Advantages Tiles Grid */}
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mb-16">
+            {locations.map((loc, idx) => {
+              const Icon = loc.icon;
+              const iconColor = idx % 2 === 0 ? '#3777C5' : '#B9105E';
+              const controls = useAnimation();
+              const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
+              if (inView) controls.start({ opacity: 1, y: 0, scale: 1 });
               return (
-                <div key={categoryIndex}>
-                  <div className="text-center mb-8">
-                    <div className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                      <CategoryIcon className="h-8 w-8 text-white" />
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                      {category.category}
-                    </h3>
+                <motion.div
+                  key={idx}
+                  ref={ref}
+                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                  animate={controls}
+                  transition={{ duration: 0.6, delay: idx * 0.08, type: "spring", bounce: 0.2 }}
+                  className="flex items-start gap-4 bg-white rounded-2xl shadow-md p-5 hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full" style={{background: iconColor}}>
+                    <Icon className="h-6 w-6 text-white" />
                   </div>
-                  
-                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {category.items.map((item, index) => {
-                      const ItemIcon = item.icon;
-                      return (
-                        <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                          <CardContent className="p-6">
-                            <div className="flex items-start gap-4">
-                              <div className={`w-12 h-12 bg-gradient-to-br ${category.color} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                                <ItemIcon className="h-6 w-6 text-white" />
-                              </div>
-                              <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-1">
-                                  <h4 className="font-bold text-sm">{item.name}</h4>
-                                  <Badge variant="outline" className="text-xs">
-                                    <Clock className="h-3 w-3 mr-1" />
-                                    {item.distance}
-                                  </Badge>
-                                </div>
-                                <p className="text-xs text-muted-foreground">{item.desc}</p>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      );
-                    })}
+                  <div>
+                    <h4 className="font-bold text-base mb-1 text-primary">{loc.title}</h4>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{loc.desc}</p>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>

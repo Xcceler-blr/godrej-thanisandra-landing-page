@@ -84,7 +84,7 @@ export const AboutSection = () => {
           </div>
 
           {/* Godrej Legacy */}
-          <div className="bg-card rounded-3xl p-8 md:p-12 shadow-xl">
+          <div className="bg-card rounded-3xl p-4 md:p-6 shadow-xl">
             <div className="text-center mb-12">
               <h3 className="text-2xl md:text-3xl font-bold mb-4">
                 The <span className="text-primary">Godrej Legacy</span>
