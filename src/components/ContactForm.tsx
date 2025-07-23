@@ -21,9 +21,30 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
   const [thankYou, setThankYou] = useState<string | null>(null);
   const [consent, setConsent] = useState(false);
   const [consentError, setConsentError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Allowed Purpose options for Google Form
+  const PURPOSE_OPTIONS = [
+    "About - Learn More About Godrej",
+    "Floor Plan - Download Floor Plans",
+    "Project Highlights - Schedule Site Visit",
+    "Amenities - Schedule Amenities Tour",
+    "Learn More About Location",
+    "Get in Touch"
+  ];
+  function getPurposeValue(title: string) {
+    if (!title) return "Get in Touch";
+    if (PURPOSE_OPTIONS.includes(title)) return title;
+    if (title.includes("About")) return "About - Learn More About Godrej";
+    if (title.includes("Floor Plan")) return "Floor Plan - Download Floor Plans";
+    if (title.includes("Project Highlights")) return "Project Highlights - Schedule Site Visit";
+    if (title.includes("Amenities")) return "Amenities - Schedule Amenities Tour";
+    if (title.includes("Location")) return "Learn More About Location";
+    return "Get in Touch";
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setConsentError("");
     
@@ -40,11 +61,32 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
       setConsentError("You must agree to be contacted regarding your enquiry.");
       return;
     }
-
-    // Unified thank you message
-    setThankYou("Thank you for your interest! Our executive will contact you shortly to assist you further.");
-    setFormData({ name: "", phone: "", email: "" });
-    setConsent(false);
+    setSubmitting(true);
+    // Google Form POST
+    const formPayload = new FormData();
+    formPayload.append("entry.1338687725", formData.name);
+    formPayload.append("entry.1492404407", formData.phone);
+    formPayload.append("entry.1765571584", formData.email);
+    formPayload.append("entry.1294608166", getPurposeValue(title)); // Purpose
+    formPayload.append("entry.182177265", consent ? "I agree to be contacted regarding my enquiry" : ""); // Consent
+    try {
+      await fetch("https://docs.google.com/forms/d/e/1FAIpQLSfmhAoHV0oaodPJsJuhcXyDF554xaGkKqaQAkXTd-lCmGexaA/formResponse", {
+        method: "POST",
+        mode: "no-cors",
+        body: formPayload,
+      });
+      setThankYou("Thank you for your interest! Our executive will contact you shortly to assist you further.");
+      setFormData({ name: "", phone: "", email: "" });
+      setConsent(false);
+    } catch (err) {
+      toast({
+        title: "Submission failed",
+        description: "There was a problem submitting your enquiry. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -140,8 +182,8 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
             {consentError && (
               <p className="text-xs text-red-500 mt-1">{consentError}</p>
             )}
-            <Button type="submit" variant="cta" className="w-full mt-6" disabled={!consent}>
-              Submit Inquiry
+            <Button type="submit" variant="cta" className="w-full mt-6" disabled={!consent || submitting}>
+              {submitting ? "Submitting..." : "Submit Inquiry"}
             </Button>
           </form>
         )}

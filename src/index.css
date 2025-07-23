@@ -107,6 +107,25 @@ All colors MUST be HSL.
 }
 
 @layer base {
+  html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  
+  img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Prevent containers from overflowing on mobile */
+  .container, .max-w-6xl, .max-w-7xl, .mx-auto, .w-full {
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+
   * {
     @apply border-border;
   }

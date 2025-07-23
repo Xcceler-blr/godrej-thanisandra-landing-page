@@ -95,16 +95,16 @@ export const AboutSection = () => {
               </p>
             </div>
             
-            <div className="flex justify-center gap-6">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 w-full">
               {achievements.map((achievement, index) => {
                 const IconComponent = achievement.icon;
                 return (
-                  <div key={index} className="flex flex-col items-center text-center min-w-[90px]">
+                  <div key={index} className="flex flex-col items-center text-center min-w-[90px] max-w-[120px] flex-1">
                     <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform mb-2">
                       <IconComponent className="h-8 w-8 text-white" />
                     </div>
-                    <h4 className="font-bold text-lg mb-1">{achievement.label}</h4>
-                    <p className="text-sm text-muted-foreground">{achievement.desc}</p>
+                    <h4 className="font-bold text-base md:text-lg mb-1">{achievement.label}</h4>
+                    <p className="text-xs md:text-sm text-muted-foreground">{achievement.desc}</p>
                   </div>
                 );
               })}
