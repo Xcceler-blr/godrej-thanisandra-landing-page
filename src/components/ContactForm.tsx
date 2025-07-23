@@ -19,10 +19,13 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
     email: "",
   });
   const [thankYou, setThankYou] = useState<string | null>(null);
+  const [consent, setConsent] = useState(false);
+  const [consentError, setConsentError] = useState("");
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setConsentError("");
     
     // Basic validation
     if (!formData.name || !formData.phone || !formData.email) {
@@ -33,10 +36,15 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
       });
       return;
     }
+    if (!consent) {
+      setConsentError("You must agree to be contacted regarding your enquiry.");
+      return;
+    }
 
     // Unified thank you message
     setThankYou("Thank you for your interest! Our executive will contact you shortly to assist you further.");
     setFormData({ name: "", phone: "", email: "" });
+    setConsent(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -115,7 +123,24 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
                 required
               />
             </div>
-            <Button type="submit" variant="cta" className="w-full mt-6">
+            <div className="flex items-center gap-2 mt-2">
+              <input
+                id="consent"
+                name="consent"
+                type="checkbox"
+                checked={consent}
+                onChange={e => setConsent(e.target.checked)}
+                className="accent-primary w-4 h-4"
+                required
+              />
+              <label htmlFor="consent" className="text-sm select-none cursor-pointer">
+                I agree to be contacted regarding my enquiry
+              </label>
+            </div>
+            {consentError && (
+              <p className="text-xs text-red-500 mt-1">{consentError}</p>
+            )}
+            <Button type="submit" variant="cta" className="w-full mt-6" disabled={!consent}>
               Submit Inquiry
             </Button>
           </form>
