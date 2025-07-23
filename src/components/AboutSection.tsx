@@ -86,8 +86,8 @@ export const AboutSection = () => {
           {/* Godrej Legacy */}
           <div className="bg-card rounded-3xl p-4 md:p-6 shadow-xl">
             <div className="text-center mb-12">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                The <span className="text-primary">Godrej Legacy</span>
+              <h3 className="text-4xl md:text-5xl font-bold mb-4">
+                The <span style={{ color: '#B9105E' }}>Godrej Legacy</span>
               </h3>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 For over 125 years, Godrej has been synonymous with trust, quality, and innovation. 
@@ -95,12 +95,12 @@ export const AboutSection = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="flex justify-center gap-6">
               {achievements.map((achievement, index) => {
                 const IconComponent = achievement.icon;
                 return (
-                  <div key={index} className="text-center group">
-                    <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  <div key={index} className="flex flex-col items-center text-center min-w-[90px]">
+                    <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform mb-2">
                       <IconComponent className="h-8 w-8 text-white" />
                     </div>
                     <h4 className="font-bold text-lg mb-1">{achievement.label}</h4>
@@ -116,7 +116,7 @@ export const AboutSection = () => {
       <ContactForm 
         isOpen={isFormOpen} 
         onClose={() => setIsFormOpen(false)}
-        title="Learn More About Godrej Thanisandra"
+        title="About - Learn More About Godrej Thanisandra"
       />
     </>
   );

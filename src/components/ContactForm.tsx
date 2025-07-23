@@ -18,6 +18,7 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
     phone: "",
     email: "",
   });
+  const [thankYou, setThankYou] = useState<string | null>(null);
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -33,15 +34,9 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
       return;
     }
 
-    // Simulate form submission
-    toast({
-      title: "Thank you for your interest!",
-      description: "Our team will contact you within 24 hours.",
-    });
-
-    // Reset form
+    // Unified thank you message
+    setThankYou("Thank you for your interest! Our executive will contact you shortly to assist you further.");
     setFormData({ name: "", phone: "", email: "" });
-    onClose();
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,76 +46,85 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
     }));
   };
 
+  // Extract user-facing title (remove section identifier if present)
+  let userTitle = title;
+  if (title && title.includes(' - ')) {
+    userTitle = title.split(' - ').slice(1).join(' - ');
+  }
+
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={() => { setThankYou(null); onClose(); }}>
       <DialogContent
-        className="max-w-md w-full p-6 bg-white shadow-2xl rounded-none sm:rounded-2xl sm:mx-0 mx-auto rounded-[10px]"
         style={{ borderRadius: '10px' }}
         onPointerDownOutside={onClose}
       >
         <div className="px-[20px] pr-[30px]">
         <DialogHeader>
           <DialogTitle className="text-center text-xl font-bold text-primary">
-            {title}
+            {thankYou ? "Thank You!" : userTitle}
           </DialogTitle>
         </DialogHeader>
-        
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="name" className="flex items-center gap-2">
-              <User className="h-4 w-4 text-primary" />
-              Full Name
-            </Label>
-            <Input
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Enter your full name"
-              required
-            />
+        {thankYou ? (
+          <div className="py-8 text-center">
+            <p className="text-base text-muted-foreground mb-6">{thankYou}</p>
+            <Button className="mx-auto" onClick={() => { setThankYou(null); onClose(); }}>Close</Button>
           </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="phone" className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-primary" />
-              Phone Number
-            </Label>
-            <Input
-              id="phone"
-              name="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="Enter your phone number"
-              required
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="email" className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-primary" />
-              Email Address
-            </Label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email address"
-              required
-            />
-          </div>
-          
-          <Button type="submit" variant="cta" className="w-full mt-6">
-            Submit Inquiry
-          </Button>
-        </form>
-        
-        <p className="text-xs text-muted-foreground text-center mt-4">
-          By submitting this form, you agree to receive updates about Godrej Thanisandra.
-        </p>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name" className="flex items-center gap-2">
+                <User className="h-4 w-4 text-primary" />
+                Full Name
+              </Label>
+              <Input
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="phone" className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-primary" />
+                Phone Number
+              </Label>
+              <Input
+                id="phone"
+                name="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email" className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-primary" />
+                Email Address
+              </Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
+            <Button type="submit" variant="cta" className="w-full mt-6">
+              Submit Inquiry
+            </Button>
+          </form>
+        )}
+        {!thankYou && (
+          <p className="text-xs text-muted-foreground text-center mt-4">
+            By submitting this form, you agree to receive updates about Godrej Thanisandra.
+          </p>
+        )}
         </div>
       </DialogContent>
     </Dialog>

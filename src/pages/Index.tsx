@@ -1,11 +1,9 @@
 import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ProjectHighlights } from "@/components/ProjectHighlights";
-import { PricingSection } from "@/components/PricingSection";
 import { MasterPlanSection } from "@/components/MasterPlanSection";
 import { AmenitiesSection } from "@/components/AmenitiesSection";
 import { FloorPlanSection } from "@/components/FloorPlanSection";
-import { GallerySection } from "@/components/GallerySection";
 import { LocationSection } from "@/components/LocationSection";
 import { motion } from "framer-motion";
 

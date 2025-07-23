@@ -120,17 +120,6 @@ export const AmenitiesSection = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                variant="outline" 
-                size="lg"
-                className="border-white text-white"
-                style={{background: '#B9105E', border: 'none'}}
-                onMouseOver={e => { e.currentTarget.style.background = '#B9105E'; e.currentTarget.style.color = '#fff'; }}
-                onMouseOut={e => { e.currentTarget.style.background = '#B9105E'; e.currentTarget.style.color = '#fff'; }}
-                onClick={() => setIsFormOpen(true)}
-              >
-                View All Amenities
-              </Button>
-              <Button 
                 variant="default" 
                 size="lg"
                 className="text-white"
@@ -169,7 +158,7 @@ export const AmenitiesSection = () => {
       <ContactForm 
         isOpen={isFormOpen} 
         onClose={() => setIsFormOpen(false)}
-        title="Learn More About Amenities"
+        title="Amenities - Schedule Amenities Tour"
       />
     </>
   );

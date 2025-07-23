@@ -21,14 +21,6 @@ export const FloorPlanSection = () => {
     {
       type: "3BHK - 1800 sqft",
       image: "https://images.unsplash.com/photo-1497604401993-f2e922e5cb0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      type: "4BHK - 2180 sqft",
-      image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      type: "4BHK - 2300 sqft",
-      image: "https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     }
   ];
 
@@ -58,7 +50,7 @@ export const FloorPlanSection = () => {
               else if (plan.type.startsWith("3BHK")) price = "1.93Cr* ONWARDS";
               else if (plan.type.startsWith("4BHK")) price = "2.23Cr* ONWARDS";
               return (
-                <div key={plan.type} className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col relative w-full max-w-xs sm:max-w-sm min-w-0 mx-auto">
+                <div key={plan.type} className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col relative w-full max-w-xs sm:max-w-sm min-w-0 mx-auto transition-transform duration-300 hover:scale-105 hover:shadow-xl">
                   <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-xs font-semibold z-10" style={{background: '#B9105E'}}>{price}</span>
                   <img src={plan.image} alt={plan.type} className="w-full h-56 object-cover" />
                   <div className="p-6 flex-1 flex flex-col justify-between min-w-0">
@@ -68,8 +60,7 @@ export const FloorPlanSection = () => {
                       className="w-full gap-2 mt-auto"
                       onClick={() => setIsFormOpen(true)}
                     >
-                      <Download className="h-4 w-4" />
-                      Download Floor Plan
+                      Know more about floor plan
                     </Button>
                   </div>
                 </div>
@@ -84,7 +75,7 @@ export const FloorPlanSection = () => {
       <ContactForm 
         isOpen={isFormOpen} 
         onClose={() => setIsFormOpen(false)}
-        title="Download Floor Plans"
+        title="Floor Plan - Download Floor Plans"
       />
     </>
   );

@@ -4,8 +4,9 @@ import { ContactForm } from "./ContactForm";
 import { Badge } from "@/components/ui/badge";
 import { Download, Eye, Map, FileText } from "lucide-react";
 
+type FormType = 'expert' | null;
 export const MasterPlanSection = () => {
-  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState<FormType>(null);
 
   const downloadOptions = [
     {
@@ -50,17 +51,7 @@ export const MasterPlanSection = () => {
                 className="rounded-2xl shadow-2xl w-full h-[400px] object-cover"
               />
               
-              <div className="mt-6 flex justify-center">
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="gap-2"
-                  onClick={() => setIsFormOpen(true)}
-                >
-                  <Eye className="h-5 w-5" />
-                  View Interactive Master Plan
-                </Button>
-              </div>
+              {/* Removed View Interactive Master Plan button */}
             </div>
             
             <div className="space-y-6">
@@ -82,7 +73,6 @@ export const MasterPlanSection = () => {
                     <div 
                       key={index}
                       className="flex items-center gap-4 p-4 bg-background rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer"
-                      onClick={() => setIsFormOpen(true)}
                     >
                       <div className="w-12 h-12 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center">
                         <IconComponent className="h-6 w-6 text-primary" />
@@ -91,31 +81,19 @@ export const MasterPlanSection = () => {
                         <h4 className="font-semibold text-foreground">{option.title}</h4>
                         <p className="text-sm text-muted-foreground">{option.description}</p>
                       </div>
-                      <div className="text-right">
-                        <div className="text-sm font-medium text-foreground">{option.format}</div>
-                        <div className="text-xs text-muted-foreground">{option.size}</div>
-                      </div>
                     </div>
                   );
                 })}
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col gap-4">
                 <Button 
                   variant="default" 
                   size="lg"
-                  className="gap-2"
-                  onClick={() => setIsFormOpen(true)}
+                  className="gap-2 !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e]"
+                  onClick={() => setIsFormOpen('expert')}
                 >
-                  <Download className="h-5 w-5" />
-                  Download All Documents
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  onClick={() => setIsFormOpen(true)}
-                >
-                  Request Physical Copy
+                  Talk to Our Expert
                 </Button>
               </div>
             </div>
@@ -124,9 +102,9 @@ export const MasterPlanSection = () => {
       </section>
       
       <ContactForm 
-        isOpen={isFormOpen} 
-        onClose={() => setIsFormOpen(false)}
-        title="Download Master Plan & Documents"
+        isOpen={isFormOpen === 'expert'} 
+        onClose={() => setIsFormOpen(null)}
+        title="Master Plan - Talk to Our Expert"
       />
     </>
   );

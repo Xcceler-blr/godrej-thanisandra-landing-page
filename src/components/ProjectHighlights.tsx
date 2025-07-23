@@ -26,7 +26,7 @@ export const ProjectHighlights = () => {
       image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
     },
     {
-      title: "Well-Planned 2, 3 & 4 BHK Homes",
+      title: "Well-Planned 2BHK & 3BHK Homes",
       description: "Generously sized residences featuring large balconies, crafted to offer exceptional comfort, modern amenities, and a prime address near Reva College in North Bangalore.",
       image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
     },
@@ -114,13 +114,13 @@ export const ProjectHighlights = () => {
           `}</style>
           <div className="relative max-w-3xl mx-auto mb-12">
             {/* Vertical line for timeline */}
-            <div className="absolute left-6 top-0 bottom-0 w-1 rounded-full z-0 timeline-animated-line" />
+            <div className="absolute left-8 top-0 bottom-0 w-1 rounded-full z-0 timeline-animated-line" />
             <div className="flex flex-col gap-12">
               {highlights.map((highlight, index) => (
                 <div key={index} className="relative flex flex-col md:flex-row items-start md:items-center gap-6 z-10">
                   {/* Timeline dot */}
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg z-10 border-4 border-white timeline-node-animate timeline-node-border-animate">
-                    <img src={highlight.image} alt={highlight.title} className="w-10 h-10 object-cover rounded-full" />
+                  <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg z-10 border-4 border-white timeline-node-animate timeline-node-border-animate">
+                    <img src={highlight.image} alt={highlight.title} className="w-14 h-14 object-cover rounded-full" />
                   </div>
                   <div className="flex-1 bg-white rounded-2xl shadow-md p-6 md:ml-4">
                     <h3 className="text-lg md:text-xl font-bold text-primary mb-2">{highlight.title}</h3>
@@ -152,13 +152,6 @@ export const ProjectHighlights = () => {
               >
                 Schedule Site Visit
               </Button>
-              <Button 
-                variant="default" 
-                size="lg"
-                onClick={() => setIsFormOpen(true)}
-              >
-                Get Project Details
-              </Button>
             </div>
           </div>
         </div>
@@ -167,7 +160,7 @@ export const ProjectHighlights = () => {
       <ContactForm 
         isOpen={isFormOpen} 
         onClose={() => setIsFormOpen(false)}
-        title="Get Project Highlights"
+        title="Project Highlights - Schedule Site Visit"
       />
     </>
   );

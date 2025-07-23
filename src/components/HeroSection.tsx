@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "./ContactForm";
 
+type FormType = 'sitevisit' | 'enquire' | null;
 export const HeroSection = () => {
-  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState<FormType>(null);
 
   return (
     <>
@@ -16,16 +17,16 @@ export const HeroSection = () => {
         />
         {/* Sticky ENQUIRE NOW Button - Desktop */}
         <button
-          onClick={() => setIsFormOpen(true)}
-          className="hidden md:flex fixed top-1/2 right-0 z-50 transform -translate-y-1/2 bg-gradient-to-r from-primary to-secondary text-white font-bold py-3 px-2 rounded-l-2xl shadow-xl animate-none hover:scale-105 transition-all duration-300 flex items-center justify-center enquire-now-animate"
+          onClick={() => setIsFormOpen('enquire')}
+          className="hidden md:flex fixed top-1/2 right-0 z-50 transform -translate-y-1/2 !bg-[#56A7E0] text-white font-bold py-3 px-2 rounded-l-2xl shadow-xl animate-none hover:scale-105 transition-all duration-300 flex items-center justify-center enquire-now-animate"
           style={{ marginRight: 0, writingMode: 'vertical-rl', textOrientation: 'mixed', letterSpacing: '0.1em', height: '200px', minWidth: '48px' }}
         >
           ENQUIRE NOW
         </button>
         {/* Sticky ENQUIRE NOW Button - Mobile */}
         <button
-          onClick={() => setIsFormOpen(true)}
-          className="md:hidden fixed bottom-6 right-6 z-50 bg-gradient-to-r from-primary to-secondary text-white font-bold py-4 px-6 rounded-full shadow-xl flex items-center gap-2 animate-pulse"
+          onClick={() => setIsFormOpen('enquire')}
+          className="md:hidden fixed bottom-6 right-6 z-50 !bg-[#56A7E0] text-white font-bold py-4 px-6 rounded-full shadow-xl flex items-center gap-2 animate-pulse"
           style={{ minWidth: '56px', minHeight: '56px' }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -54,20 +55,11 @@ export const HeroSection = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 md:mb-8 w-full">
               <Button 
-                variant="hero" 
                 size="lg"
-                className="px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg font-semibold w-full sm:w-auto"
-                onClick={() => setIsFormOpen(true)}
+                className="px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg font-semibold w-full sm:w-auto !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e]"
+                onClick={() => setIsFormOpen('sitevisit')}
               >
-                Book Your Dream Home
-              </Button>
-              <Button 
-                variant="heroBrochure" 
-                size="lg"
-                className="px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg font-semibold w-full sm:w-auto"
-                onClick={() => setIsFormOpen(true)}
-              >
-                Download Brochure
+                Schedule Site Visit
               </Button>
             </div>
           </div>
@@ -89,9 +81,14 @@ export const HeroSection = () => {
           </div>
         </div>
       <ContactForm 
-        isOpen={isFormOpen} 
-        onClose={() => setIsFormOpen(false)}
-        title="Book Your Dream Home"
+        isOpen={isFormOpen === 'sitevisit'} 
+        onClose={() => setIsFormOpen(null)}
+        title="Hero - Schedule Site Visit"
+      />
+      <ContactForm 
+        isOpen={isFormOpen === 'enquire'} 
+        onClose={() => setIsFormOpen(null)}
+        title="Hero - Enquire Now"
       />
       </section>
     </>
