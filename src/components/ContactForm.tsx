@@ -53,7 +53,12 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent
+        className="max-w-md w-full p-6 bg-white shadow-2xl rounded-none sm:rounded-2xl sm:mx-0 mx-auto rounded-[10px]"
+        style={{ borderRadius: '10px' }}
+        onPointerDownOutside={onClose}
+      >
+        <div className="px-[20px] pr-[30px]">
         <DialogHeader>
           <DialogTitle className="text-center text-xl font-bold text-primary">
             {title}
@@ -116,6 +121,7 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
         <p className="text-xs text-muted-foreground text-center mt-4">
           By submitting this form, you agree to receive updates about Godrej Thanisandra.
         </p>
+        </div>
       </DialogContent>
     </Dialog>
   );
