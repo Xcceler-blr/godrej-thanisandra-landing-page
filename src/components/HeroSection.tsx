@@ -32,12 +32,14 @@ export const HeroSection = () => {
         >
           ENQUIRE NOW
         </button>
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('/Assets/Godrej.png')`
-          }}
+        {/* Background Image as <img> for LCP */}
+        <img
+          src="/Assets/Godrej.png"
+          alt="Godrej Thanisandra"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+          fetchPriority="high"
+          decoding="async"
         />
 
         {/* Content Layout */}
