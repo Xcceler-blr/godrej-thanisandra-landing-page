@@ -28,52 +28,52 @@ export const AmenitiesSection = () => {
   const amenities = [
     {
       name: "CLUB HOUSE",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+      image: "/Assets/Amenities/CLUB-HOUSE.png",
       desc: "Premium club house for recreation and gatherings."
     },
     {
       name: "MINI THEATRE",
-      image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
+      image: "/Assets/Amenities/MINI-THEATRE.png",
       desc: "Enjoy movies and events in a private mini theatre."
     },
     {
       name: "LOTUS POND",
-      image: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=400&q=80",
+      image: "/Assets/Amenities/MINI-THEATRE (1).png",
       desc: "Serene lotus pond for relaxation and scenic beauty."
     },
     {
       name: "BADMINTON COURT",
-      image: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=400&q=80",
+      image: "/Assets/Amenities/BADMINTON-COURT.png",
       desc: "Indoor badminton court for sports enthusiasts."
     },
     {
       name: "BUSINESS CENTRE",
-      image: "https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=400&q=80",
+      image: "/Assets/Amenities/BUSINESS-CENTRE.png",
       desc: "Modern business centre for meetings and work."
     },
     {
       name: "SWIMMING POOL",
-      image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
+      image: "/Assets/Amenities/SWIMMING POOL SPA & SAUNA.png",
       desc: "Large swimming pool for leisure and fitness."
     },
     {
       name: "SPA & SAUNA",
-      image: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80",
+      image: "/Assets/Amenities/_SPA & SAUNA.png",
       desc: "Relax and rejuvenate at the spa and sauna."
     },
     {
       name: "YOGA & MEDITATION DECK",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+      image: "/Assets/Amenities/YOGA & MEDITATION DECK.png",
       desc: "Dedicated deck for yoga and meditation."
     },
     {
       name: "RESTAURANT",
-      image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
+      image: "/Assets/Amenities/RESTAURANT.png",
       desc: "On-site restaurant for fine dining."
     },
     {
       name: "GYM",
-      image: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=400&q=80",
+      image: "/Assets/Amenities/gym.png",
       desc: "State-of-the-art gym for your fitness needs."
     }
   ];

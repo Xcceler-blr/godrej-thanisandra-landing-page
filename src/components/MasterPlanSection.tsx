@@ -34,7 +34,7 @@ export const MasterPlanSection = () => {
               Project Documentation
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Download <span className="text-primary">Master Plan</span>
+            Godrej Thanisandra <span className="text-primary">Master Plan</span>
               <br />& Project Details
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -46,7 +46,7 @@ export const MasterPlanSection = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
             <div>
               <img 
-                src="https://images.unsplash.com/photo-1496307653780-42ee777d4833?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                src="/Assets/godrej-master.png"
                 alt="Master Plan Preview"
                 className="rounded-2xl shadow-2xl w-full h-[400px] object-cover"
               />

@@ -12,15 +12,15 @@ export const FloorPlanSection = () => {
   const floorPlanTiles = [
     {
       type: "2BHK - 1190sqft",
-      image: "https://images.unsplash.com/photo-1460574283810-2aab119d8511?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      image: "/Assets/godrej-2bhk%20.png"
     },
     {
       type: "2BHK - 1240sqft",
-      image: "https://images.unsplash.com/photo-1439337153520-7082a56a81f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      image: "/Assets/godrej-2bhk2.png"
     },
     {
       type: "3BHK - 1800 sqft",
-      image: "https://images.unsplash.com/photo-1497604401993-f2e922e5cb0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      image: "/Assets/godrej-3bhk%20.png"
     }
   ];
 

@@ -23,37 +23,37 @@ export const ProjectHighlights = () => {
     {
       title: "Expansive 7-Acre Low-Density Community",
       description: "A thoughtfully designed premium enclave with just 558 residences, ensuring abundant open spaces and enhanced privacy.",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+      image: "/Assets/Project-Highlights/Godrej%20-%20Expansive%207-Acre.png"
     },
     {
       title: "Well-Planned 2BHK & 3BHK Homes",
       description: "Generously sized residences featuring large balconies, crafted to offer exceptional comfort, modern amenities, and a prime address near Reva College in North Bangalore.",
-      image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+      image: "/Assets/Project-Highlights/Godrej%20-%202bhk%203bhk.png"
     },
     {
       title: "Strategic North Bangalore Location",
       description: "Situated in a thriving growth corridor that perfectly blends the vibrancy of city life with the tranquility of suburban living.",
-      image: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=400&q=80"
+      image: "/Assets/Project-Highlights/Godrej%20-%20Strategic%20North%20Bangalore.png"
     },
     {
       title: "Versatile Floor Plans",
-      description: "Luxury 2, 3, and 4 BHK layouts tailored to suit a variety of family lifestyles and requirements.",
-      image: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=400&q=80"
+      description: "Luxury 2 BHK and 3 BHK layouts tailored to suit a variety of family lifestyles and requirements.",
+      image: "/Assets/Project-Highlights/Godrej%20-%20Versatile%20Floor%20Plans.png"
     },
     {
       title: "Smart, Spacious Design",
       description: "Homes emphasize natural ventilation and daylight, seamlessly blending functionality with comfort.",
-      image: "https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=400&q=80"
+      image: "/Assets/Project-Highlights/Godrej%20-%20Smart,%20Spacious%20Design.png"
     },
     {
       title: "Modern Architecture with a Green Touch",
       description: "Contemporary design highlighted by landscaped terraces, merging aesthetics with sustainability.",
-      image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80"
+      image: "/Assets/Project-Highlights/Godrej%20-%20Modern%20Architecture%20with%20a%20Green%20Touch.png"
     },
     {
       title: "On-Site Commercial Amenities",
       description: "Integrated retail and convenience spaces within the development, offering everyday essentials at your doorstep.",
-      image: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80"
+      image: "/Assets/Project-Highlights/Godrej%20-%20On-Site%20Commercial%20Amenities.png"
     }
   ];
 

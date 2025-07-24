@@ -38,7 +38,7 @@ export const AboutSection = () => {
           <div ref={contentRef} className={`grid lg:grid-cols-2 gap-12 items-center mb-16 ${contentVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
             <div>
               <img 
-                src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                src="/Assets/godrej-about-section%20.png"
                 alt="Godrej Thanisandra Building"
                 className="rounded-2xl shadow-2xl w-full h-[400px] object-cover"
               />
@@ -51,7 +51,7 @@ export const AboutSection = () => {
               
               <p className="text-muted-foreground leading-relaxed">
                 Nestled in the rapidly developing Thanisandra region of North Bangalore, 
-                Godrej Thanisandra offers meticulously planned 2, 3, and 4 BHK apartments 
+                Godrej Thanisandra offers meticulously planned 2 and 3 BHK apartments 
                 designed for the modern family. With world-class amenities and strategic 
                 connectivity to IT corridors, this project represents the perfect blend 
                 of luxury and practicality.

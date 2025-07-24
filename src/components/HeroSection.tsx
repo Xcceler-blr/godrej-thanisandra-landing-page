@@ -62,7 +62,7 @@ export const HeroSection = () => {
           {/* Right: Vertical Tiles */}
           <div className="flex flex-col gap-3 md:gap-6 w-full md:w-auto md:ml-16 mt-8 md:mt-0">
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center">
-              <h3 className="text-lg md:text-2xl font-bold text-yellow-300 mb-1 md:mb-2">2-4 BHK</h3>
+              <h3 className="text-lg md:text-2xl font-bold text-yellow-300 mb-1 md:mb-2">2-3 BHK</h3>
               <p className="text-white/90 text-xs md:text-base">Premium Apartments</p>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center">
