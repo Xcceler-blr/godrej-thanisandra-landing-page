@@ -7,6 +7,7 @@ import { FloorPlanSection } from "@/components/FloorPlanSection";
 import { LocationSection } from "@/components/LocationSection";
 import PrivacyPolicy from "./PrivacyPolicy";
 import { Routes, Route } from "react-router-dom";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
           <ProjectHighlights />
           <AmenitiesSection />
           <LocationSection />
+          <Footer />
         </div>
       } />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />

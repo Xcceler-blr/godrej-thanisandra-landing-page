@@ -82,7 +82,7 @@ export const AmenitiesSection = () => {
 
   return (
     <>
-      <section ref={ref} className={`pt-16 pb-16 bg-muted/30 transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+      <section ref={ref} className={`pt-16 pb-16 bg-[#F7FAF7] transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">

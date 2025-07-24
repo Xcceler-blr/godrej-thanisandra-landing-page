@@ -29,7 +29,7 @@ export const MasterPlanSection = () => {
 
   return (
     <>
-      <section ref={ref} className={`pt-16 pb-16 bg-gradient-to-br from-primary/5 to-secondary/5 transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+      <section ref={ref} className={`pt-16 pb-16 bg-[#EAF3FB] transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
@@ -45,7 +45,7 @@ export const MasterPlanSection = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-0">
             <div>
               <img 
                 src="/Assets/godrej-master.png"
