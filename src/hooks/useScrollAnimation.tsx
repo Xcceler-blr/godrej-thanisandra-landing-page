@@ -5,10 +5,11 @@ export const useScrollAnimation = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const observer = new window.IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          observer.disconnect(); // Only trigger once
         }
       },
       { threshold: 0.1 }
@@ -19,9 +20,7 @@ export const useScrollAnimation = () => {
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+      observer.disconnect();
     };
   }, []);
 

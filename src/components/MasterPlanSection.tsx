@@ -3,10 +3,12 @@ import { Button } from "@/components/ui/button";
 import { ContactForm } from "./ContactForm";
 import { Badge } from "@/components/ui/badge";
 import { Download, Eye, Map, FileText } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 type FormType = 'expert' | null;
 export const MasterPlanSection = () => {
   const [isFormOpen, setIsFormOpen] = useState<FormType>(null);
+  const { ref, isVisible } = useScrollAnimation();
 
   const downloadOptions = [
     {
@@ -27,14 +29,14 @@ export const MasterPlanSection = () => {
 
   return (
     <>
-      <section className="py-12 bg-gradient-to-br from-primary/5 to-secondary/5">
+      <section ref={ref} className={`pt-16 pb-16 bg-gradient-to-br from-primary/5 to-secondary/5 transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
               Project Documentation
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            Godrej Thanisandra <span className="text-primary">Master Plan</span>
+              Godrej Thanisandra <span className="text-primary">Master Plan</span>
               <br />& Project Details
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -100,7 +102,6 @@ export const MasterPlanSection = () => {
           </div>
         </div>
       </section>
-      
       <ContactForm 
         isOpen={isFormOpen === 'expert'} 
         onClose={() => setIsFormOpen(null)}

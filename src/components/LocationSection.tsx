@@ -17,11 +17,11 @@ import {
   Clock,
   Route
 } from "lucide-react";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export const LocationSection = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const { ref, isVisible } = useScrollAnimation();
 
   const locations = [
     { icon: MapPin, title: "New Airport Road (Reva College)", desc: "Prime location with excellent connectivity" },
@@ -42,28 +42,25 @@ export const LocationSection = () => {
 
   return (
     <>
-      <section className="py-12 bg-gradient-to-br from-secondary/5 to-primary/10">
+      <section ref={ref} className={`pt-16 pb-16 bg-gradient-to-br from-secondary/5 to-primary/10 transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
-              Strategic Location
+              Location Advantages
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Location Advantages of
-              <br /><span className="text-primary">Godrej Thanisandra</span>
+              <span className="text-primary">Godrej Thanisandra</span>
+              <br />Location
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Strategically located in the heart of North Bangalore, Godrej Thanisandra 
-              offers unparalleled connectivity to major IT hubs, educational institutions, 
-              and lifestyle destinations.
+              Discover the prime location benefits of Godrej Thanisandra, offering unmatched connectivity and convenience in North Bangalore.
             </p>
           </div>
 
-          {/* Location Advantages Tiles Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {locations.map((loc, idx) => {
               const Icon = loc.icon;
-              const iconColor = idx % 2 === 0 ? '#3777C5' : '#B9105E';
+              let iconColor = idx % 3 === 0 ? '#B9105E' : idx % 3 === 1 ? '#3777C5' : '#56A7E0';
               return (
                 <div
                   key={idx}
@@ -112,20 +109,19 @@ export const LocationSection = () => {
               <Button 
                 variant="default" 
                 size="lg"
+                className="gap-2 !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e]"
                 onClick={() => setIsFormOpen(true)}
               >
-                <MapPin className="h-5 w-5 mr-2" />
-                Explore Location Benefits
+                Learn More About Location
               </Button>
             </div>
           </div>
         </div>
       </section>
-      
       <ContactForm 
         isOpen={isFormOpen} 
         onClose={() => setIsFormOpen(false)}
-        title="Learn More About Location"
+        title="Location - Learn More About Location"
       />
     </>
   );

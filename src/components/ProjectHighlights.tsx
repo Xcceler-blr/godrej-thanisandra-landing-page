@@ -15,9 +15,11 @@ import {
   GraduationCap,
   ShoppingBag
 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export const ProjectHighlights = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const { ref, isVisible } = useScrollAnimation();
 
   const highlights = [
     {
@@ -59,7 +61,7 @@ export const ProjectHighlights = () => {
 
   return (
     <>
-      <section className="py-20 bg-muted/30">
+      <section ref={ref} className={`pt-16 pb-16 bg-muted/30 transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
@@ -156,7 +158,6 @@ export const ProjectHighlights = () => {
           </div>
         </div>
       </section>
-      
       <ContactForm 
         isOpen={isFormOpen} 
         onClose={() => setIsFormOpen(false)}

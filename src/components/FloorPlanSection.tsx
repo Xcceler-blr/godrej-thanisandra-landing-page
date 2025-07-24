@@ -5,9 +5,11 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Home, Maximize, Download, Eye } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export const FloorPlanSection = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const { ref, isVisible } = useScrollAnimation();
 
   const floorPlanTiles = [
     {
@@ -26,7 +28,7 @@ export const FloorPlanSection = () => {
 
   return (
     <>
-      <section className="py-12 bg-gradient-to-br from-accent/5 to-muted/30 overflow-x-hidden">
+      <section ref={ref} className={`pt-16 pb-16 bg-gradient-to-br from-accent/5 to-muted/30 overflow-x-hidden transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto px-2 sm:px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
@@ -71,7 +73,6 @@ export const FloorPlanSection = () => {
           {/* Floor Plan Highlights */}
         </div>
       </section>
-      
       <ContactForm 
         isOpen={isFormOpen} 
         onClose={() => setIsFormOpen(false)}

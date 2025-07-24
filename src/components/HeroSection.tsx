@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "./ContactForm";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 type FormType = 'sitevisit' | 'enquire' | null;
 export const HeroSection = () => {
   const [isFormOpen, setIsFormOpen] = useState<FormType>(null);
+  const { ref, isVisible } = useScrollAnimation();
 
   return (
     <>
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-32">
+      <section ref={ref} className={`relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-32 transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         {/* Logo Top Left */}
         <img 
           src="/Assets/id98Oz8z3__logos.svg" 

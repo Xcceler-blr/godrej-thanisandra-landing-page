@@ -7,8 +7,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export const AboutSection = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
-  const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation();
+  const { ref, isVisible } = useScrollAnimation();
 
   const achievements = [
     { icon: Building, label: "125+ Years", desc: "of Trust & Excellence" },
@@ -19,9 +18,9 @@ export const AboutSection = () => {
 
   return (
     <>
-      <section className="py-12 bg-gradient-to-br from-muted/50 to-accent/10">
+      <section ref={ref} className={`pt-16 pb-16 bg-gradient-to-br from-muted/50 to-accent/10 transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto px-4">
-          <div ref={titleRef} className={`text-center mb-12 ${titleVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
               About Godrej
             </Badge>
@@ -35,7 +34,7 @@ export const AboutSection = () => {
             </p>
           </div>
 
-          <div ref={contentRef} className={`grid lg:grid-cols-2 gap-12 items-center mb-16 ${contentVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <img 
                 src="/Assets/godrej-about-section%20.png"
@@ -112,7 +111,6 @@ export const AboutSection = () => {
           </div>
         </div>
       </section>
-      
       <ContactForm 
         isOpen={isFormOpen} 
         onClose={() => setIsFormOpen(false)}
