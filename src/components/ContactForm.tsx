@@ -5,6 +5,9 @@ import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { X, Phone, Mail, User } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 interface ContactFormProps {
   isOpen: boolean;
@@ -12,17 +15,36 @@ interface ContactFormProps {
   title?: string;
 }
 
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters").nonempty("Name is required"),
+  phone: z
+    .string()
+    .regex(/^\d{10}$/, "Phone number must be 10 digits"),
+  email: z.string().email("Invalid email address"),
+  consent: z.literal(true, { errorMap: () => ({ message: "Consent is required" }) }),
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
 export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: ContactFormProps) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-  });
   const [thankYou, setThankYou] = useState<string | null>(null);
-  const [consent, setConsent] = useState(false);
-  const [consentError, setConsentError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      phone: "",
+      email: "",
+      consent: false,
+    },
+  });
 
   // Allowed Purpose options for Google Form
   const PURPOSE_OPTIONS = [
@@ -44,31 +66,15 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
     return "Get in Touch";
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setConsentError("");
-    
-    // Basic validation
-    if (!formData.name || !formData.phone || !formData.email) {
-      toast({
-        title: "Please fill all fields",
-        description: "All fields are required to proceed.",
-        variant: "destructive",
-      });
-      return;
-    }
-    if (!consent) {
-      setConsentError("You must agree to be contacted regarding your enquiry.");
-      return;
-    }
+  const onSubmit = async (data: FormValues) => {
     setSubmitting(true);
     // Google Form POST
     const formPayload = new FormData();
-    formPayload.append("entry.1338687725", formData.name);
-    formPayload.append("entry.1492404407", formData.phone);
-    formPayload.append("entry.1765571584", formData.email);
+    formPayload.append("entry.1338687725", data.name);
+    formPayload.append("entry.1492404407", data.phone);
+    formPayload.append("entry.1765571584", data.email);
     formPayload.append("entry.1294608166", getPurposeValue(title)); // Purpose
-    formPayload.append("entry.182177265", consent ? "I agree to be contacted regarding my enquiry" : ""); // Consent
+    formPayload.append("entry.182177265", data.consent ? "I agree to be contacted regarding my enquiry" : ""); // Consent
     try {
       await fetch("https://docs.google.com/forms/d/e/1FAIpQLSfmhAoHV0oaodPJsJuhcXyDF554xaGkKqaQAkXTd-lCmGexaA/formResponse", {
         method: "POST",
@@ -76,8 +82,7 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
         body: formPayload,
       });
       setThankYou("Thank you for your interest! Our executive will contact you shortly to assist you further.");
-      setFormData({ name: "", phone: "", email: "" });
-      setConsent(false);
+      reset();
     } catch (err) {
       toast({
         title: "Submission failed",
@@ -87,13 +92,6 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
     } finally {
       setSubmitting(false);
     }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
   };
 
   // Extract user-facing title (remove section identifier if present)
@@ -120,7 +118,7 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
             <Button className="mx-auto" onClick={() => { setThankYou(null); onClose(); }}>Close</Button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="name" className="flex items-center gap-2">
                 <User className="h-4 w-4 text-primary" />
@@ -128,12 +126,11 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
               </Label>
               <Input
                 id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
+                {...register("name")}
                 placeholder="Enter your full name"
-                required
+                autoComplete="name"
               />
+              {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name.message}</p>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="phone" className="flex items-center gap-2">
@@ -142,13 +139,12 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
               </Label>
               <Input
                 id="phone"
-                name="phone"
                 type="tel"
-                value={formData.phone}
-                onChange={handleChange}
+                {...register("phone")}
                 placeholder="Enter your phone number"
-                required
+                autoComplete="tel"
               />
+              {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone.message}</p>}
             </div>
             <div className="space-y-2">
               <Label htmlFor="email" className="flex items-center gap-2">
@@ -157,32 +153,28 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
               </Label>
               <Input
                 id="email"
-                name="email"
                 type="email"
-                value={formData.email}
-                onChange={handleChange}
+                {...register("email")}
                 placeholder="Enter your email address"
-                required
+                autoComplete="email"
               />
+              {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>}
             </div>
             <div className="flex items-center gap-2 mt-2">
               <input
                 id="consent"
-                name="consent"
                 type="checkbox"
-                checked={consent}
-                onChange={e => setConsent(e.target.checked)}
+                {...register("consent")}
                 className="accent-primary w-4 h-4"
-                required
               />
               <label htmlFor="consent" className="text-sm select-none cursor-pointer">
                 I agree to be contacted regarding my enquiry
               </label>
             </div>
-            {consentError && (
-              <p className="text-xs text-red-500 mt-1">{consentError}</p>
+            {errors.consent && (
+              <p className="text-xs text-red-500 mt-1">{errors.consent.message}</p>
             )}
-            <Button type="submit" variant="cta" className="w-full mt-6" disabled={!consent || submitting}>
+            <Button type="submit" variant="cta" className="w-full mt-6" disabled={submitting}>
               {submitting ? "Submitting..." : "Submit Inquiry"}
             </Button>
           </form>
