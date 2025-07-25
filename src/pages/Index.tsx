@@ -5,27 +5,33 @@ import { MasterPlanSection } from "@/components/MasterPlanSection";
 import { AmenitiesSection } from "@/components/AmenitiesSection";
 import { FloorPlanSection } from "@/components/FloorPlanSection";
 import { LocationSection } from "@/components/LocationSection";
-import PrivacyPolicy from "./PrivacyPolicy";
-import { Routes, Route } from "react-router-dom";
 import Footer from "@/components/Footer";
+import { useEffect } from "react";
 
 const Index = () => {
+  useEffect(() => {
+    document.title = "Premium Apartments at Godrej Properties Thanisandra Bangalore";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", "Godrej Properties Thanisandra presents luxurious residential apartments in Bangalore's growing corridor. Modern amenities, strategic location & trusted brand.");
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = "description";
+      meta.content = "Godrej Properties Thanisandra presents luxurious residential apartments in Bangalore's growing corridor. Modern amenities, strategic location & trusted brand.";
+      document.head.appendChild(meta);
+    }
+  }, []);
   return (
-    <Routes>
-      <Route path="/" element={
-        <div className="min-h-screen">
-          <HeroSection />
-          <AboutSection />
-          <MasterPlanSection />
-          <FloorPlanSection />
-          <ProjectHighlights />
-          <AmenitiesSection />
-          <LocationSection />
-          <Footer />
-        </div>
-      } />
-      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-    </Routes>
+    <div className="min-h-screen">
+      <HeroSection />
+      <AboutSection />
+      <MasterPlanSection />
+      <FloorPlanSection />
+      <ProjectHighlights />
+      <AmenitiesSection />
+      <LocationSection />
+      <Footer />
+    </div>
   );
 };
 

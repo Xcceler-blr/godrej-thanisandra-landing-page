@@ -55,17 +55,17 @@ export const AmenitiesSection = () => {
     },
     {
       name: "SWIMMING POOL",
-      image: "/Assets/Amenities/SWIMMING POOL SPA & SAUNA.png",
+      image: "/Assets/Amenities/SWIMMING-POOL-SPA-SAUNA.png",
       desc: "Large swimming pool for leisure and fitness."
     },
     {
       name: "SPA & SAUNA",
-      image: "/Assets/Amenities/_SPA & SAUNA.png",
+      image: "/Assets/Amenities/SPA-SAUNA.png",
       desc: "Relax and rejuvenate at the spa and sauna."
     },
     {
       name: "YOGA & MEDITATION DECK",
-      image: "/Assets/Amenities/YOGA & MEDITATION DECK.png",
+      image: "/Assets/Amenities/YOGA-MEDITATION-DECK.png",
       desc: "Dedicated deck for yoga and meditation."
     },
     {
