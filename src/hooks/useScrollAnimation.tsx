@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 
 export const useScrollAnimation = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setIsHydrated(true);
     const observer = new window.IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -24,5 +26,6 @@ export const useScrollAnimation = () => {
     };
   }, []);
 
-  return { ref, isVisible };
+  // Return consistent state during SSR and initial hydration
+  return { ref, isVisible: isHydrated ? isVisible : false };
 };

@@ -17,12 +17,12 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    assetsDir: "assets",
+    assetsDir: "Assets",
     rollupOptions: {
       output: {
-        assetFileNames: "assets/[name]-[hash][extname]",
-        chunkFileNames: "assets/[name]-[hash].js",
-        entryFileNames: "assets/[name]-[hash].js",
+        assetFileNames: "Assets/[name]-[hash][extname]",
+        chunkFileNames: "Assets/[name]-[hash].js",
+        entryFileNames: "Assets/[name]-[hash].js",
       },
     },
   },

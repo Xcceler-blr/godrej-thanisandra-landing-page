@@ -12,9 +12,16 @@
         "destination": "/index.html"
       }
     ],
+    "redirects": [
+      {
+        "source": "/assets/**",
+        "destination": "/Assets/**",
+        "type": 301
+      }
+    ],
     "headers": [
       {
-        "source": "assets/**/*.js",
+        "source": "Assets/**/*.js",
         "headers": [
           {
             "key": "Content-Type",
@@ -23,7 +30,7 @@
         ]
       },
       {
-        "source": "assets/**/*.css",
+        "source": "Assets/**/*.css",
         "headers": [
           {
             "key": "Content-Type",
