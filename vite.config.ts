@@ -39,26 +39,14 @@ export default defineConfig(({ mode }) => ({
         },
         chunkFileNames: "Assets/js/[name]-[hash].js",
         entryFileNames: "Assets/js/[name]-[hash].js",
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          ui: ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
-          utils: ['clsx', 'class-variance-authority', 'tailwind-merge'],
-        },
       },
     },
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
+    minify: 'esbuild',
     cssCodeSplit: true,
     sourcemap: false,
     target: 'es2015',
   },
   optimizeDeps: {
     include: ['react', 'react-dom'],
-    exclude: ['@radix-ui/react-accordion', '@radix-ui/react-dialog'],
   },
 }));
