@@ -50,7 +50,7 @@ This project is built with:
 
 ## How can I deploy this project?
 
-You can deploy this project using your preferred static hosting provider (e.g., Vercel, Netlify, GitHub Pages, etc.).
+You can deploy this project using your preferred static hosting provider (e.g., Netlify, GitHub Pages, Firebase Hosting, etc.).
 
 ## Can I connect a custom domain?
 

@@ -367,8 +367,8 @@ The build process generates:
 
 ### Deployment Options
 
-#### Vercel (Recommended)
-1. Connect repository to Vercel
+#### Firebase Hosting (Recommended)
+1. Connect repository to Firebase
 2. Configure build settings:
    - Build Command: `npm run build`
    - Output Directory: `dist`

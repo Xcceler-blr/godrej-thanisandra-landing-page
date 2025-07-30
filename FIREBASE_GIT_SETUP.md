@@ -2,7 +2,7 @@
 
 ## ✅ Setup Complete!
 
-Your Firebase hosting is now connected to your Git repository for automatic deployments, just like Vercel!
+Your Firebase hosting is now connected to your Git repository for automatic deployments!
 
 ## 🚀 How It Works
 
@@ -341,7 +341,7 @@ git push origin main
 
 ---
 
-**🎉 Congratulations!** Your Firebase hosting is now fully integrated with Git for automatic deployments, just like Vercel!
+**🎉 Congratulations!** Your Firebase hosting is now fully integrated with Git for automatic deployments!
 
 **Live Site**: https://godrej-ff4b3.web.app
 **GitHub Repository**: https://github.com/Xcceler-blr/godrej-thanisandra-landing-page 
