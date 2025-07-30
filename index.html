@@ -9,10 +9,163 @@
     })(window,document,'script','dataLayer','GTM-T65RRZHB');</script>
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    <link rel="preload" href="/Assets/Godrej.png" as="image" />
+    <link rel="preload" href="/Assets/godrej-master.png" as="image" />
+    
     <title>Premium Apartments at Godrej Properties Thanisandra Bangalore</title>
     <meta name="description" content="Godrej Properties Thanisandra presents luxurious residential apartments in Bangalore's growing corridor. Modern amenities, strategic location & trusted brand.">
     <link rel="icon" type="image/x-icon" href="/Assets/favicon.ico" />
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "RealEstateListing",
+          "@id": "https://www.godrejpropertiez.in/#realestate",
+          "name": "Godrej Thanisandra",
+          "description": "Premium 2-3 BHK apartments in North Bangalore with world-class amenities and strategic location",
+          "url": "https://www.godrejpropertiez.in",
+          "image": [
+            "https://www.godrejpropertiez.in/Assets/godrej-master.png",
+            "https://www.godrejpropertiez.in/Assets/godrej-2bhk .png",
+            "https://www.godrejpropertiez.in/Assets/godrej-3bhk .png"
+          ],
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "INR",
+            "price": "15300000",
+            "priceValidUntil": "2024-12-31",
+            "availability": "https://schema.org/InStock",
+            "description": "Starting from 1.53 Cr* onwards"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Thanisandra",
+            "addressLocality": "Bangalore",
+            "addressRegion": "Karnataka",
+            "postalCode": "560064",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "13.0827",
+            "longitude": "77.5877"
+          },
+          "amenityFeature": [
+            {
+              "@type": "LocationFeatureSpecification",
+              "name": "Swimming Pool",
+              "value": true
+            },
+            {
+              "@type": "LocationFeatureSpecification",
+              "name": "Gym",
+              "value": true
+            },
+            {
+              "@type": "LocationFeatureSpecification",
+              "name": "Club House",
+              "value": true
+            },
+            {
+              "@type": "LocationFeatureSpecification",
+              "name": "Mini Theatre",
+              "value": true
+            },
+            {
+              "@type": "LocationFeatureSpecification",
+              "name": "Business Centre",
+              "value": true
+            },
+            {
+              "@type": "LocationFeatureSpecification",
+              "name": "Restaurant",
+              "value": true
+            },
+            {
+              "@type": "LocationFeatureSpecification",
+              "name": "Spa & Sauna",
+              "value": true
+            },
+            {
+              "@type": "LocationFeatureSpecification",
+              "name": "Yoga & Meditation Deck",
+              "value": true
+            },
+            {
+              "@type": "LocationFeatureSpecification",
+              "name": "Badminton Court",
+              "value": true
+            }
+          ],
+          "numberOfBedrooms": "2-3",
+          "floorSize": {
+            "@type": "QuantitativeValue",
+            "minValue": "1190",
+            "maxValue": "1800",
+            "unitCode": "SQF"
+          },
+          "petsAllowed": false,
+          "smokingAllowed": false,
+          "publisher": {
+            "@type": "Organization",
+            "name": "Godrej Properties"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://www.godrejpropertiez.in/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.godrejpropertiez.in"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Godrej Thanisandra",
+              "item": "https://www.godrejpropertiez.in"
+            }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.godrejpropertiez.in/#website",
+          "url": "https://www.godrejpropertiez.in",
+          "name": "Godrej Thanisandra",
+          "description": "Premium Apartments at Godrej Properties Thanisandra Bangalore",
+          "potentialAction": [
+            {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://www.godrejpropertiez.in/?s={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
 
   <body>
@@ -22,5 +175,20 @@
     <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>

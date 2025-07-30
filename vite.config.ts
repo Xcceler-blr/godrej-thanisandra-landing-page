@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import { compression } from 'vite-plugin-compression2';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -10,6 +11,14 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
+    compression({
+      algorithms: ['gzip'],
+      exclude: [/\.(br)$ /, /\.(gz)$/],
+    }),
+    compression({
+      algorithms: ['brotliCompress'],
+      exclude: [/\.(br)$ /, /\.(gz)$/],
+    }),
   ],
   resolve: {
     alias: {
@@ -20,10 +29,36 @@ export default defineConfig(({ mode }) => ({
     assetsDir: "Assets",
     rollupOptions: {
       output: {
-        assetFileNames: "Assets/[name]-[hash][extname]",
-        chunkFileNames: "Assets/[name]-[hash].js",
-        entryFileNames: "Assets/[name]-[hash].js",
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo.name?.split('.') || [];
+          const ext = info[info.length - 1];
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
+            return `Assets/images/[name]-[hash][extname]`;
+          }
+          return `Assets/[name]-[hash][extname]`;
+        },
+        chunkFileNames: "Assets/js/[name]-[hash].js",
+        entryFileNames: "Assets/js/[name]-[hash].js",
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          ui: ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+          utils: ['clsx', 'class-variance-authority', 'tailwind-merge'],
+        },
       },
     },
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+    cssCodeSplit: true,
+    sourcemap: false,
+    target: 'es2015',
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+    exclude: ['@radix-ui/react-accordion', '@radix-ui/react-dialog'],
   },
 }));

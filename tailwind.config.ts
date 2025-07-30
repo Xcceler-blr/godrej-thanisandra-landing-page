@@ -113,8 +113,31 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in-up': 'fade-in-up 0.6s ease-out',
 				'fade-in': 'fade-in 0.8s ease-out'
-			}
+			},
+			// Mobile-specific optimizations
+			screens: {
+				'xs': '475px',
+				'sm': '640px',
+				'md': '768px',
+				'lg': '1024px',
+				'xl': '1280px',
+				'2xl': '1536px',
+			},
+			// Optimize for mobile performance
+			spacing: {
+				'18': '4.5rem',
+				'88': '22rem',
+			},
+			// Reduce motion for accessibility
+			transitionProperty: {
+				'height': 'height',
+				'spacing': 'margin, padding',
+			},
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+	// Purge unused styles for smaller bundle
+	future: {
+		hoverOnlyWhenSupported: true,
+	},
 } satisfies Config;
