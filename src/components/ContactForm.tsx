@@ -8,6 +8,7 @@ import { X, Phone, Mail, User } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { HubSpotIntegration } from "@/lib/hubspot-integration";
 
 interface ContactFormProps {
   isOpen: boolean;
@@ -42,7 +43,7 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
       name: "",
       phone: "",
       email: "",
-      consent: false,
+      consent: false as any, // Type assertion to handle the literal type
     },
   });
 
@@ -66,24 +67,53 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
     return "Get in Touch";
   }
 
+  // Map form titles to HubSpot form types
+  function getHubSpotFormType(title: string): 'download' | 'lead-capture' | 'site-visit' {
+    if (title.includes("Floor Plan") || title.includes("Download")) {
+      return 'download';
+    } else if (title.includes("Site Visit") || title.includes("Schedule")) {
+      return 'site-visit';
+    } else {
+      return 'lead-capture';
+    }
+  }
+
   const onSubmit = async (data: FormValues) => {
     setSubmitting(true);
-    // Google Form POST
-    const formPayload = new FormData();
-    formPayload.append("entry.1338687725", data.name);
-    formPayload.append("entry.1492404407", data.phone);
-    formPayload.append("entry.1765571584", data.email);
-    formPayload.append("entry.1294608166", getPurposeValue(title)); // Purpose
-    formPayload.append("entry.182177265", data.consent ? "I agree to be contacted regarding my enquiry" : ""); // Consent
+    
     try {
+      // Submit to Google Forms (existing functionality)
+      const formPayload = new FormData();
+      formPayload.append("entry.1338687725", data.name);
+      formPayload.append("entry.1492404407", data.phone);
+      formPayload.append("entry.1765571584", data.email);
+      formPayload.append("entry.1294608166", getPurposeValue(title)); // Purpose
+      formPayload.append("entry.182177265", data.consent ? "I agree to be contacted regarding my enquiry" : ""); // Consent
+      
+      // Submit to Google Forms
       await fetch("https://docs.google.com/forms/d/e/1FAIpQLSfmhAoHV0oaodPJsJuhcXyDF554xaGkKqaQAkXTd-lCmGexaA/formResponse", {
         method: "POST",
         mode: "no-cors",
         body: formPayload,
       });
+
+      // Submit to HubSpot (new functionality)
+      const hubSpotFormType = getHubSpotFormType(title);
+      await HubSpotIntegration.submitToForm(hubSpotFormType, {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        consent: data.consent,
+        additionalData: {
+          source: title,
+          page_url: window.location.href
+        }
+      });
+
       setThankYou("Thank you for your interest! Our executive will contact you shortly to assist you further.");
       reset();
     } catch (err) {
+      console.error('Form submission error:', err);
       toast({
         title: "Submission failed",
         description: "There was a problem submitting your enquiry. Please try again later.",
