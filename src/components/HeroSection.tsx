@@ -10,12 +10,12 @@ export const HeroSection = () => {
 
   return (
     <>
-      <section ref={ref} className={`relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-32 pb-8 md:pb-0 transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-        {/* Logo Top Left */}
+      <section ref={ref} className={`relative min-h-screen flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-16 md:pt-32 pb-8 md:pb-0 transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        {/* Logo Top Left - Desktop Only */}
         <img 
           src="/Assets/id98Oz8z3__logos.svg" 
           alt="Godrej Logo" 
-          className="absolute top-4 left-4 w-32 h-auto md:w-40 z-20"
+          className="absolute top-4 left-4 w-32 h-auto md:w-40 z-20 hidden md:block"
         />
         {/* Sticky ENQUIRE NOW Button - Desktop Only */}
         <button
@@ -41,10 +41,58 @@ export const HeroSection = () => {
           decoding="async"
         />
 
-        {/* Content Layout */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 w-full flex flex-col md:flex-row items-center md:items-center justify-between">
+        {/* Mobile Layout - Logo at Top */}
+        <div className="absolute top-16 left-4 right-4 z-20 md:hidden">
+          <div className="w-full flex justify-between items-start">
+            <img 
+              src="/Assets/id98Oz8z3__logos.svg" 
+              alt="Godrej Logo" 
+              className="w-24 h-auto"
+            />
+            <p className="text-xs font-bold italic bg-gradient-to-br from-[#5FB233] via-[#4187CE] to-[#BD1362] bg-clip-text text-transparent">Authorized Marketing Partner</p>
+          </div>
+        </div>
+
+        {/* Mobile Layout - Content and Features at Bottom */}
+        <div className="absolute bottom-16 left-4 right-4 z-20 md:hidden">
+          {/* Main Content Section - Title, Subtitle, Button */}
+          <div className="w-full mb-6">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4 leading-tight text-white text-left">
+              Godrej Thanisandra
+            </h1>
+            <p className="text-lg sm:text-xl mb-6 font-light text-white text-left">
+              Where Luxury Meets Comfort in North Bangalore
+            </p>
+            <Button 
+              size="lg"
+              className="px-8 py-3 text-lg font-semibold w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] rounded-xl"
+              onClick={() => setIsFormOpen('sitevisit')}
+            >
+              Schedule Site Visit
+            </Button>
+          </div>
+
+          {/* Feature Boxes Section */}
+          <div className="w-full flex flex-row gap-3">
+            <div className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20">
+              <h3 className="text-lg font-bold text-yellow-300 mb-1">2-3 BHK</h3>
+              <p className="text-white/90 text-xs">Premium Apartments</p>
+            </div>
+            <div className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20">
+              <h3 className="text-lg font-bold text-yellow-300 mb-1">45+</h3>
+              <p className="text-white/90 text-xs">World-Class Amenities</p>
+            </div>
+            <div className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20">
+              <h3 className="text-lg font-bold text-yellow-300 mb-1">Prime</h3>
+              <p className="text-white/90 text-xs">North Bangalore Location</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Layout - Original */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 w-full hidden md:flex flex-row items-center justify-between">
           {/* Left: Text and Buttons */}
-          <div className="flex-1 flex flex-col items-start md:items-start justify-center text-left text-white py-16 md:py-24 w-full">
+          <div className="flex-1 flex flex-col items-start justify-center text-left text-white py-16 md:py-24 w-full">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 leading-tight w-full text-left">
               Godrej Thanisandra
             </h1>
