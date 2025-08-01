@@ -12,13 +12,6 @@
         "destination": "/index.html"
       }
     ],
-    "redirects": [
-      {
-        "source": "/assets/**",
-        "destination": "/Assets/**",
-        "type": 301
-      }
-    ],
     "headers": [
       {
         "source": "Assets/**/*.js",

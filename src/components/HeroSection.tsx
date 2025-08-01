@@ -17,6 +17,13 @@ export const HeroSection = () => {
           alt="Godrej Logo" 
           className="absolute top-4 left-4 w-32 h-auto md:w-40 z-20 hidden md:block"
         />
+        {/* Authorized Marketing Partner - Desktop Only */}
+        <p className="absolute top-4 right-4 text-xs font-bold italic hidden md:block z-20" style={{
+          background: 'linear-gradient(135deg, #5FB233 0%, #4187CE 50%, #BD1362 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text'
+        }}>Authorized Marketing Partner</p>
         {/* Sticky ENQUIRE NOW Button - Desktop Only */}
         <button
           onClick={() => setIsFormOpen('enquire')}
@@ -49,7 +56,12 @@ export const HeroSection = () => {
               alt="Godrej Logo" 
               className="w-24 h-auto"
             />
-            <p className="text-xs font-bold italic bg-gradient-to-br from-[#5FB233] via-[#4187CE] to-[#BD1362] bg-clip-text text-transparent">Authorized Marketing Partner</p>
+            <p className="text-xs font-bold italic" style={{
+              background: 'linear-gradient(135deg, #5FB233 0%, #4187CE 50%, #BD1362 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
+            }}>Authorized Marketing Partner</p>
           </div>
         </div>
 

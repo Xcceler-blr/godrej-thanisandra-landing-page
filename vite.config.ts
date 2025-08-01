@@ -49,4 +49,24 @@ export default defineConfig(({ mode }) => ({
   optimizeDeps: {
     include: ['react', 'react-dom'],
   },
+  ssgOptions: {
+    script: 'async',
+    crittersOptions: {
+      reduceInlineStyles: false,
+    },
+    onFinished() {
+      // Remove problematic preload links
+      return {
+        transformIndexHtml: {
+          enforce: 'post',
+          transform(html: string) {
+            return html.replace(
+              /<link rel="preload" href="data:application\/octet-stream[^>]*>/g,
+              ''
+            );
+          },
+        },
+      };
+    },
+  },
 }));
