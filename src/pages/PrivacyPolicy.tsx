@@ -1,4 +1,4 @@
-import React from "react";
+""import React from "react";
 
 const sectionClass = "mb-8";
 const headingClass = "text-2xl md:text-3xl font-bold mb-4 text-primary";
