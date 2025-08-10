@@ -32,9 +32,6 @@ export const MasterPlanSection = () => {
       <section ref={ref} className={`pt-16 pb-16 bg-[#EAF3FB] transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge variant="outline" className="mb-4">
-              Project Documentation
-            </Badge>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
               Godrej Thanisandra <span className="text-primary">Master Plan</span>
               <br />& Project Details
