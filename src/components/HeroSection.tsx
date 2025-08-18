@@ -11,19 +11,20 @@ export const HeroSection = () => {
   return (
     <>
       <section ref={ref} className={`relative min-h-screen flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-16 md:pt-32 pb-8 md:pb-0 transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-        {/* Logo Top Left - Desktop Only */}
-        <img 
-          src="/Assets/id98Oz8z3__logos.svg" 
-          alt="Godrej Logo" 
-          className="absolute top-4 left-4 w-32 h-auto md:w-40 z-20 hidden md:block"
-        />
-        {/* Authorized Marketing Partner - Desktop Only */}
-        <p className="absolute top-4 right-4 text-xs font-bold italic hidden md:block z-20" style={{
-          background: 'linear-gradient(135deg, #5FB233 0%, #4187CE 50%, #BD1362 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text'
-        }}>Authorized Marketing Partner</p>
+        {/* Logo and Authorized Marketing Partner - Desktop Only */}
+        <div className="absolute top-4 left-4 z-20 hidden md:flex flex-col items-start">
+          <img 
+            src="/Assets/id98Oz8z3__logos.svg" 
+            alt="Godrej Logo" 
+            className="w-32 h-auto md:w-40"
+          />
+          <p className="mt-1 text-xs font-bold italic" style={{
+            background: 'linear-gradient(135deg, #5FB233 0%, #4187CE 50%, #BD1362 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
+          }}>Authorized Marketing Partner</p>
+        </div>
         {/* Sticky ENQUIRE NOW Button - Desktop Only */}
         <button
           onClick={() => setIsFormOpen('enquire')}
@@ -50,13 +51,13 @@ export const HeroSection = () => {
 
         {/* Mobile Layout - Logo at Top */}
         <div className="absolute top-16 left-4 right-4 z-20 md:hidden">
-          <div className="w-full flex justify-between items-start">
+          <div className="w-full flex flex-col items-start">
             <img 
               src="/Assets/id98Oz8z3__logos.svg" 
               alt="Godrej Logo" 
               className="w-24 h-auto"
             />
-            <p className="text-xs font-bold italic" style={{
+            <p className="mt-2 text-xs font-bold italic" style={{
               background: 'linear-gradient(135deg, #5FB233 0%, #4187CE 50%, #BD1362 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
