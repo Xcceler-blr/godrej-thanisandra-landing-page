@@ -12,18 +12,22 @@ export const HeroSection = () => {
     <>
       <section ref={ref} className={`relative min-h-screen flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-16 md:pt-32 pb-8 md:pb-0 transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         {/* Logo and Authorized Marketing Partner - Desktop Only */}
-        <div className="absolute top-4 left-4 z-20 hidden md:flex flex-col items-start">
-          <img 
-            src="/Assets/id98Oz8z3__logos.svg" 
-            alt="Godrej Logo" 
-            className="w-32 h-auto md:w-40"
-          />
-          <p className="mt-1 text-xs font-bold italic" style={{
-            background: 'linear-gradient(135deg, #5FB233 0%, #4187CE 50%, #BD1362 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
-          }}>Authorized Marketing Partner</p>
+        <div className="absolute top-4 left-0 right-0 z-20 hidden md:block">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="flex flex-col items-start">
+              <img 
+                src="/Assets/id98Oz8z3__logos.svg" 
+                alt="Godrej Logo" 
+                className="w-32 h-auto md:w-40"
+              />
+              <p className="mt-1 text-xs font-bold italic" style={{
+                background: 'linear-gradient(135deg, #5FB233 0%, #4187CE 50%, #BD1362 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}>Authorized Marketing Partner</p>
+            </div>
+          </div>
         </div>
         {/* Sticky ENQUIRE NOW Button - Desktop Only */}
         <button
