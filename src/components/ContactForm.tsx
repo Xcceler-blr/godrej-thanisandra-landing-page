@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { HubSpotIntegration } from "@/lib/hubspot-integration";
+import { useNavigate } from "react-router-dom";
 
 interface ContactFormProps {
   isOpen: boolean;
@@ -31,6 +32,7 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
   const [thankYou, setThankYou] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -110,8 +112,10 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
         }
       });
 
-      setThankYou("Thank you for your interest! Our executive will contact you shortly to assist you further.");
+      // Redirect to Thank You page instead of showing popup message
       reset();
+      onClose();
+      navigate('/thank-you');
     } catch (err) {
       console.error('Form submission error:', err);
       toast({

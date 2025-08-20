@@ -32,17 +32,18 @@ export const HeroSection = () => {
         {/* Sticky ENQUIRE NOW Button - Desktop Only */}
         <button
           onClick={() => setIsFormOpen('enquire')}
-          className="hidden md:flex fixed z-50 !bg-[#56A7E0] text-white font-bold py-3 px-2 rounded-l-2xl shadow-xl hover:scale-105 transition-all duration-300 items-center justify-center enquire-now-animate top-1/2 right-0 -translate-y-1/2"
+          className="hidden md:flex fixed z-50 !bg-[#56A7E0] text-white font-bold py-3 px-4 rounded-l-2xl shadow-xl hover:scale-105 transition-all duration-300 items-center justify-center enquire-now-animate top-1/2 right-0 -translate-y-1/2"
           style={{
             marginRight: 0,
             writingMode: 'vertical-rl',
             textOrientation: 'mixed',
-            letterSpacing: '0.1em',
-            height: '200px',
-            minWidth: '48px',
+            letterSpacing: 'normal',
+            height: 'auto',
+            minWidth: '80px',
+            whiteSpace: 'nowrap',
           }}
         >
-          ENQUIRE NOW
+          Book a Free Consultation
         </button>
         {/* Background Image as <img> for LCP */}
         <img
