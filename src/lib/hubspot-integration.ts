@@ -48,18 +48,6 @@ export class HubSpotIntegration {
         });
       }
 
-      // Debug: Log what we're sending
-      console.log('Sending to HubSpot:', {
-        firstname: data.name,
-        email: data.email,
-        mobilephone: data.phone,
-        consent: data.consent ? 'Yes' : 'No',
-        form_type: formType,
-        source: data.additionalData?.source || 'Website Form',
-        page_url: window.location.href,
-        additionalData: data.additionalData
-      });
-
       // Submit to HubSpot Forms API using the correct endpoint
       const response = await fetch(
         `https://forms.hubspot.com/uploads/form/v2/${this.PORTAL_ID}/${formId}`,
@@ -70,7 +58,6 @@ export class HubSpotIntegration {
       );
 
       if (response.ok) {
-        console.log(`Successfully submitted to HubSpot ${formType} form`);
         return { success: true };
       } else {
         console.error(`HubSpot form submission failed: ${response.status}`);
@@ -111,7 +98,7 @@ export class HubSpotIntegration {
 
     try {
       await Promise.allSettled(promises);
-      console.log('Form submitted to both existing system and HubSpot Forms API');
+      // Form submitted successfully
     } catch (error) {
       console.error('Form submission error:', error);
       // Don't throw error, just log it

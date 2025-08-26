@@ -44,7 +44,7 @@ export default defineConfig(({ mode }) => ({
     minify: 'esbuild',
     cssCodeSplit: true,
     sourcemap: false,
-    target: 'es2015',
+    target: 'es2020',
   },
   optimizeDeps: {
     include: ['react', 'react-dom'],
@@ -53,20 +53,6 @@ export default defineConfig(({ mode }) => ({
     script: 'async',
     crittersOptions: {
       reduceInlineStyles: false,
-    },
-    onFinished() {
-      // Remove problematic preload links
-      return {
-        transformIndexHtml: {
-          enforce: 'post',
-          transform(html: string) {
-            return html.replace(
-              /<link rel="preload" href="data:application\/octet-stream[^>]*>/g,
-              ''
-            );
-          },
-        },
-      };
     },
   },
 }));
