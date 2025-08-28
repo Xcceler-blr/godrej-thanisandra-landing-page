@@ -8,6 +8,7 @@
     <priority>1.0</priority>
   </url>
   
+<<<<<<< Updated upstream
   <!-- Thank You Page -->
   <url>
     <loc>https://www.godrejpropertiez.in/thank-you</loc>
@@ -16,6 +17,8 @@
     <priority>0.6</priority>
   </url>
   
+=======
+>>>>>>> Stashed changes
   <!-- Privacy Policy -->
   <url>
     <loc>https://www.godrejpropertiez.in/privacy-policy</loc>

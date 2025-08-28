@@ -1,8 +1,11 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 User-agent: *
 Allow: /
 Sitemap: https://YOUR_DOMAIN/sitemap.xml
 =======
+=======
+>>>>>>> Stashed changes
 # Robots.txt for Godrej Properties Thanisandra
 # Allow all search engine bots to crawl the entire site
 
@@ -59,4 +62,7 @@ Allow: /favicon.ico
 
 # Sitemap location
 Sitemap: https://www.godrejpropertiez.in/sitemap.xml
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes

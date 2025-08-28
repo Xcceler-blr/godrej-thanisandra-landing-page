@@ -8,7 +8,13 @@ import { X, Phone, Mail, User } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+<<<<<<< Updated upstream
 import { trackFormSubmission } from "@/lib/analytics";
+=======
+import { HubSpotIntegration } from "@/lib/hubspot-integration";
+import { trackFormSubmission } from "@/lib/analytics";
+import { useNavigate } from "react-router-dom";
+>>>>>>> Stashed changes
 
 interface ContactFormProps {
   isOpen: boolean;
@@ -92,7 +98,20 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
         page_url: window.location.href
       });
 
+<<<<<<< Updated upstream
       // Show success message and navigate to thank you page
+=======
+      // Track form submission in analytics
+      trackFormSubmission(getPurposeValue(title), {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        source: title,
+        page_url: window.location.href
+      });
+
+      // Show success message and close modal
+>>>>>>> Stashed changes
       reset();
       onClose();
       toast({
@@ -100,9 +119,12 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
         description: "We've received your enquiry. Our executive will reach out to you shortly.",
         variant: "default",
       });
+<<<<<<< Updated upstream
 
       // Navigate to thank you page
       window.location.href = '/thank-you';
+=======
+>>>>>>> Stashed changes
     } catch (err) {
       toast({
         title: "Submission failed",
