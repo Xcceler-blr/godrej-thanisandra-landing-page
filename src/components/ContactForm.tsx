@@ -8,6 +8,7 @@ import { X, Phone, Mail, User } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { trackFormSubmission } from "@/lib/analytics";
 
 interface ContactFormProps {
   isOpen: boolean;
@@ -42,7 +43,7 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
       name: "",
       phone: "",
       email: "",
-      consent: false,
+      consent: true,
     },
   });
 
@@ -81,8 +82,27 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
         mode: "no-cors",
         body: formPayload,
       });
-      setThankYou("Thank you for your interest! Our executive will contact you shortly to assist you further.");
+
+      // Track form submission in analytics
+      trackFormSubmission(getPurposeValue(title), {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        source: title,
+        page_url: window.location.href
+      });
+
+      // Show success message and navigate to thank you page
       reset();
+      onClose();
+      toast({
+        title: "Thank You!",
+        description: "We've received your enquiry. Our executive will reach out to you shortly.",
+        variant: "default",
+      });
+
+      // Navigate to thank you page
+      window.location.href = '/thank-you';
     } catch (err) {
       toast({
         title: "Submission failed",
