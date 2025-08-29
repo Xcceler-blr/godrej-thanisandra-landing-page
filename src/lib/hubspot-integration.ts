@@ -5,9 +5,9 @@ export class HubSpotIntegration {
   
   // Your HubSpot Form IDs
   private static FORM_IDS = {
-    'download': '47035467-fe7b-41e3-97f8-95911bf62a81',
-    'lead-capture': '6dd5e24e-751b-4a53-a8fa-906cef78531d',
-    'site-visit': '033be23e-d934-4b0e-a647-de16b11409ca'
+    'download': '3249d79f-19c0-42b1-b0fb-a1ddbd8d85ce',
+    'lead-capture': '3249d79f-19c0-42b1-b0fb-a1ddbd8d85ce',
+    'site-visit': '3249d79f-19c0-42b1-b0fb-a1ddbd8d85ce'
   };
 
   // Submit to HubSpot using Forms API (no token required)
