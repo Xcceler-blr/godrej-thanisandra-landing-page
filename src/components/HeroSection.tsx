@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ContactForm } from "./ContactForm";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-type FormType = 'sitevisit' | 'enquire' | null;
+type FormType = 'bookhome' | 'enquire' | null;
 export const HeroSection = () => {
   const [isFormOpen, setIsFormOpen] = useState<FormType>(null);
   const { ref, isVisible } = useScrollAnimation();
@@ -84,9 +84,9 @@ export const HeroSection = () => {
             <Button 
               size="lg"
               className="px-8 py-3 text-lg font-semibold w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] rounded-xl"
-              onClick={() => setIsFormOpen('sitevisit')}
+              onClick={() => setIsFormOpen('bookhome')}
             >
-              Schedule Site Visit
+              Book Your Dream Home Now
             </Button>
           </div>
 
@@ -121,9 +121,9 @@ export const HeroSection = () => {
               <Button 
                 size="lg"
                 className="px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg font-semibold w-full sm:w-auto !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e]"
-                onClick={() => setIsFormOpen('sitevisit')}
+                onClick={() => setIsFormOpen('bookhome')}
               >
-                Schedule Site Visit
+                Book Your Dream Home Now
               </Button>
             </div>
           </div>
@@ -145,9 +145,9 @@ export const HeroSection = () => {
           </div>
         </div>
       <ContactForm 
-        isOpen={isFormOpen === 'sitevisit'} 
+        isOpen={isFormOpen === 'bookhome'} 
         onClose={() => setIsFormOpen(null)}
-        title="Hero - Schedule Site Visit"
+        title="Hero - Book Your Dream Home Now"
       />
       <ContactForm 
         isOpen={isFormOpen === 'enquire'} 

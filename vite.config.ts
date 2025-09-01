@@ -8,16 +8,24 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    // Memory optimization for dev server
+    hmr: {
+      overlay: false, // Disable error overlay to save memory
+    },
   },
   plugins: [
     react(),
     compression({
       algorithms: ['gzip'],
       exclude: [/\.(br)$ /, /\.(gz)$/],
+      // Memory optimization
+      threshold: 1024, // Only compress files > 1KB
     }),
     compression({
       algorithms: ['brotliCompress'],
       exclude: [/\.(br)$ /, /\.(gz)$/],
+      // Memory optimization
+      threshold: 1024, // Only compress files > 1KB
     }),
   ],
   resolve: {
@@ -27,8 +35,16 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     assetsDir: "Assets",
+    // Memory optimization
+    chunkSizeWarningLimit: 1000, // Increase warning limit
     rollupOptions: {
       output: {
+        // Better chunking for memory management
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          ui: ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+          utils: ['clsx', 'class-variance-authority', 'tailwind-merge'],
+        },
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name?.split('.') || [];
           const ext = info[info.length - 1];
@@ -45,9 +61,13 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true,
     sourcemap: false,
     target: 'es2020',
+    // Memory optimization
+    reportCompressedSize: false, // Disable size reporting to save memory
   },
   optimizeDeps: {
     include: ['react', 'react-dom'],
+    // Memory optimization
+    exclude: ['@radix-ui/react-icons'], // Exclude heavy icon packages
   },
   ssgOptions: {
     script: 'async',
@@ -55,4 +75,10 @@ export default defineConfig(({ mode }) => ({
       reduceInlineStyles: false,
     },
   },
+  // Memory optimization
+  define: {
+    __DEV__: mode === 'development',
+  },
+  // Cache optimization
+  cacheDir: '.vite',
 }));
