@@ -1,6 +1,6 @@
 import {
   require_react_dom
-} from "./chunk-5U2ID3AT.js";
+} from "./chunk-I2MCD6RR.js";
 import "./chunk-E55NSNTN.js";
 import {
   __commonJS
@@ -36,4 +36,4 @@ var require_client = __commonJS({
   }
 });
 export default require_client();
-//# sourceMappingURL=client-D7ASX4GF.js.map
+//# sourceMappingURL=client-CL7GEN2V.js.map

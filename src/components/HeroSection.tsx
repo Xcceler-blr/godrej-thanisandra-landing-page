@@ -1,16 +1,137 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "./ContactForm";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useToast } from "@/hooks/use-toast";
+import { HubSpotIntegration } from "@/lib/hubspot-integration";
+import { useNavigate } from "react-router-dom";
 
 type FormType = 'bookhome' | 'enquire' | null;
 export const HeroSection = () => {
   const [isFormOpen, setIsFormOpen] = useState<FormType>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const { ref, isVisible } = useScrollAnimation();
+  const { toast } = useToast();
+  const navigate = useNavigate();
+
+  // Fix hydration issues
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Purpose mapping function (same as ContactForm)
+  const PURPOSE_OPTIONS = [
+    "About - Learn More About Godrej",
+    "Floor Plan - Download Floor Plans", 
+    "Project Highlights - Schedule Site Visit",
+    "Amenities - Schedule Amenities Tour",
+    "Learn More About Location",
+    "Pre-Launch Special Offer",
+    "Get in Touch"
+  ];
+
+  function getPurposeValue(title: string) {
+    if (!title) return "Get in Touch";
+    if (PURPOSE_OPTIONS.includes(title)) return title;
+    if (title.includes("About")) return "About - Learn More About Godrej";
+    if (title.includes("Floor Plan")) return "Floor Plan - Download Floor Plans";
+    if (title.includes("Project Highlights")) return "Project Highlights - Schedule Site Visit";
+    if (title.includes("Amenities")) return "Amenities - Schedule Amenities Tour";
+    if (title.includes("Location")) return "Learn More About Location";
+    if (title.includes("Pre-Launch") || title.includes("Special Offer")) return "Pre-Launch Special Offer";
+    return "Get in Touch";
+  }
+
+  // Handle pre-launch form submission
+  const handlePreLaunchSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    const name = formData.get('name') as string;
+    const phone = formData.get('phone') as string;
+    const email = formData.get('email') as string;
+    const consent = formData.get('consent') === 'on';
+    
+    if (!consent) {
+      toast({
+        title: "Consent Required",
+        description: "Please agree to be contacted regarding your enquiry.",
+        variant: "destructive",
+      });
+      setSubmitting(false);
+      return;
+    }
+
+    try {
+      // Use the same purpose mapping as ContactForm
+      const purposeValue = getPurposeValue("Pre-Launch Special Offer");
+      
+      // Submit to Google Forms (same method as ContactForm)
+      const formPayload = new FormData();
+      formPayload.append("entry.1338687725", name);
+      formPayload.append("entry.1492404407", phone);
+      formPayload.append("entry.1765571584", email);
+      formPayload.append("entry.1294608166", purposeValue);
+      formPayload.append("entry.182177265", consent ? "I agree to be contacted regarding my enquiry" : "");
+      
+      console.log('Submitting to Google Forms:', {
+        name,
+        phone,
+        email,
+        purpose: purposeValue,
+        consent: consent ? "I agree to be contacted regarding my enquiry" : ""
+      });
+      
+      // Submit to Google Forms
+      await fetch("https://docs.google.com/forms/d/e/1FAIpQLSfmhAoHV0oaodPJsJuhcXyDF554xaGkKqaQAkXTd-lCmGexaA/formResponse", {
+        method: "POST",
+        mode: "no-cors",
+        body: formPayload,
+      });
+      
+      console.log('Google Forms submission completed');
+
+      // Submit to HubSpot
+      await HubSpotIntegration.submitToForm('booking-offer', {
+        name,
+        email,
+        phone,
+        consent,
+        additionalData: {
+          source: "Pre-Launch Special Offer",
+          page_url: window.location.href
+        }
+      });
+
+      // Reset form
+      (e.target as HTMLFormElement).reset();
+      
+      // Show success and redirect
+      toast({
+        title: "Thank You!",
+        description: "Your pre-launch enquiry has been submitted successfully.",
+      });
+      
+      // Redirect to thank you page
+      navigate('/thank-you');
+      
+    } catch (error) {
+      console.error('Pre-launch form submission error:', error);
+      toast({
+        title: "Submission failed",
+        description: "There was a problem submitting your enquiry. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <>
-      <section ref={ref} className={`relative min-h-screen flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-16 md:pt-32 pb-8 md:pb-0 transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+      <section ref={ref} className={`relative min-h-[120vh] flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-16 md:pt-32 pb-8 md:pb-0 transition-opacity duration-700 ${isClient && isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         {/* Logo and Authorized Marketing Partner - Desktop Only */}
         <div className="absolute top-4 left-0 right-0 z-20 hidden md:block">
           <div className="max-w-7xl mx-auto px-4">
@@ -30,21 +151,23 @@ export const HeroSection = () => {
           </div>
         </div>
         {/* Sticky ENQUIRE NOW Button - Desktop Only */}
-        <button
-          onClick={() => setIsFormOpen('enquire')}
-          className="hidden md:flex fixed z-50 !bg-[#56A7E0] text-white font-bold py-3 px-4 rounded-l-2xl shadow-xl hover:scale-105 transition-all duration-300 items-center justify-center enquire-now-animate top-1/2 right-0 -translate-y-1/2"
-          style={{
-            marginRight: 0,
-            writingMode: 'vertical-rl',
-            textOrientation: 'mixed',
-            letterSpacing: 'normal',
-            height: 'auto',
-            minWidth: '80px',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          Book a Free Consultation
-        </button>
+        {isClient && (
+          <button
+            onClick={() => setIsFormOpen('enquire')}
+            className="hidden md:flex fixed z-50 !bg-[#56A7E0] text-white font-bold py-3 px-4 rounded-l-2xl shadow-xl hover:scale-105 transition-all duration-300 items-center justify-center enquire-now-animate top-1/2 right-0 -translate-y-1/2"
+            style={{
+              marginRight: 0,
+              writingMode: 'vertical-rl',
+              textOrientation: 'mixed',
+              letterSpacing: 'normal',
+              height: 'auto',
+              minWidth: '55px',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Book a Free Consultation
+          </button>
+        )}
         {/* Background Image as <img> for LCP */}
         <img
           src="/Assets/Godrej.png"
@@ -54,9 +177,10 @@ export const HeroSection = () => {
           decoding="async"
         />
 
-        {/* Mobile Layout - Logo at Top */}
+        {/* Mobile Layout - Logo and Content */}
         <div className="absolute top-16 left-4 right-4 z-20 md:hidden">
           <div className="w-full flex flex-col items-start">
+            {/* Logo and Authorized Marketing Partner */}
             <img 
               src="/Assets/id98Oz8z3__logos.svg" 
               alt="Godrej Logo" 
@@ -68,41 +192,83 @@ export const HeroSection = () => {
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text'
             }}>Authorized Marketing Partner</p>
-          </div>
-        </div>
-
-        {/* Mobile Layout - Content and Features at Bottom */}
-        <div className="absolute bottom-16 left-4 right-4 z-20 md:hidden">
-          {/* Main Content Section - Title, Subtitle, Button */}
-          <div className="w-full mb-6">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4 leading-tight text-white text-left">
+            
+            {/* Title and Subtitle */}
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4 leading-tight text-white text-left mt-6">
               Godrej Thanisandra
             </h1>
             <p className="text-lg sm:text-xl mb-6 font-light text-white text-left">
               Where Luxury Meets Comfort in North Bangalore
             </p>
-            <Button 
-              size="lg"
-              className="px-8 py-3 text-lg font-semibold w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] rounded-xl"
-              onClick={() => setIsFormOpen('bookhome')}
-            >
-              Book Your Dream Home Now
-            </Button>
-          </div>
 
-          {/* Feature Boxes Section */}
-          <div className="w-full flex flex-row gap-3">
-            <div className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20">
-              <h3 className="text-lg font-bold text-yellow-300 mb-1">2-3 BHK</h3>
-              <p className="text-white/90 text-xs">Premium Apartments</p>
+            
+            {/* Inline Pre-Launch Form */}
+            <div className="w-full mt-4 bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-white/20 mb-6">
+              <h3 className="text-lg font-bold text-yellow-300 mb-3 text-center">
+                Pre-Launch Special Offer
+              </h3>
+              <form className="space-y-3" onSubmit={handlePreLaunchSubmit}>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                  className="w-full px-3 py-2 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:border-yellow-300"
+                />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  required
+                  className="w-full px-3 py-2 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:border-yellow-300"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  required
+                  className="w-full px-3 py-2 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:border-yellow-300"
+                />
+                <div className="flex items-center gap-2 mt-2">
+                  <input
+                    id="consent-mobile"
+                    name="consent"
+                    type="checkbox"
+                    required
+                    className="accent-yellow-300 w-4 h-4"
+                  />
+                  <label htmlFor="consent-mobile" className="text-xs text-white/90 select-none cursor-pointer">
+                    I agree to be contacted regarding my enquiry
+                  </label>
+                </div>
+                <Button 
+                  type="submit"
+                  size="lg"
+                  disabled={submitting}
+                  className="w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] font-bold text-lg py-3 rounded-lg disabled:opacity-50"
+                >
+                  {submitting ? "Submitting..." : "Grab Your Pre-Launch Deal"}
+                </Button>
+              </form>
+              <p className="text-xs text-white text-center mt-2 font-semibold">
+              Get Assured Gifts on every Booking
+              </p>
             </div>
-            <div className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20">
-              <h3 className="text-lg font-bold text-yellow-300 mb-1">45+</h3>
-              <p className="text-white/90 text-xs">World-Class Amenities</p>
-            </div>
-            <div className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20">
-              <h3 className="text-lg font-bold text-yellow-300 mb-1">Prime</h3>
-              <p className="text-white/90 text-xs">North Bangalore Location</p>
+
+            {/* Mobile Feature Boxes - Below Form */}
+            <div className="w-full flex flex-row gap-3">
+              <div className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20">
+                <h3 className="text-lg font-bold text-yellow-300 mb-1">2-3 BHK</h3>
+                <p className="text-white/90 text-xs">Premium Apartments</p>
+              </div>
+              <div className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20">
+                <h3 className="text-lg font-bold text-yellow-300 mb-1">45+</h3>
+                <p className="text-white/90 text-xs">World-Class Amenities</p>
+              </div>
+              <div className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20">
+                <h3 className="text-lg font-bold text-yellow-300 mb-1">Prime</h3>
+                <p className="text-white/90 text-xs">North Bangalore Location</p>
+              </div>
             </div>
           </div>
         </div>
@@ -117,14 +283,59 @@ export const HeroSection = () => {
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-6 md:mb-8 font-light w-full text-left">
               Where Luxury Meets Comfort in North Bangalore
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 md:mb-8 w-full">
-              <Button 
-                size="lg"
-                className="px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg font-semibold w-full sm:w-auto !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e]"
-                onClick={() => setIsFormOpen('bookhome')}
-              >
-                Book Your Dream Home Now
-              </Button>
+
+            
+            {/* Desktop Inline Pre-Launch Form */}
+            <div className="w-full max-w-md bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <h3 className="text-xl font-bold text-yellow-300 mb-4 text-center">
+                Pre-Launch Special Offer
+              </h3>
+              <form className="space-y-4" onSubmit={handlePreLaunchSubmit}>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                  className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:border-yellow-300"
+                />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  required
+                  className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:border-yellow-300"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  required
+                  className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:border-yellow-300"
+                />
+                <div className="flex items-center gap-2 mt-2">
+                  <input
+                    id="consent-desktop"
+                    name="consent"
+                    type="checkbox"
+                    required
+                    className="accent-yellow-300 w-4 h-4"
+                  />
+                  <label htmlFor="consent-desktop" className="text-sm text-white/90 select-none cursor-pointer">
+                    I agree to be contacted regarding my enquiry
+                  </label>
+                </div>
+                <Button 
+                  type="submit"
+                  size="lg"
+                  disabled={submitting}
+                  className="w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] font-bold text-lg py-3 rounded-lg disabled:opacity-50"
+                >
+                  {submitting ? "Submitting..." : "Grab Your Pre-Launch Deal"}
+                </Button>
+              </form>
+              <p className="text-sm text-white text-center mt-3 font-semibold">
+                Get Assured Gifts on every Booking
+              </p>
             </div>
           </div>
 
@@ -144,16 +355,20 @@ export const HeroSection = () => {
             </div>
           </div>
         </div>
-      <ContactForm 
-        isOpen={isFormOpen === 'bookhome'} 
-        onClose={() => setIsFormOpen(null)}
-        title="Hero - Book Your Dream Home Now"
-      />
-      <ContactForm 
-        isOpen={isFormOpen === 'enquire'} 
-        onClose={() => setIsFormOpen(null)}
-        title="Hero - Enquire Now"
-      />
+      {isClient && (
+        <>
+          <ContactForm 
+            isOpen={isFormOpen === 'bookhome'} 
+            onClose={() => setIsFormOpen(null)}
+            title="Hero - Book Your Dream Home Now"
+          />
+          <ContactForm 
+            isOpen={isFormOpen === 'enquire'} 
+            onClose={() => setIsFormOpen(null)}
+            title="Hero - Enquire Now"
+          />
+        </>
+      )}
       </section>
     </>
   );

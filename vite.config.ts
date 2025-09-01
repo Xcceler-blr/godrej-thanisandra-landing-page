@@ -39,12 +39,7 @@ export default defineConfig(({ mode }) => ({
     chunkSizeWarningLimit: 1000, // Increase warning limit
     rollupOptions: {
       output: {
-        // Better chunking for memory management
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          ui: ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
-          utils: ['clsx', 'class-variance-authority', 'tailwind-merge'],
-        },
+        // Manual chunks removed to avoid SSR external module conflicts
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name?.split('.') || [];
           const ext = info[info.length - 1];
@@ -65,7 +60,6 @@ export default defineConfig(({ mode }) => ({
     reportCompressedSize: false, // Disable size reporting to save memory
   },
   optimizeDeps: {
-    include: ['react', 'react-dom'],
     // Memory optimization
     exclude: ['@radix-ui/react-icons'], // Exclude heavy icon packages
   },

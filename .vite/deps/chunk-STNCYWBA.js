@@ -1,6 +1,6 @@
 import {
   require_react_dom
-} from "./chunk-5U2ID3AT.js";
+} from "./chunk-I2MCD6RR.js";
 import {
   Slot
 } from "./chunk-FDSGTKQW.js";
@@ -56,4 +56,4 @@ export {
   Primitive,
   dispatchDiscreteCustomEvent
 };
-//# sourceMappingURL=chunk-2UIKXIJK.js.map
+//# sourceMappingURL=chunk-STNCYWBA.js.map

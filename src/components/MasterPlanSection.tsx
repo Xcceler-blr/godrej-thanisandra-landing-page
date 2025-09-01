@@ -37,23 +37,46 @@ export const MasterPlanSection = () => {
               <br />& Project Details
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Get complete project documentation including master plan, floor plans, 
-              and detailed brochures to help you make an informed decision.
+            Explore every detail of your future home — from world-class amenities to complete project plans, all in one place.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-0">
             <div>
               <img 
-                src="/Assets/godrej-master.png"
-                alt="Master Plan Preview"
-                className="rounded-2xl shadow-2xl w-full h-[400px] object-cover"
+                src="/Assets/godrej thnisandra buiding .webp"
+                alt="Godrej Thanisandra Building"
+                className="rounded-2xl shadow-2xl w-full h-[660px] object-cover"
               />
               
               {/* Removed View Interactive Master Plan button */}
             </div>
             
             <div className="space-y-6">
+              <div className="space-y-4">
+                <p className="text-muted-foreground leading-relaxed">
+                  As a resident of Godrej Thanisandra, you will enjoy an exclusive range of lifestyle amenities, including:
+                </p>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    A state-of-the-art clubhouse with indoor and outdoor leisure facilities
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    Swimming pool, gymnasium, yoga deck, and landscaped gardens
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    Dedicated children's play zones and multipurpose courts
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-2">•</span>
+                    24/7 security, power backup, and sustainable green features
+                  </li>
+                </ul>
+              </div>
+              
               <h3 className="text-2xl md:text-3xl font-bold">
                 Comprehensive Project <span className="text-primary">Documentation</span>
               </h3>

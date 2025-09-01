@@ -56,6 +56,7 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
     "Project Highlights - Schedule Site Visit",
     "Amenities - Schedule Amenities Tour",
     "Learn More About Location",
+    "Pre-Launch Special Offer",
     "Get in Touch"
   ];
   function getPurposeValue(title: string) {
@@ -66,15 +67,18 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
     if (title.includes("Project Highlights")) return "Project Highlights - Schedule Site Visit";
     if (title.includes("Amenities")) return "Amenities - Schedule Amenities Tour";
     if (title.includes("Location")) return "Learn More About Location";
+    if (title.includes("Pre-Launch") || title.includes("Special Offer")) return "Pre-Launch Special Offer";
     return "Get in Touch";
   }
 
   // Map form titles to HubSpot form types
-  function getHubSpotFormType(title: string): 'download' | 'lead-capture' | 'site-visit' {
+  function getHubSpotFormType(title: string): 'download' | 'lead-capture' | 'site-visit' | 'booking-offer' {
     if (title.includes("Floor Plan") || title.includes("Download")) {
       return 'download';
     } else if (title.includes("Site Visit") || title.includes("Schedule")) {
       return 'site-visit';
+    } else if (title.includes("Pre-Launch") || title.includes("Special Offer")) {
+      return 'booking-offer';
     } else {
       return 'lead-capture';
     }

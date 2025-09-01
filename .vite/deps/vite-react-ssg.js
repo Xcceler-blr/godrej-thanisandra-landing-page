@@ -5,10 +5,10 @@ import {
   createBrowserRouter,
   matchRoutes,
   useLinkClickHandler
-} from "./chunk-DEBHP7SG.js";
+} from "./chunk-TC2HC2XA.js";
 import {
   require_react_dom
-} from "./chunk-5U2ID3AT.js";
+} from "./chunk-I2MCD6RR.js";
 import {
   require_jsx_runtime
 } from "./chunk-XC26ZK3T.js";
@@ -1346,7 +1346,7 @@ function render(app, container, renderOptions = {}) {
   if (useLegacyRender || !isReact18) {
     reactRender(app, container);
   } else if (isReact19) {
-    import("./client-D7ASX4GF.js").then(({ default: { createRoot } }) => {
+    import("./client-CL7GEN2V.js").then(({ default: { createRoot } }) => {
       const root = createRoot(container);
       import_react2.default.startTransition(() => {
         root.render(app);
@@ -1370,7 +1370,7 @@ function hydrate(app, container, renderOptions = {}) {
   if (useLegacyRender || !isReact18) {
     reactHydrate(app, container);
   } else if (isReact19) {
-    import("./client-D7ASX4GF.js").then(({ default: { hydrateRoot } }) => {
+    import("./client-CL7GEN2V.js").then(({ default: { hydrateRoot } }) => {
       import_react2.default.startTransition(() => {
         hydrateRoot(container, app);
       });

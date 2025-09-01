@@ -7,11 +7,12 @@ export class HubSpotIntegration {
   private static FORM_IDS = {
     'download': '3249d79f-19c0-42b1-b0fb-a1ddbd8d85ce',
     'lead-capture': '3249d79f-19c0-42b1-b0fb-a1ddbd8d85ce',
-    'site-visit': '3249d79f-19c0-42b1-b0fb-a1ddbd8d85ce'
+    'site-visit': '3249d79f-19c0-42b1-b0fb-a1ddbd8d85ce',
+    'booking-offer': '3249d79f-19c0-42b1-b0fb-a1ddbd8d85ce'
   };
 
   // Submit to HubSpot using Forms API (no token required)
-  static async submitToForm(formType: 'download' | 'lead-capture' | 'site-visit', data: {
+  static async submitToForm(formType: 'download' | 'lead-capture' | 'site-visit' | 'booking-offer', data: {
     name: string;
     email: string;
     phone: string;
@@ -71,7 +72,7 @@ export class HubSpotIntegration {
   }
 
   // Submit to both existing form system and HubSpot
-  static async submitToBoth(formType: 'download' | 'lead-capture' | 'site-visit', data: {
+  static async submitToBoth(formType: 'download' | 'lead-capture' | 'site-visit' | 'booking-offer', data: {
     name: string;
     email: string;
     phone: string;

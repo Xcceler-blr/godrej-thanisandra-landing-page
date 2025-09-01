@@ -25,9 +25,8 @@ export const AboutSection = () => {
               About <span className="text-primary">Godrej Thanisandra</span>
               <br />North Bangalore
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Godrej Properties brings you the finest residential experience in North Bangalore 
-              with Godrej Thanisandra, a premium project that combines luxury, comfort, and convenience.
+            <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+            Welcome to Godrej Properties Thanisandra, a pre-launch premium residential development in the heart of North Bangalore. Spanning an expansive 7-acre low-density community, the project is thoughtfully designed to offer the perfect balance of smart architecture, green living, and modern conveniences. 
             </p>
           </div>
 
@@ -42,29 +41,25 @@ export const AboutSection = () => {
             
             <div className="space-y-6">
               <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-                Premium Living Redefined
+               Luxury Living Refined
               </h3>
               
               <p className="text-muted-foreground leading-relaxed">
-                Nestled in the rapidly developing Thanisandra region of North Bangalore, 
-                Godrej Thanisandra offers meticulously planned 2 and 3 BHK apartments 
-                designed for the modern family. With world-class amenities and strategic 
-                connectivity to IT corridors, this project represents the perfect blend 
-                of luxury and practicality.
+              Choose from luxuriously crafted 2 & 3 BHK residences, starting at ₹1.62 Cr, with spacious layouts that maximize natural light and ventilation. Each home is intelligently planned to suit the lifestyle needs of first-time buyers, working professionals, and discerning investors. Set in the fast-growing corridor of Thanisandra, the project ensures seamless connectivity:
               </p>
               
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                  <p className="text-muted-foreground">Prime location in North Bangalore with excellent connectivity</p>
+                  <p className="text-muted-foreground">10 minutes from Manyata Tech Park</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
-                  <p className="text-muted-foreground">Thoughtfully designed apartments with modern amenities</p>
+                  <p className="text-muted-foreground">20 minutes from Kempegowda International Airport</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-accent rounded-full mt-2"></div>
-                  <p className="text-muted-foreground">Close proximity to schools, hospitals, and shopping centers</p>
+                  <p className="text-muted-foreground">Close proximity to top schools, hospitals, and shopping destinations </p>
                 </div>
               </div>
               
@@ -85,9 +80,8 @@ export const AboutSection = () => {
               <h3 className="text-4xl md:text-5xl font-bold mb-4">
                 The <span style={{ color: '#B9105E' }}>Godrej Legacy</span>
               </h3>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                For over 125 years, Godrej has been synonymous with trust, quality, and innovation. 
-                Our commitment to excellence continues with every project we undertake.
+              <p className="text-muted-foreground max-w-3xl mx-auto">
+              With Godrej Properties’ trusted legacy, this landmark development combines world-class design with unmatched comfort — making it one of the most promising residential addresses in North Bangalore. 
               </p>
             </div>
             
