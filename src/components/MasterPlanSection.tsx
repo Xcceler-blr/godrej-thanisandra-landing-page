@@ -44,7 +44,7 @@ export const MasterPlanSection = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-0">
             <div>
               <img 
-                src="/Assets/godrej thnisandra buiding .webp"
+                src="/Assets/godrej thanisandra blr.webp"
                 alt="Godrej Thanisandra Building"
                 className="rounded-2xl shadow-2xl w-full h-[660px] object-cover"
               />
