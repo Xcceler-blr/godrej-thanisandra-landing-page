@@ -28,7 +28,7 @@ export const FloorPlanSection = () => {
 
   return (
     <>
-      <section ref={ref} className={`pt-16 pb-16 bg-[#F6F7F9] overflow-x-hidden transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+      <section id="floor-plan" ref={ref} className={`pt-16 pb-16 bg-[#F6F7F9] overflow-x-hidden transition-opacity duration-700 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto px-2 sm:px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
@@ -45,9 +45,9 @@ export const FloorPlanSection = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {floorPlanTiles.map((plan, idx) => {
               let price = "";
-              if (plan.type.startsWith("2BHK")) price = "1.53 Cr* ONWARDS";
-              else if (plan.type.startsWith("3BHK")) price = "1.93Cr* ONWARDS";
-              else if (plan.type.startsWith("4BHK")) price = "2.23Cr* ONWARDS";
+              if (plan.type.startsWith("2BHK")) price = "1.62 Cr* ONWARDS";
+              else if (plan.type.startsWith("3BHK")) price = "2.52Cr* ONWARDS";
+              else if (plan.type.startsWith("4BHK")) price = "2.52Cr* ONWARDS";
               return (
                 <div key={plan.type} className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col relative w-full max-w-xs sm:max-w-sm min-w-0 mx-auto transition-transform duration-300 hover:scale-105 hover:shadow-xl">
                   <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-xs font-semibold z-10" style={{background: '#B9105E'}}>{price}</span>

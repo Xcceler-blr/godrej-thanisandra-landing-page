@@ -43,6 +43,19 @@ export const HeroSection = () => {
     return "Get in Touch";
   }
 
+
+
+  // Handle scroll to section
+  const handleScrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   // Handle pre-launch form submission
   const handlePreLaunchSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -257,15 +270,24 @@ export const HeroSection = () => {
 
             {/* Mobile Feature Boxes - Below Form */}
             <div className="w-full flex flex-row gap-3">
-              <div className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20">
+              <div 
+                onClick={() => handleScrollToSection('floor-plan')}
+                className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20 cursor-pointer hover:bg-black/50 transition-colors duration-200"
+              >
                 <h3 className="text-lg font-bold text-yellow-300 mb-1">2-3 BHK</h3>
                 <p className="text-white/90 text-xs">Premium Apartments</p>
               </div>
-              <div className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20">
+              <div 
+                onClick={() => handleScrollToSection('godrej-amenities')}
+                className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20 cursor-pointer hover:bg-black/50 transition-colors duration-200"
+              >
                 <h3 className="text-lg font-bold text-yellow-300 mb-1">45+</h3>
                 <p className="text-white/90 text-xs">World-Class Amenities</p>
               </div>
-              <div className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20">
+              <div 
+                onClick={() => handleScrollToSection('location-advantages')}
+                className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20 cursor-pointer hover:bg-black/50 transition-colors duration-200"
+              >
                 <h3 className="text-lg font-bold text-yellow-300 mb-1">Prime</h3>
                 <p className="text-white/90 text-xs">North Bangalore Location</p>
               </div>
@@ -341,15 +363,24 @@ export const HeroSection = () => {
 
           {/* Right: Vertical Tiles */}
           <div className="flex flex-col gap-3 md:gap-6 w-full md:w-auto md:ml-16 mt-8 md:mt-0 mb-8 md:mb-0">
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center">
+            <div 
+              onClick={() => handleScrollToSection('floor-plan')}
+              className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
+            >
               <h3 className="text-lg md:text-2xl font-bold text-yellow-300 mb-1 md:mb-2">2-3 BHK</h3>
               <p className="text-white/90 text-xs md:text-base">Premium Apartments</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center">
+            <div 
+              onClick={() => handleScrollToSection('godrej-amenities')}
+              className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
+            >
               <h3 className="text-lg md:text-2xl font-bold text-yellow-300 mb-1 md:mb-2">45+</h3>
               <p className="text-white/90 text-xs md:text-base">World-Class Amenities</p>
             </div>
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center">
+            <div 
+              onClick={() => handleScrollToSection('location-advantages')}
+              className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
+            >
               <h3 className="text-lg md:text-2xl font-bold text-yellow-300 mb-1 md:mb-2">Prime</h3>
               <p className="text-white/90 text-xs md:text-base">North Bangalore Location</p>
             </div>
