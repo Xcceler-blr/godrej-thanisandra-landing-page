@@ -220,7 +220,7 @@ export const HeroSection = () => {
               <h3 className="text-lg font-bold text-yellow-300 mb-3 text-center">
                 Pre-Launch Special Offer
               </h3>
-              <form className="space-y-3" onSubmit={handlePreLaunchSubmit}>
+              <form id="hero-mobile-booking-offer-form" className="space-y-3" onSubmit={handlePreLaunchSubmit}>
                 <input
                   type="text"
                   name="name"
@@ -312,7 +312,7 @@ export const HeroSection = () => {
               <h3 className="text-xl font-bold text-yellow-300 mb-4 text-center">
                 Pre-Launch Special Offer
               </h3>
-              <form className="space-y-4" onSubmit={handlePreLaunchSubmit}>
+              <form id="hero-desktop-booking-offer-form" className="space-y-4" onSubmit={handlePreLaunchSubmit}>
                 <input
                   type="text"
                   name="name"
