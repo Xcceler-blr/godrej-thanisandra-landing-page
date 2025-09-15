@@ -82,8 +82,8 @@ export const LocationSection = () => {
                 Why <span className="text-primary">Thanisandra</span> is the Perfect Choice
               </h3>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Thanisandra represents the perfect balance of urban convenience and peaceful living, 
-                making it one of North Bangalore's most sought-after residential destinations.
+              Thanisandra offers the perfect blend of urban convenience and peaceful living, making it one of North Bangalore’s most sought-after residential destinations—especially for homebuyers exploring Godrej upcoming projects in North Bangalore.
+              
               </p>
             </div>
             
