@@ -14,9 +14,9 @@ export class HubSpotIntegration {
   // Submit to HubSpot using Forms API (no token required)
   static async submitToForm(formType: 'download' | 'lead-capture' | 'site-visit' | 'booking-offer', data: {
     name: string;
-    email: string;
+    email?: string;
     phone: string;
-    consent: boolean;
+    consent?: boolean;
     additionalData?: Record<string, string>;
   }) {
     const formId = this.FORM_IDS[formType];
@@ -30,9 +30,15 @@ export class HubSpotIntegration {
       
       // Add the standard fields - using HubSpot's default field names
       formData.append('firstname', data.name);
-      formData.append('email', data.email);
       formData.append('mobilephone', data.phone); // This is HubSpot's standard phone field
-      formData.append('consent', data.consent ? 'Yes' : 'No');
+      
+      // Add optional fields if they exist
+      if (data.email) {
+        formData.append('email', data.email);
+      }
+      if (data.consent !== undefined) {
+        formData.append('consent', data.consent ? 'Yes' : 'No');
+      }
       
       // Add custom properties (now enabled since fields are added to HubSpot forms)
       formData.append('form_type', formType);
@@ -74,9 +80,9 @@ export class HubSpotIntegration {
   // Submit to both existing form system and HubSpot
   static async submitToBoth(formType: 'download' | 'lead-capture' | 'site-visit' | 'booking-offer', data: {
     name: string;
-    email: string;
+    email?: string;
     phone: string;
-    consent: boolean;
+    consent?: boolean;
     formName: string;
     additionalData?: Record<string, string>;
   }) {

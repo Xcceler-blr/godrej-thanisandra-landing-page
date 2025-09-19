@@ -64,18 +64,6 @@ export const HeroSection = () => {
     const formData = new FormData(e.target as HTMLFormElement);
     const name = formData.get('name') as string;
     const phone = formData.get('phone') as string;
-    const email = formData.get('email') as string;
-    const consent = formData.get('consent') === 'on';
-    
-    if (!consent) {
-      toast({
-        title: "Consent Required",
-        description: "Please agree to be contacted regarding your enquiry.",
-        variant: "destructive",
-      });
-      setSubmitting(false);
-      return;
-    }
 
     try {
       // Use the same purpose mapping as ContactForm
@@ -85,16 +73,12 @@ export const HeroSection = () => {
       const formPayload = new FormData();
       formPayload.append("entry.1338687725", name);
       formPayload.append("entry.1492404407", phone);
-      formPayload.append("entry.1765571584", email);
       formPayload.append("entry.1294608166", purposeValue);
-      formPayload.append("entry.182177265", consent ? "I agree to be contacted regarding my enquiry" : "");
       
       console.log('Submitting to Google Forms:', {
         name,
         phone,
-        email,
-        purpose: purposeValue,
-        consent: consent ? "I agree to be contacted regarding my enquiry" : ""
+        purpose: purposeValue
       });
       
       // Submit to Google Forms
@@ -109,9 +93,7 @@ export const HeroSection = () => {
       // Submit to HubSpot
       await HubSpotIntegration.submitToForm('booking-offer', {
         name,
-        email,
         phone,
-        consent,
         additionalData: {
           source: "Pre-Launch Special Offer",
           page_url: window.location.href
@@ -144,25 +126,7 @@ export const HeroSection = () => {
 
   return (
     <>
-      <section ref={ref} className={`relative min-h-[120vh] flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-16 md:pt-32 pb-8 md:pb-0 transition-opacity duration-700 ${isClient && isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-        {/* Logo and Authorized Marketing Partner - Desktop Only */}
-        <div className="absolute top-4 left-0 right-0 z-20 hidden md:block">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="flex flex-col items-start">
-              <img 
-                src="/Assets/id98Oz8z3__logos.svg" 
-                alt="Godrej Logo" 
-                className="w-32 h-auto md:w-40"
-              />
-              <p className="mt-1 text-xs font-bold italic" style={{
-                background: 'linear-gradient(135deg, #5FB233 0%, #4187CE 50%, #BD1362 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}>Authorized Marketing Partner</p>
-            </div>
-          </div>
-        </div>
+      <section ref={ref} className={`relative min-h-[120vh] flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-17 md:pt-28 pb-8 md:pb-0 transition-opacity duration-700 ${isClient && isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         {/* Sticky ENQUIRE NOW Button - Desktop Only */}
         {isClient && (
           <button
@@ -193,18 +157,6 @@ export const HeroSection = () => {
         {/* Mobile Layout - Logo and Content */}
         <div className="absolute top-16 left-4 right-4 z-20 md:hidden">
           <div className="w-full flex flex-col items-start">
-            {/* Logo and Authorized Marketing Partner */}
-            <img 
-              src="/Assets/id98Oz8z3__logos.svg" 
-              alt="Godrej Logo" 
-              className="w-24 h-auto"
-            />
-            <p className="mt-2 text-xs font-bold italic" style={{
-              background: 'linear-gradient(135deg, #5FB233 0%, #4187CE 50%, #BD1362 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}>Authorized Marketing Partner</p>
             
             {/* Title and Subtitle */}
             <h1 className="text-4xl sm:text-5xl font-bold mb-4 leading-tight text-white text-left mt-6">
@@ -235,25 +187,6 @@ export const HeroSection = () => {
                   required
                   className="w-full px-3 py-2 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:border-yellow-300"
                 />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Address"
-                  required
-                  className="w-full px-3 py-2 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:border-yellow-300"
-                />
-                <div className="flex items-center gap-2 mt-2">
-                  <input
-                    id="consent-mobile"
-                    name="consent"
-                    type="checkbox"
-                    required
-                    className="accent-yellow-300 w-4 h-4"
-                  />
-                  <label htmlFor="consent-mobile" className="text-xs text-white/90 select-none cursor-pointer">
-                    I agree to be contacted regarding my enquiry
-                  </label>
-                </div>
                 <Button 
                   type="submit"
                   size="lg"
@@ -327,25 +260,6 @@ export const HeroSection = () => {
                   required
                   className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:border-yellow-300"
                 />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Address"
-                  required
-                  className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:border-yellow-300"
-                />
-                <div className="flex items-center gap-2 mt-2">
-                  <input
-                    id="consent-desktop"
-                    name="consent"
-                    type="checkbox"
-                    required
-                    className="accent-yellow-300 w-4 h-4"
-                  />
-                  <label htmlFor="consent-desktop" className="text-sm text-white/90 select-none cursor-pointer">
-                    I agree to be contacted regarding my enquiry
-                  </label>
-                </div>
                 <Button 
                   type="submit"
                   size="lg"

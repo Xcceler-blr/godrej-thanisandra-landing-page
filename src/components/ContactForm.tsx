@@ -146,7 +146,7 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
       >
         <div className="px-[20px] pr-[30px]">
         <DialogHeader>
-          <DialogTitle className="text-center text-xl font-bold text-primary">
+          <DialogTitle className="text-center text-xl font-bold text-primary mb-10">
             {thankYou ? "Thank You!" : userTitle}
           </DialogTitle>
         </DialogHeader>

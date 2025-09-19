@@ -1,0 +1,77 @@
+import { Button } from "./ui/button"
+import { PhoneCall } from "lucide-react"
+import { useState, useEffect } from "react"
+
+const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  return (
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white shadow-md" : "bg-white/5 backdrop-blur-sm border-b border-white/10"
+      }`}
+    >
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-20">
+          <a href="/" className="flex items-center">
+            <img 
+              src="/Assets/Godrej.png" 
+              alt="Godrej Logo" 
+              className="h-12 w-auto"
+            />
+          </a>
+          <div className="flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-6">
+              <a 
+                href="/#floor-plan" 
+                className={`text-sm font-medium transition-colors ${
+                  isScrolled ? "text-gray-700 hover:text-primary" : "text-white hover:text-primary"
+                }`}
+              >
+                Floor Plans
+              </a>
+              <a 
+                href="/#location-advantages" 
+                className={`text-sm font-medium transition-colors ${
+                  isScrolled ? "text-gray-700 hover:text-primary" : "text-white hover:text-primary"
+                }`}
+              >
+                Location
+              </a>
+              <a 
+                href="#godrej-amenities" 
+                className={`text-sm font-medium transition-colors ${
+                  isScrolled ? "text-gray-700 hover:text-primary" : "text-white hover:text-primary"
+                }`}
+              >
+                Amenities
+              </a>
+            </div>
+            
+            <Button 
+              variant="default" 
+              className={`${
+                isScrolled ? "bg-primary hover:bg-primary/90" : "bg-white text-primary hover:bg-white/90"
+              }`}
+              onClick={() => window.location.href = "tel:+919663676812"}
+            >
+              <PhoneCall className="mr-2 h-4 w-4" />
+              +91 96636 76812
+            </Button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  )
+}
+
+export default Navbar

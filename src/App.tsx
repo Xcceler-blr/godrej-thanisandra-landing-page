@@ -3,6 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
+import Navbar from "@/components/Navbar";
+import { AutoPopupForm } from "@/components/AutoPopupForm";
 
 // Optimized QueryClient with memory management
 const queryClient = new QueryClient({
@@ -27,6 +29,8 @@ const App = ({ children }: { children?: React.ReactNode }) => (
       <PerformanceMonitor />
       <Toaster />
       <Sonner />
+      <Navbar />
+      <AutoPopupForm />
       {children}
     </TooltipProvider>
   </QueryClientProvider>
