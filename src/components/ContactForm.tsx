@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { X, Phone, Mail, User } from "lucide-react";
+import { X, Phone, User } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,9 +21,7 @@ const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").nonempty("Name is required"),
   phone: z
     .string()
-    .regex(/^\d{10}$/, "Phone number must be 10 digits"),
-  email: z.string().email("Invalid email address"),
-  consent: z.literal(true, { errorMap: () => ({ message: "Consent is required" }) }),
+    .regex(/^\d{10}$/, "Phone number must be 10 digits")
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -92,9 +90,7 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
       const formPayload = new FormData();
       formPayload.append("entry.1338687725", data.name);
       formPayload.append("entry.1492404407", data.phone);
-      formPayload.append("entry.1765571584", data.email);
       formPayload.append("entry.1294608166", getPurposeValue(title)); // Purpose
-      formPayload.append("entry.182177265", data.consent ? "I agree to be contacted regarding my enquiry" : ""); // Consent
       
       // Submit to Google Forms
       await fetch("https://docs.google.com/forms/d/e/1FAIpQLSfmhAoHV0oaodPJsJuhcXyDF554xaGkKqaQAkXTd-lCmGexaA/formResponse", {
@@ -107,9 +103,7 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
       const hubSpotFormType = getHubSpotFormType(title);
       await HubSpotIntegration.submitToForm(hubSpotFormType, {
         name: data.name,
-        email: data.email,
         phone: data.phone,
-        consent: data.consent,
         additionalData: {
           source: title,
           page_url: window.location.href
@@ -184,44 +178,13 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
               />
               {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone.message}</p>}
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="email" className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-primary" />
-                Email Address
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                {...register("email")}
-                placeholder="Enter your email address"
-                autoComplete="email"
-              />
-              {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>}
-            </div>
-            <div className="flex items-center gap-2 mt-2">
-              <input
-                id="consent"
-                type="checkbox"
-                {...register("consent")}
-                className="accent-primary w-4 h-4"
-              />
-              <label htmlFor="consent" className="text-sm select-none cursor-pointer">
-                I agree to be contacted regarding my enquiry
-              </label>
-            </div>
-            {errors.consent && (
-              <p className="text-xs text-red-500 mt-1">{errors.consent.message}</p>
-            )}
+
             <Button type="submit" variant="cta" className="w-full mt-6" disabled={submitting}>
               {submitting ? "Submitting..." : "Submit Inquiry"}
             </Button>
           </form>
         )}
-        {!thankYou && (
-          <p className="text-xs text-muted-foreground text-center mt-4">
-            By submitting this form, you agree to receive updates about Godrej Thanisandra.
-          </p>
-        )}
+
         </div>
       </DialogContent>
     </Dialog>

@@ -109,7 +109,7 @@ export const LocationSection = () => {
                 className="gap-2 !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e]"
                 onClick={() => setIsFormOpen(true)}
               >
-                Learn More About Location
+                Book Your Dream Home Now
               </Button>
             </div>
           </div>
@@ -118,7 +118,7 @@ export const LocationSection = () => {
       <ContactForm 
         isOpen={isFormOpen} 
         onClose={() => setIsFormOpen(false)}
-        title="Location - Learn More About Location"
+        title="Location - Book Your Dream Home"
       />
     </>
   );

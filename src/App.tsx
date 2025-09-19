@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import Navbar from "@/components/Navbar";
 import { AutoPopupForm } from "@/components/AutoPopupForm";
+import { FloatingConsultButton } from "@/components/FloatingConsultButton";
 
 // Optimized QueryClient with memory management
 const queryClient = new QueryClient({
@@ -31,6 +32,7 @@ const App = ({ children }: { children?: React.ReactNode }) => (
       <Sonner />
       <Navbar />
       <AutoPopupForm />
+      <FloatingConsultButton />
       {children}
     </TooltipProvider>
   </QueryClientProvider>
