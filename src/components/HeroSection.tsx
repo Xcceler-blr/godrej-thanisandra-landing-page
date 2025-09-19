@@ -126,12 +126,12 @@ export const HeroSection = () => {
 
   return (
     <>
-      <section ref={ref} className={`relative min-h-[120vh] flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-17 md:pt-28 pb-8 md:pb-0 transition-opacity duration-700 ${isClient && isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+      <section id="hero" ref={ref} className={`relative min-h-[120vh] flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-17 md:pt-28 pb-8 md:pb-0 transition-opacity duration-700 ${isClient && isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         {/* Sticky ENQUIRE NOW Button - Desktop Only */}
         {isClient && (
           <button
             onClick={() => setIsFormOpen('enquire')}
-            className="hidden md:flex fixed z-50 !bg-[#56A7E0] text-white font-bold py-3 px-4 rounded-l-2xl shadow-xl hover:scale-105 transition-all duration-300 items-center justify-center enquire-now-animate top-1/2 right-0 -translate-y-1/2"
+            className="hidden md:flex fixed z-50 !bg-[#56A7E0] text-white font-bold py-3 px-4 rounded-l-2xl shadow-xl transition-all duration-300 items-center justify-center top-1/2 right-0 -translate-y-1/2 animate-scale-pulse"
             style={{
               marginRight: 0,
               writingMode: 'vertical-rl',
@@ -142,7 +142,7 @@ export const HeroSection = () => {
               whiteSpace: 'nowrap',
             }}
           >
-            Book a Free Consultation
+            Grab Pre-Launch Offer Now
           </button>
         )}
         {/* Background Image as <img> for LCP */}
@@ -229,9 +229,9 @@ export const HeroSection = () => {
         </div>
 
         {/* Desktop Layout - Original */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 w-full hidden md:flex flex-row items-center justify-between">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 w-full hidden md:flex flex-row items-center justify-between md:mt-[-77px]">
           {/* Left: Text and Buttons */}
-          <div className="flex-1 flex flex-col items-start justify-center text-left text-white py-16 md:py-24 w-full">
+          <div className="flex-1 flex flex-col items-start justify-center text-left text-white py-16 md:pt-20 md:pb-24 w-full">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 leading-tight w-full text-left">
               Godrej Thanisandra
             </h1>

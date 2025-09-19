@@ -13,16 +13,26 @@ export const FloorPlanSection = () => {
 
   const floorPlanTiles = [
     {
-      type: "2BHK - 1190sqft",
+      type: "2BHK - 1193sqft",
       image: "/Assets/godrej-2bhk%20.png"
     },
     {
-      type: "2BHK - 1240sqft",
+      type: "2BHK - 1242sqft",
       image: "/Assets/godrej-2bhk2.png"
     },
     {
-      type: "3BHK - 1800 sqft",
+      type: "3BHK Premium - 1800 sqft",
       image: "/Assets/godrej-3bhk%20.png"
+    },
+    {
+      type: "3BHK LUX - 2185 sqft",
+      image: "/Assets/3bhk-lux.png"
+      
+    },
+    {
+      type: "3BHK LUX - 2305 sqft)",
+      image: "/Assets/3bhk-lux-(1).png"
+
     }
   ];
 
@@ -43,9 +53,11 @@ export const FloorPlanSection = () => {
 
           {/* Floor Plan Tiles Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {floorPlanTiles.map((plan, idx) => {
+            {floorPlanTiles.slice(0, 3).map((plan, idx) => {
               let price = "";
               if (plan.type.startsWith("2BHK")) price = "1.62 Cr* ONWARDS";
+              else if (plan.type.includes("3BHK LUX - 2305")) price = "3.2 cr onwards";
+              else if (plan.type.startsWith("3BHK LUX")) price = "₹3 Cr onwards";
               else if (plan.type.startsWith("3BHK")) price = "2.52Cr* ONWARDS";
               else if (plan.type.startsWith("4BHK")) price = "2.52Cr* ONWARDS";
               return (
@@ -65,6 +77,34 @@ export const FloorPlanSection = () => {
                 </div>
               );
             })}
+            <div className="col-span-1 sm:col-span-2 md:col-span-3 mt-10">
+              <div className="flex justify-center gap-6 flex-wrap">
+                {floorPlanTiles.slice(3).map((plan) => {
+                  let price = "";
+                  if (plan.type.startsWith("2BHK")) price = "1.62 Cr* ONWARDS";
+                  else if (plan.type.includes("3BHK LUX - 2305")) price = "3.2 cr onwards";
+                  else if (plan.type.startsWith("3BHK LUX")) price = "₹3 Cr onwards";
+                  else if (plan.type.startsWith("3BHK")) price = "2.52Cr* ONWARDS";
+                  else if (plan.type.startsWith("4BHK")) price = "2.52Cr* ONWARDS";
+                  return (
+                    <div key={plan.type} className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col relative w-full max-w-xs sm:max-w-sm min-w-0 transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                      <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-xs font-semibold z-10" style={{background: '#B9105E'}}>{price}</span>
+                      <img src={plan.image} alt={plan.type} className="w-full h-56 object-cover" />
+                      <div className="p-6 flex-1 flex flex-col justify-between min-w-0">
+                        <h3 className="text-xl font-bold mb-4 text-primary break-words">{plan.type}</h3>
+                        <Button 
+                          variant="default" 
+                          className="w-full gap-2 mt-auto"
+                          onClick={() => setIsFormOpen(true)}
+                        >
+                          Know more about floor plan
+                        </Button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
           {/* Floor Plan Highlights */}

@@ -8,6 +8,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 type FormType = 'expert' | null;
 export const MasterPlanSection = () => {
   const [isFormOpen, setIsFormOpen] = useState<FormType>(null);
+  const [selectedDownload, setSelectedDownload] = useState<{ title: string; url: string } | null>(null);
   const { ref, isVisible } = useScrollAnimation();
 
   const downloadOptions = [
@@ -16,14 +17,16 @@ export const MasterPlanSection = () => {
       description: "Complete layout and site plan",
       icon: Map,
       format: "PDF",
-      size: "2.3 MB"
+      size: "2.3 MB",
+      downloadUrl: "/Assets/sw.js" // TODO: replace with actual master plan PDF path
     },
     {
       title: "Brochure",
       description: "Complete project brochure with details",
       icon: Download,
       format: "PDF",
-      size: "8.5 MB"
+      size: "8.5 MB",
+      downloadUrl: "/Assets/sw.js" // TODO: replace with actual brochure PDF path
     }
   ];
 
@@ -95,6 +98,16 @@ export const MasterPlanSection = () => {
                     <div 
                       key={index}
                       className="flex items-center gap-4 p-4 bg-background rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                      onClick={() => {
+                        setSelectedDownload({
+                          title: `${option.title} - Download ${option.title}`,
+                          url: option.downloadUrl || ''
+                        });
+                        setIsFormOpen('expert');
+                      }}
+                      role="button"
+                      aria-label={`Download ${option.title}`}
+                      data-download-url={option.downloadUrl}
                     >
                       <div className="w-12 h-12 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg flex items-center justify-center">
                         <IconComponent className="h-6 w-6 text-primary" />
@@ -124,8 +137,9 @@ export const MasterPlanSection = () => {
       </section>
       <ContactForm 
         isOpen={isFormOpen === 'expert'} 
-        onClose={() => setIsFormOpen(null)}
-        title="Master Plan - Talk to Our Expert"
+        onClose={() => { setIsFormOpen(null); setSelectedDownload(null); }}
+        title={selectedDownload?.title || "Master Plan - Talk to Our Expert"}
+        downloadUrl={selectedDownload?.url}
       />
     </>
   );

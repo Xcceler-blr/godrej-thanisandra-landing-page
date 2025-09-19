@@ -15,6 +15,7 @@ interface ContactFormProps {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
+  downloadUrl?: string;
 }
 
 const formSchema = z.object({
@@ -26,7 +27,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: ContactFormProps) => {
+export const ContactForm = ({ isOpen, onClose, title = "Get in Touch", downloadUrl }: ContactFormProps) => {
   const [thankYou, setThankYou] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
@@ -41,9 +42,7 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      phone: "",
-      email: "",
-      consent: false as any, // Type assertion to handle the literal type
+      phone: ""
     },
   });
 
@@ -110,7 +109,22 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch" }: Contact
         }
       });
 
-      // Redirect to Thank You page instead of showing popup message
+      // If a download URL is provided, trigger download before redirect
+      if (downloadUrl) {
+        try {
+          const link = document.createElement('a');
+          link.href = downloadUrl;
+          link.setAttribute('download', '');
+          link.setAttribute('target', '_blank');
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } catch (e) {
+          console.warn('Download trigger failed:', e);
+        }
+      }
+
+      // Redirect to Thank You page
       reset();
       onClose();
       navigate('/thank-you');

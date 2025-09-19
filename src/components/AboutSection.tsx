@@ -35,7 +35,7 @@ export const AboutSection = () => {
               <img 
                 src="/Assets/godrej-about-section%20.png"
                 alt="Godrej Thanisandra Building"
-                className="rounded-2xl shadow-2xl w-full h-[400px] object-cover"
+                className="rounded-2xl shadow-2xl w-full h-auto md:h-[400px] object-contain md:object-cover"
               />
             </div>
             
@@ -63,14 +63,16 @@ export const AboutSection = () => {
                 </div>
               </div>
               
-              <Button
-                variant="cta" 
-                size="lg"
-                onClick={() => setIsFormOpen(true)}
-                className="mt-6"
-              >
-                Learn More About Project
-              </Button>
+              <div className="flex justify-center md:justify-start">
+                <Button
+                  variant="cta" 
+                  size="lg"
+                  onClick={() => setIsFormOpen(true)}
+                  className="mt-6 w-auto"
+                >
+                  Learn More About Project
+                </Button>
+              </div>
             </div>
           </div>
 
