@@ -5,6 +5,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useToast } from "@/hooks/use-toast";
 import { HubSpotIntegration } from "@/lib/hubspot-integration";
 import { useNavigate } from "react-router-dom";
+import { pushToDataLayer } from "@/lib/analytics";
 
 type FormType = 'bookhome' | 'enquire' | null;
 export const HeroSection = () => {
@@ -98,6 +99,14 @@ export const HeroSection = () => {
           source: "Pre-Launch Special Offer",
           page_url: window.location.href
         }
+      });
+
+      // Push to data layer after successful form submission
+      pushToDataLayer({
+        event: 'form_submit_success',
+        formName: 'HeroForm',
+        formType: 'booking-offer',
+        formSource: 'Pre-Launch Special Offer'
       });
 
       // Reset form

@@ -10,6 +10,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { HubSpotIntegration } from "@/lib/hubspot-integration";
 import { useNavigate } from "react-router-dom";
+import { pushToDataLayer } from "@/lib/analytics";
 
 interface ContactFormProps {
   isOpen: boolean;
@@ -107,6 +108,14 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch", downloadU
           source: title,
           page_url: window.location.href
         }
+      });
+
+      // Push to data layer after successful form submission
+      pushToDataLayer({
+        event: 'form_submit_success',
+        formName: 'ContactForm',
+        formType: hubSpotFormType,
+        formSource: title
       });
 
       // If a download URL is provided, trigger download before redirect
