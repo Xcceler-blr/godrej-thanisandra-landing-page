@@ -30,7 +30,7 @@ export const FloorPlanSection = () => {
       
     },
     {
-      type: "3BHK LUX - 2305 sqft)",
+      type: "3BHK LUX - 2305 sqft",
       image: "/Assets/3bhk-lux-(1).png"
 
     }
