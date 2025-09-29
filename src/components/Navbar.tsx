@@ -138,14 +138,6 @@ const Navbar = () => {
                     +91 96636 76812
                   </Button>
                 </div>
-
-                {/* Marketing Partner Text in Mobile Menu */}
-                <p className="text-xs font-bold italic text-center" style={{
-                  background: 'linear-gradient(135deg, #5FB233 0%, #4187CE 50%, #BD1362 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text'
-                }}>Authorized Marketing Partner</p>
               </div>
             </div>
           </div>
