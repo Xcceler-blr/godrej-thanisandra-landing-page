@@ -35,7 +35,10 @@ export const AboutSection = () => {
               <img 
                 src="/Assets/godrej-about-section%20.png"
                 alt="Godrej Thanisandra Building"
-                className="rounded-2xl shadow-2xl w-full h-auto md:h-[400px] object-contain md:object-cover"
+                className="rounded-2xl shadow-2xl w-full h-auto md:h-[400px] object-contain md:object-cover about-section-image"
+                width="700"
+                height="500"
+                loading="lazy"
               />
             </div>
             

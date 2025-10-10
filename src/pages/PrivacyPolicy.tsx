@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const sectionClass = "mb-8";
 const headingClass = "text-2xl md:text-3xl font-bold mb-4 text-primary";
@@ -6,7 +6,22 @@ const subheadingClass = "text-xl font-semibold mb-2 text-secondary";
 const paragraphClass = "text-base md:text-lg text-muted-foreground mb-4";
 const listClass = "list-disc pl-6 mb-4 text-base md:text-lg text-muted-foreground";
 
-const PrivacyPolicy = () => (
+const PrivacyPolicy = () => {
+  useEffect(() => {
+    document.title = "Privacy Policy | Godrej Thanisandra";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const content = "Privacy Policy for Godrej Thanisandra - Learn about our data collection, usage, and protection practices for your personal information.";
+    if (metaDescription) {
+      metaDescription.setAttribute("content", content);
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = "description";
+      meta.content = content;
+      document.head.appendChild(meta);
+    }
+  }, []);
+
+  return (
   <div className="min-h-screen bg-background py-12 px-4 md:px-0 flex justify-center">
     <div className="max-w-3xl w-full bg-white rounded-3xl shadow-xl p-8 md:p-12">
       <h1 className="text-4xl md:text-5xl font-bold mb-8 text-primary text-center">Privacy Policy</h1>
@@ -118,6 +133,7 @@ const PrivacyPolicy = () => (
       </div>
     </div>
   </div>
-);
+  );
+};
 
 export default PrivacyPolicy; 

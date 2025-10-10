@@ -9,13 +9,7 @@ export const PerformanceMonitor = () => {
         const entries = list.getEntries();
         const lastEntry = entries[entries.length - 1];
         
-        // Send to analytics if needed
-        if ((window as any).gtag) {
-          (window as any).gtag('event', 'LCP', {
-            value: Math.round(lastEntry.startTime),
-            event_category: 'Performance'
-          });
-        }
+        // LCP measurement completed - no console output
       });
       lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
 
@@ -23,12 +17,7 @@ export const PerformanceMonitor = () => {
       const fidObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries();
         entries.forEach((entry: any) => {
-          if ((window as any).gtag) {
-            (window as any).gtag('event', 'FID', {
-              value: Math.round(entry.processingStart - entry.startTime),
-              event_category: 'Performance'
-            });
-          }
+          // FID measurement completed - no console output
         });
       });
       fidObserver.observe({ entryTypes: ['first-input'] });
@@ -41,12 +30,7 @@ export const PerformanceMonitor = () => {
           if (!entry.hadRecentInput) {
             clsValue += entry.value;
             
-            if ((window as any).gtag) {
-              (window as any).gtag('event', 'CLS', {
-                value: Math.round(clsValue * 1000) / 1000,
-                event_category: 'Performance'
-              });
-            }
+            // CLS measurement completed - no console output
           }
         });
       });

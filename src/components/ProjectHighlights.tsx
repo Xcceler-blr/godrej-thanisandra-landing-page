@@ -119,7 +119,7 @@ export const ProjectHighlights = () => {
                 <div key={index} className="relative flex flex-col md:flex-row items-start md:items-center gap-6 z-10">
                   {/* Timeline dot */}
                   <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg z-10 border-4 border-white timeline-node-animate timeline-node-border-animate">
-                    <img src={highlight.image} alt={highlight.title} className="w-14 h-14 object-cover rounded-full" />
+                    <img src={highlight.image} alt={highlight.title} className="w-14 h-14 object-cover rounded-full highlight-image" width="56" height="56" loading="lazy" />
                   </div>
                   <div className="flex-1 bg-white rounded-2xl shadow-md p-6 md:ml-4">
                     <h3 className="text-lg md:text-xl font-bold text-primary mb-2">{highlight.title}</h3>

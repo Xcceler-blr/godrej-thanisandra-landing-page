@@ -42,7 +42,7 @@ export const FloorPlanSection = () => {
         <div className="max-w-6xl mx-auto px-2 sm:px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              <span className="text-primary">Godrej Thanisandra</span>
+              <span className="text-primary">Godrej Thanisandra Bangalore</span>
               <br />Floor Plans
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -63,7 +63,7 @@ export const FloorPlanSection = () => {
               return (
                 <div key={plan.type} className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col relative w-full max-w-xs sm:max-w-sm min-w-0 mx-auto transition-transform duration-300 hover:scale-105 hover:shadow-xl">
                   <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-xs font-semibold z-10" style={{background: '#B9105E'}}>{price}</span>
-                  <img src={plan.image} alt={plan.type} className="w-full h-56 object-cover" />
+                  <img src={plan.image} alt={plan.type} className="w-full h-56 object-cover floor-plan-image" width="500" height="400" loading="lazy" />
                   <div className="p-6 flex-1 flex flex-col justify-between min-w-0">
                     <h3 className="text-xl font-bold mb-4 text-primary break-words">{plan.type}</h3>
                     <Button 
@@ -89,7 +89,7 @@ export const FloorPlanSection = () => {
                   return (
                     <div key={plan.type} className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col relative w-full max-w-xs sm:max-w-sm min-w-0 transition-transform duration-300 hover:scale-105 hover:shadow-xl">
                       <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-xs font-semibold z-10" style={{background: '#B9105E'}}>{price}</span>
-                      <img src={plan.image} alt={plan.type} className="w-full h-56 object-cover" />
+                      <img src={plan.image} alt={plan.type} className="w-full h-56 object-cover floor-plan-image" width="500" height="400" loading="lazy" />
                       <div className="p-6 flex-1 flex flex-col justify-between min-w-0">
                         <h3 className="text-xl font-bold mb-4 text-primary break-words">{plan.type}</h3>
                         <Button 

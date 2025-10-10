@@ -21,10 +21,4 @@ export interface FormSubmitSuccessEvent {
 export const pushToDataLayer = (data: FormSubmitSuccessEvent) => {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(data);
-  
-  // Debug log for development
-  if (process.env.NODE_ENV === 'development') {
-    console.log('Data Layer Push:', data);
-    console.log('Current dataLayer:', window.dataLayer);
-  }
 };

@@ -25,9 +25,11 @@ const ThankYou = () => {
       <img
         src="/Assets/Godrej.png"
         alt="Background"
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 w-full h-full object-cover z-0 thank-you-bg"
         style={{ objectFit: 'cover', objectPosition: 'center' }}
         decoding="async"
+        width="1200"
+        height="800"
       />
       <div className="relative z-10 max-w-lg w-full bg-white rounded-3xl shadow-xl p-8 md:p-10 text-center">
         <div className="mx-auto mb-6 w-16 h-16 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #B9105E 0%, #3777C5 50%, #56A7E0 100%)" }}>

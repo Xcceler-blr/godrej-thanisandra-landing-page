@@ -130,3 +130,68 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Image Optimization CSS - Constrains rendering sizes for performance */
+@layer utilities {
+  /* Hero Section Background Images */
+  .hero-bg-image {
+    max-width: 1920px;
+    max-height: 1080px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Floor Plan Images */
+  .floor-plan-image {
+    max-width: 500px;
+    max-height: 400px;
+    object-fit: cover;
+  }
+
+  /* About Section Images */
+  .about-section-image {
+    max-width: 700px;
+    max-height: 500px;
+    object-fit: cover;
+  }
+
+  /* Project Highlight Images */
+  .highlight-image {
+    max-width: 400px;
+    max-height: 300px;
+    object-fit: cover;
+  }
+
+  /* Master Plan Images */
+  .master-plan-image {
+    max-width: 800px;
+    max-height: 600px;
+    object-fit: cover;
+  }
+
+  /* Amenity Images */
+  .amenity-image {
+    max-width: 350px;
+    max-height: 250px;
+    object-fit: cover;
+  }
+
+  /* Thank You Page Background */
+  .thank-you-bg {
+    max-width: 1200px;
+    max-height: 800px;
+    object-fit: cover;
+  }
+
+  /* General image optimization for any large images */
+  .optimized-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Lazy loading performance hint */
+  .lazy-image {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 400px;
+  }
+}

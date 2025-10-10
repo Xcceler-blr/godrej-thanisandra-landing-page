@@ -49,7 +49,10 @@ export const MasterPlanSection = () => {
               <img 
                 src="/Assets/godrej thanisandra blr.webp"
                 alt="Godrej Thanisandra Building"
-                className="rounded-2xl shadow-2xl w-full h-[660px] object-cover"
+                className="rounded-2xl shadow-2xl w-full h-[660px] object-cover master-plan-image"
+                width="800"
+                height="600"
+                loading="lazy"
               />
               
               {/* Removed View Interactive Master Plan button */}

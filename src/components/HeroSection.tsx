@@ -76,20 +76,12 @@ export const HeroSection = () => {
       formPayload.append("entry.1492404407", phone);
       formPayload.append("entry.1294608166", purposeValue);
       
-      console.log('Submitting to Google Forms:', {
-        name,
-        phone,
-        purpose: purposeValue
-      });
-      
       // Submit to Google Forms
       await fetch("https://docs.google.com/forms/d/e/1FAIpQLSfmhAoHV0oaodPJsJuhcXyDF554xaGkKqaQAkXTd-lCmGexaA/formResponse", {
         method: "POST",
         mode: "no-cors",
         body: formPayload,
       });
-      
-      console.log('Google Forms submission completed');
 
       // Submit to HubSpot
       await HubSpotIntegration.submitToForm('booking-offer', {
@@ -158,9 +150,11 @@ export const HeroSection = () => {
         <img
           src="/Assets/Godrej.png"
           alt="Godrej Thanisandra"
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          className="absolute inset-0 w-full h-full object-cover z-0 hero-bg-image"
           style={{ objectFit: 'cover', objectPosition: 'center' }}
           decoding="async"
+          width="1920"
+          height="1080"
         />
 
         {/* Mobile Layout - Logo and Content */}
