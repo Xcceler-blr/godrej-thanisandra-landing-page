@@ -1,10 +1,10 @@
 "use client";
 import {
-  require_prop_types
-} from "./chunk-VHB6VMDF.js";
-import {
   clsx_default
 } from "./chunk-KDVGFZWC.js";
+import {
+  require_prop_types
+} from "./chunk-VHB6VMDF.js";
 import {
   require_jsx_runtime
 } from "./chunk-XC26ZK3T.js";

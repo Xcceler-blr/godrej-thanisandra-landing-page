@@ -5,6 +5,7 @@ import { MasterPlanSection } from "@/components/MasterPlanSection";
 import { AmenitiesSection } from "@/components/AmenitiesSection";
 import { FloorPlanSection } from "@/components/FloorPlanSection";
 import { LocationSection } from "@/components/LocationSection";
+import { FAQSection } from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 
@@ -30,6 +31,7 @@ const Index = () => {
       <ProjectHighlights />
       <AmenitiesSection />
       <LocationSection />
+      <FAQSection />
       <Footer />
     </div>
   );
