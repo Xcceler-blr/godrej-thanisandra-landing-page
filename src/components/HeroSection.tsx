@@ -148,7 +148,7 @@ export const HeroSection = () => {
         )}
         {/* Background Image as <img> for LCP */}
         <img
-          src="/Assets/Godrej.png"
+          src="/Assets/godrej.webp"
           alt="Godrej Thanisandra"
           className="absolute inset-0 w-full h-full object-cover z-0 hero-bg-image"
           style={{ objectFit: 'cover', objectPosition: 'center' }}
