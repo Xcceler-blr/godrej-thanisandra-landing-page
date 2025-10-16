@@ -34,6 +34,11 @@ export const FAQSection = () => {
       id: "faq-4",
       question: "Which are the top Godrej properties in Bangalore Devanahalli?",
       answer: "If you're exploring Godrej properties in Bangalore Devanahalli, Godrej Thanisandra is one of the most premium options nearby. Strategically located on New Airport Road, just a short drive from Devanahalli and Kempegowda International Airport, this pre-launch residential project by Godrej Properties offers luxurious 2 & 3 BHK apartments within a 7-acre low-density community."
+    },
+    {
+      id: "faq-5",
+      question: "Where is the Godrej Thanisandra location and how is the connectivity?",
+      answer: "The Godrej Thanisandra location is one of its biggest advantages — it's strategically positioned on New Airport Road near Reva College, in the heart of North Bangalore. The project is just 10 minutes from Manyata Tech Park, 15 minutes from Hebbal Junction, and 25–30 minutes from Kempegowda International Airport. Residents also enjoy excellent access to schools, hospitals, malls, and the upcoming metro line, making daily commuting effortless and convenient."
     }
   ];
 

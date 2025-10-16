@@ -47,7 +47,7 @@ export const FloatingConsultButton = () => {
       >
         {!isExpanded ? (
           <Button
-            className="!rounded-l-xl !rounded-r-none !bg-[#56A7E0] !text-white hover:!bg-[#4590c5] shadow-xl h-auto py-6"
+            className="!rounded-l-xl !rounded-r-none !bg-[#b90f5f] !text-white hover:!bg-[#9d0d52] shadow-xl h-auto py-6"
             onClick={() => setIsExpanded(true)}
           >
             <CampaignIcon className="h-7 w-7 -rotate-90" />
@@ -56,7 +56,7 @@ export const FloatingConsultButton = () => {
         ) : (
           <div className="flex items-stretch gap-[2px] animate-fade-in">
             <Button
-              className="!rounded-l-xl !rounded-r-none !bg-[#56A7E0] !text-white hover:!bg-[#4590c5] shadow-xl font-semibold px-4 min-h-[350px] flex items-center gap-3 animate-scale-pulse"
+              className="!rounded-l-xl !rounded-r-none !bg-[#b90f5f] !text-white hover:!bg-[#9d0d52] shadow-xl font-semibold px-4 min-h-[350px] flex items-center gap-3 animate-scale-pulse"
               onClick={() => setIsFormOpen('enquire')}
               style={{
                 letterSpacing: '0.05em',
@@ -64,10 +64,10 @@ export const FloatingConsultButton = () => {
               }}
             >
               <CampaignIcon className="h-7 w-7 -rotate-90 mb-3" />
-              <span className="text-base">Grab Pre-Launch Offer Now</span>
+              <span className="text-base">Book A Site Visit</span>
             </Button>
             <button
-              className="relative !bg-[#56A7E0] !text-white w-[55px] min-h-[80px] hover:!bg-[#4590c5] transition-colors flex flex-col items-center justify-center group !rounded-l-xl !rounded-r-none shadow-xl overflow-hidden"
+              className="relative !bg-[#b90f5f] !text-white w-[55px] min-h-[80px] hover:!bg-[#9d0d52] transition-colors flex flex-col items-center justify-center group !rounded-l-xl !rounded-r-none shadow-xl overflow-hidden"
               onClick={() => setIsExpanded(false)}
               aria-label="Hide consultation button"
             >

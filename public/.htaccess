@@ -1,0 +1,53 @@
+# Enable Apache rewrite engine
+RewriteEngine On
+
+# Force HTTPS redirect
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://www.godrejpropertiez.in/$1 [R=301,L]
+
+# Force www prefix
+RewriteCond %{HTTP_HOST} ^godrejpropertiez\.in [NC]
+RewriteRule ^(.*)$ https://www.godrejpropertiez.in/$1 [R=301,L]
+
+# Remove trailing slash (except for root)
+RewriteCond %{REQUEST_URI} ^(.+)/$
+RewriteCond %{REQUEST_URI} !^/$
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# Ensure index.html is not accessible directly
+RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Custom error pages
+ErrorDocument 404 /404.html
+
+# Security headers
+<IfModule mod_headers.c>
+    # Prevent duplicate content from different protocols
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # SEO and security headers
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Cache control for better performance
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "public, max-age=31536000"
+    </FilesMatch>
+    
+    <FilesMatch "\.(html|htm|xml)$">
+        Header set Cache-Control "public, max-age=3600"
+    </FilesMatch>
+</IfModule>
+
+# Compress files for better performance
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json
+</IfModule>
+
+# MIME type for sitemap
+<Files "sitemap.xml">
+    ForceType application/xml
+</Files>

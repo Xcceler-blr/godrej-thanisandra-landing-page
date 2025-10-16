@@ -23,7 +23,7 @@ export const AutoPopupForm = () => {
     <ContactForm
       isOpen={isFormOpen}
       onClose={() => setIsFormOpen(false)}
-      title="Register here and Avail the Pre-launch offer!!"
+      title="Book A Site Visit"
     />
   );
 };

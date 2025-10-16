@@ -132,7 +132,7 @@ export const HeroSection = () => {
         {isClient && (
           <button
             onClick={() => setIsFormOpen('enquire')}
-            className="hidden md:flex fixed z-50 !bg-[#56A7E0] text-white font-bold py-3 px-4 rounded-l-2xl shadow-xl transition-all duration-300 items-center justify-center top-1/2 right-0 -translate-y-1/2 animate-scale-pulse"
+            className="hidden md:flex fixed z-50 !bg-[#b90f5f] text-white font-bold py-3 px-4 rounded-l-2xl shadow-xl transition-all duration-300 items-center justify-center top-1/2 right-0 -translate-y-1/2 animate-scale-pulse"
             style={{
               marginRight: 0,
               writingMode: 'vertical-rl',
@@ -143,7 +143,7 @@ export const HeroSection = () => {
               whiteSpace: 'nowrap',
             }}
           >
-            Grab Pre-Launch Offer Now
+           Book A Site Visit
           </button>
         )}
         {/* Background Image as <img> for LCP */}

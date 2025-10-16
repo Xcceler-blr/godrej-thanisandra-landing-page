@@ -163,9 +163,14 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch", downloadU
       >
         <div className="px-[20px] pr-[30px]">
         <DialogHeader>
-          <DialogTitle className="text-center text-xl font-bold text-primary mb-10">
+          <DialogTitle className="text-center text-xl font-bold text-primary mb-1">
             {thankYou ? "Thank You!" : userTitle}
           </DialogTitle>
+          {!thankYou && title === "Book A Site Visit" && (
+            <p className="text-center text-sm text-muted-foreground" style={{ marginBottom: '20px' }}>
+              MEET THE GODREJ FAMILY
+            </p>
+          )}
         </DialogHeader>
         {thankYou ? (
           <div className="py-8 text-center">
@@ -203,7 +208,7 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch", downloadU
             </div>
 
             <Button type="submit" variant="cta" className="w-full mt-6" disabled={submitting}>
-              {submitting ? "Submitting..." : "Submit Inquiry"}
+              {submitting ? "Submitting..." : "Book Now"}
             </Button>
           </form>
         )}
