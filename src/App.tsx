@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
+import TrackingInitializer from "@/components/TrackingInitializer";
 import Navbar from "@/components/Navbar";
 import { AutoPopupForm } from "@/components/AutoPopupForm";
 import { FloatingConsultButton } from "@/components/FloatingConsultButton";
@@ -27,13 +28,16 @@ const queryClient = new QueryClient({
 const App = ({ children }: { children?: React.ReactNode }) => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <TrackingInitializer />
       <PerformanceMonitor />
       <Toaster />
       <Sonner />
       <Navbar />
       <AutoPopupForm />
       <FloatingConsultButton />
-      {children}
+      <div className="screenshot-friendly">
+        {children}
+      </div>
     </TooltipProvider>
   </QueryClientProvider>
 );

@@ -194,4 +194,33 @@ All colors MUST be HSL.
     content-visibility: auto;
     contain-intrinsic-size: 1px 400px;
   }
+
+  /* Screenshot and heatmap tool compatibility */
+  .screenshot-friendly {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: auto;
+  }
+
+  /* Ensure content is visible for screenshots */
+  body, html {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Prevent any CSS that might block screenshots */
+  * {
+    /* Ensure text selection is allowed for tracking tools */
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+  }
+
+  /* Specific overrides for interactive elements */
+  button, input, textarea, select {
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    user-select: auto;
+  }
 }

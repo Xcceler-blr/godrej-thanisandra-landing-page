@@ -2,6 +2,19 @@ import { useEffect } from 'react';
 
 export const PerformanceMonitor = () => {
   useEffect(() => {
+    // Skip performance monitoring if tracking tools are present to avoid conflicts
+    const hasTrackingTools = !!(
+      (window as any).hj || 
+      (window as any).clarity || 
+      (window as any).CE2 || // CrazyEgg
+      (window as any).FS     // FullStory
+    );
+
+    if (hasTrackingTools) {
+      console.log('Performance monitoring disabled - tracking tools detected');
+      return;
+    }
+
     // Monitor Core Web Vitals
     if ('PerformanceObserver' in window) {
       // Largest Contentful Paint (LCP)

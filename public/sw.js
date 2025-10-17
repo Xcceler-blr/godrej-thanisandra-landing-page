@@ -68,6 +68,23 @@ self.addEventListener('fetch', (event) => {
       return;
     }
 
+    // Skip tracking and analytics requests - let browser handle these normally
+    if (
+      url.hostname.includes('hotjar') ||
+      url.hostname.includes('crazyegg') ||
+      url.hostname.includes('fullstory') ||
+      url.hostname.includes('clarity') ||
+      url.hostname.includes('googletagmanager') ||
+      url.hostname.includes('google-analytics') ||
+      url.hostname.includes('gtag') ||
+      url.pathname.includes('tracking') ||
+      url.pathname.includes('analytics') ||
+      url.pathname.includes('heatmap') ||
+      request.destination === 'document' && url.search.includes('utm_')
+    ) {
+      return; // Let browser handle these requests normally
+    }
+
     // Handle different types of requests
     if (request.destination === 'image') {
       event.respondWith(handleImageRequest(request));

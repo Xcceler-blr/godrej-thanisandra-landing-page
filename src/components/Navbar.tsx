@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-40 transition-all duration-300 ${
         isScrolled ? "bg-white shadow-md" : "bg-white/5 backdrop-blur-sm border-b border-white/10"
       }`}
     >
@@ -88,10 +88,10 @@ const Navbar = () => {
                 className={`${
                   isScrolled ? "bg-primary text-black hover:bg-black hover:text-white" : "bg-white text-black hover:bg-black hover:text-white"
                 }`}
-                onClick={() => window.location.href = "tel:+919663676812"}
+                onClick={() => window.location.href = "tel:+918861113311"}
               >
                 <PhoneCall className="mr-2 h-4 w-4" />
-                +91 96636 76812
+                +91 8861113311
               </Button>
             </div>
 
