@@ -132,10 +132,10 @@ const Navbar = () => {
                   <Button 
                     variant="default" 
                     className="w-full bg-primary text-black hover:bg-black hover:text-white"
-                    onClick={() => window.location.href = "tel:+919663676812"}
+                    onClick={() => window.location.href = "tel:+918861113311"}
                   >
                     <PhoneCall className="mr-2 h-4 w-4" />
-                    +91 96636 76812
+                    +91 8861113311
                   </Button>
                 </div>
               </div>
