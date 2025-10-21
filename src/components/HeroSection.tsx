@@ -127,25 +127,7 @@ export const HeroSection = () => {
 
   return (
     <>
-      <section id="hero" ref={ref} className={`relative min-h-[120vh] flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-17 md:pt-28 pb-8 md:pb-0 transition-opacity duration-700 ${isClient && isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-        {/* Sticky ENQUIRE NOW Button - Desktop Only */}
-        {isClient && (
-          <button
-            onClick={() => setIsFormOpen('enquire')}
-            className="hidden md:flex fixed z-50 !bg-[#b90f5f] text-white font-bold py-3 px-4 rounded-l-2xl shadow-xl transition-all duration-300 items-center justify-center top-1/2 right-0 -translate-y-1/2 animate-scale-pulse"
-            style={{
-              marginRight: 0,
-              writingMode: 'vertical-rl',
-              textOrientation: 'mixed',
-              letterSpacing: 'normal',
-              height: 'auto',
-              minWidth: '55px',
-              whiteSpace: 'nowrap',
-            }}
-          >
-           Book A Site Visit
-          </button>
-        )}
+            <section id="hero" ref={ref} className={`relative min-h-[120vh] flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-17 md:pt-28 pb-8 md:pb-0 transition-opacity duration-700 ${isClient && isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         {/* Background Image as <img> for LCP */}
         <img
           src="/Assets/godrej.webp"

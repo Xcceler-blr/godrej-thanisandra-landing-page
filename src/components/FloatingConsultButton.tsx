@@ -37,6 +37,26 @@ export const FloatingConsultButton = () => {
 
   return (
     <div>
+      {/* Desktop sticky button - shows when hero is not in view */}
+      {(!isHeroInView) && (
+        <button
+          onClick={() => setIsFormOpen('enquire')}
+          className="hidden md:flex fixed z-50 !bg-[#b90f5f] text-white font-bold py-3 px-4 rounded-l-2xl shadow-xl transition-all duration-300 items-center justify-center top-1/2 right-0 -translate-y-1/2 animate-scale-pulse"
+          style={{
+            marginRight: 0,
+            writingMode: 'vertical-rl',
+            textOrientation: 'mixed',
+            letterSpacing: 'normal',
+            height: 'auto',
+            minWidth: '55px',
+            whiteSpace: 'nowrap',
+          }}
+        >
+         Book A Site Visit
+        </button>
+      )}
+      
+      {/* Mobile expandable button - shows when hero is not in view */}
       {(!isHeroInView) && (
       <div 
         className="fixed z-50 top-1/2 -translate-y-1/2 right-0 md:hidden transition-all duration-300"
