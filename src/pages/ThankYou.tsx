@@ -18,20 +18,46 @@ const ThankYou = () => {
       meta.content = content;
       document.head.appendChild(meta);
     }
+    
+    // Ensure full height on body and html
+    document.body.style.margin = '0';
+    document.body.style.padding = '0';
+    document.documentElement.style.height = '100%';
+    document.body.style.height = '100%';
   }, []);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-16">
+    <div 
+      className="relative flex items-center justify-center overflow-hidden px-4 py-16"
+      style={{
+        minHeight: '100vh',
+        height: '100vh',
+        width: '100vw',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+      }}
+    >
+      {/* Background Image */}
       <img
-        src="/Assets/Godrej.png"
-        alt="Background"
-        className="absolute inset-0 w-full h-full object-cover z-0 thank-you-bg"
-        style={{ objectFit: 'cover', objectPosition: 'center' }}
+        src="/Assets/godrej.webp"
+        alt="Godrej Thanisandra Background"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ 
+          objectFit: 'cover', 
+          objectPosition: 'center',
+          minHeight: '100vh',
+          minWidth: '100vw'
+        }}
         decoding="async"
-        width="1200"
-        height="800"
+        width="1920"
+        height="1080"
       />
-      <div className="relative z-10 max-w-lg w-full bg-white rounded-3xl shadow-xl p-8 md:p-10 text-center">
+      
+      {/* Content */}
+      <div className="relative z-10 max-w-lg w-full bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-10 text-center border border-white/20">
         <div className="mx-auto mb-6 w-16 h-16 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #B9105E 0%, #3777C5 50%, #56A7E0 100%)" }}>
           <CheckCircle2 className="w-10 h-10 text-white" />
         </div>
