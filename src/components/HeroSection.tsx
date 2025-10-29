@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "./ContactForm";
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useToast } from "@/hooks/use-toast";
 import { HubSpotIntegration } from "@/lib/hubspot-integration";
@@ -15,6 +16,7 @@ export const HeroSection = () => {
   const { ref, isVisible } = useScrollAnimation();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   // Fix hydration issues
   useEffect(() => {
@@ -84,7 +86,7 @@ export const HeroSection = () => {
       });
 
       // Submit to HubSpot
-      await HubSpotIntegration.submitToForm('booking-offer', {
+      await HubSpotIntegration.submitToForm('site-visit', {
         name,
         phone,
         additionalData: {
@@ -97,7 +99,7 @@ export const HeroSection = () => {
       pushToDataLayer({
         event: 'form_submit_success',
         formName: 'HeroForm',
-        formType: 'booking-offer',
+        formType: 'site-visit',
         formSource: 'Pre-Launch Special Offer'
       });
 
@@ -110,7 +112,10 @@ export const HeroSection = () => {
         description: "Your pre-launch enquiry has been submitted successfully.",
       });
       
-      // Redirect to thank you page
+      // Close sheet (if open) then redirect to thank you page
+      try {
+        setIsSheetOpen(false);
+      } catch {}
       navigate('/thank-you');
       
     } catch (error) {
@@ -127,7 +132,7 @@ export const HeroSection = () => {
 
   return (
     <>
-            <section id="hero" ref={ref} className={`relative min-h-[120vh] flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-17 md:pt-28 pb-8 md:pb-0 transition-opacity duration-700 ${isClient && isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            <section id="hero" ref={ref} className={`relative min-h-[100vh] flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-17 md:pt-28 pb-8 md:pb-0 transition-opacity duration-700 ${isClient && isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         {/* Background Image as <img> for LCP */}
         <img
           src="/Assets/godrej.webp"
@@ -140,75 +145,100 @@ export const HeroSection = () => {
         />
 
         {/* Mobile Layout - Logo and Content */}
-        <div className="absolute top-16 left-4 right-4 z-20 md:hidden">
+        <div className="absolute top-16 left-4 right-4 bottom-4 z-20 md:hidden flex flex-col justify-between">
           <div className="w-full flex flex-col items-start">
-            
             {/* Title and Subtitle */}
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4 leading-tight text-white text-left mt-6">
+            <h1 className="text-[33px] sm:text-5xl font-bold mb-2 mt-[23px] leading-tight text-white text-left">
               Godrej Thanisandra
             </h1>
-            <p className="text-lg sm:text-xl mb-6 font-light text-white text-left">
-              Where Luxury Meets Comfort in North Bangalore
+            <p className="text-lg sm:text-xl mb-4 font-semibold text-yellow-300 text-left">
+              Pre-launch 2 & 3 BHK apartments <br></br> starting at ₹1.62 Cr in a <br></br> 7-acre premium enclave
             </p>
+          </div>
 
-            
-            {/* Inline Pre-Launch Form */}
-            <div className="w-full mt-4 bg-black/30 backdrop-blur-sm rounded-xl p-4 border border-white/20 mb-6">
-              <h3 className="text-lg font-bold text-yellow-300 mb-3 text-center">
-                Pre-Launch Special Offer
-              </h3>
-              <form id="hero-mobile-booking-offer-form" className="space-y-3" onSubmit={handlePreLaunchSubmit}>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  required
-                  className="w-full px-3 py-2 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:border-yellow-300"
-                />
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone Number"
-                  required
-                  className="w-full px-3 py-2 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:border-yellow-300"
-                />
-                <Button 
-                  type="submit"
-                  size="lg"
-                  disabled={submitting}
-                  className="w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] font-bold text-lg py-3 rounded-lg disabled:opacity-50"
-                >
-                  {submitting ? "Submitting..." : "Grab Your Pre-Launch Deal"}
-                </Button>
-              </form>
-              <p className="text-xs text-white text-center mt-2 font-semibold">
-              Get Assured Gifts on every Booking
-              </p>
-            </div>
-
-            {/* Mobile Feature Boxes - Below Form */}
-            <div className="w-full flex flex-row gap-3">
+          {/* Mobile: Tiles and Button - At Bottom of Hero Section */}
+          <div className="w-full">
+            {/* Mobile Feature Boxes - Above Button */}
+            <div className="w-full flex flex-row gap-3 mb-3">
               <div 
                 onClick={() => handleScrollToSection('floor-plan')}
                 className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20 cursor-pointer hover:bg-black/50 transition-colors duration-200"
               >
-                <h3 className="text-lg font-bold text-yellow-300 mb-1">2-3 BHK</h3>
+                <h3 className="text-lg font-bold text-white mb-1">2-3 BHK</h3>
                 <p className="text-white/90 text-xs">Premium Apartments</p>
               </div>
               <div 
                 onClick={() => handleScrollToSection('godrej-amenities')}
                 className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20 cursor-pointer hover:bg-black/50 transition-colors duration-200"
               >
-                <h3 className="text-lg font-bold text-yellow-300 mb-1">45+</h3>
+                <h3 className="text-lg font-bold text-white mb-1">45+</h3>
                 <p className="text-white/90 text-xs">World-Class Amenities</p>
               </div>
               <div 
                 onClick={() => handleScrollToSection('location-advantages')}
                 className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20 cursor-pointer hover:bg-black/50 transition-colors duration-200"
               >
-                <h3 className="text-lg font-bold text-yellow-300 mb-1">Prime</h3>
+                <h3 className="text-lg font-bold text-white mb-1">Prime</h3>
                 <p className="text-white/90 text-xs">North Bangalore Location</p>
               </div>
+            </div>
+            
+            {/* Mobile: Button below tiles */}
+            <div className="w-full">
+              <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+                <SheetTrigger asChild>
+                  <Button 
+                    type="button"
+                    size="lg"
+                    className="w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] font-bold text-lg py-3 rounded-lg btn-pulse"
+                    style={{ animation: 'btn-pulse 1.5s ease-in-out infinite' }}
+                  >
+                    Book a Site Visit
+                  </Button>
+                </SheetTrigger>
+
+                <SheetContent side="bottom" className="rounded-t-[10px] max-h-[90vh] overflow-y-auto border">
+                  {/* visual handle */}
+                  <div className="w-[100px] h-1.5 bg-gray-300 rounded-full mx-auto mb-4 mt-2" />
+                  <div className="max-w-md mx-auto">
+                    <SheetHeader>
+                      <SheetTitle>Book a Site Visit</SheetTitle>
+                      <SheetDescription className="text-center">Fill in your details and we'll get back to you.</SheetDescription>
+                    </SheetHeader>
+
+                    <form className="space-y-4 mt-4" onSubmit={handlePreLaunchSubmit}>
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
+                        required
+                        className="w-full px-4 py-3 bg-white/5 border border-gray-200 rounded-lg text-black placeholder-black/50 focus:outline-none focus:border-yellow-300"
+                      />
+                      <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Phone Number"
+                        required
+                        className="w-full px-4 py-3 bg-white/5 border border-gray-200 rounded-lg text-black placeholder-black/50 focus:outline-none focus:border-yellow-300"
+                      />
+
+                      <div className="pt-2">
+                        <Button 
+                          type="submit"
+                          size="lg"
+                          disabled={submitting}
+                          className="w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] font-bold text-lg py-3 rounded-lg"
+                        >
+                          {submitting ? "Submitting..." : "Book a Site Visit"}
+                        </Button>
+                      </div>
+                    </form>
+                  </div>
+                  <SheetClose asChild>
+                    <button aria-label="close" className="sr-only">Close</button>
+                  </SheetClose>
+                </SheetContent>
+              </Sheet>
             </div>
           </div>
         </div>
@@ -220,16 +250,16 @@ export const HeroSection = () => {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 leading-tight w-full text-left">
               Godrej Thanisandra
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-6 md:mb-8 font-light w-full text-left">
-              Where Luxury Meets Comfort in North Bangalore
+            <p className="text-[26px] text-yellow-300 mb-6 md:mb-8 font-semibold w-full text-left">
+            Pre-launch 2 & 3 BHK apartments starting at ₹1.62 Cr<br></br> in a 7-acre premium enclave
             </p>
 
             
             {/* Desktop Inline Pre-Launch Form */}
             <div className="w-full max-w-md bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <h3 className="text-xl font-bold text-yellow-300 mb-4 text-center">
-                Pre-Launch Special Offer
-              </h3>
+              {/* <h3 className="text-xl font-bold text-yellow-300 mb-4 text-center">
+                Book a Site Visit Now
+              </h3> */}
               <form id="hero-desktop-booking-offer-form" className="space-y-4" onSubmit={handlePreLaunchSubmit}>
                 <input
                   type="text"
@@ -249,14 +279,15 @@ export const HeroSection = () => {
                   type="submit"
                   size="lg"
                   disabled={submitting}
-                  className="w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] font-bold text-lg py-3 rounded-lg disabled:opacity-50"
+                  className="w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] font-bold text-lg py-3 rounded-lg disabled:opacity-50 btn-pulse"
+                  style={{ animation: 'btn-pulse 1.5s ease-in-out infinite' }}
                 >
-                  {submitting ? "Submitting..." : "Grab Your Pre-Launch Deal"}
+                  {submitting ? "Submitting..." : "Book a Site Visit"}
                 </Button>
               </form>
-              <p className="text-sm text-white text-center mt-3 font-semibold">
+              {/* <p className="text-sm text-white text-center mt-3 font-semibold">
                 Get Assured Gifts on every Booking
-              </p>
+              </p> */}
             </div>
           </div>
 
@@ -266,21 +297,21 @@ export const HeroSection = () => {
               onClick={() => handleScrollToSection('floor-plan')}
               className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
             >
-              <h3 className="text-lg md:text-2xl font-bold text-yellow-300 mb-1 md:mb-2">2-3 BHK</h3>
+              <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2">2-3 BHK</h3>
               <p className="text-white/90 text-xs md:text-base">Premium Apartments</p>
             </div>
             <div 
               onClick={() => handleScrollToSection('godrej-amenities')}
               className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
             >
-              <h3 className="text-lg md:text-2xl font-bold text-yellow-300 mb-1 md:mb-2">45+</h3>
+              <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2">45+</h3>
               <p className="text-white/90 text-xs md:text-base">World-Class Amenities</p>
             </div>
             <div 
               onClick={() => handleScrollToSection('location-advantages')}
               className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
             >
-              <h3 className="text-lg md:text-2xl font-bold text-yellow-300 mb-1 md:mb-2">Prime</h3>
+              <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2">Prime</h3>
               <p className="text-white/90 text-xs md:text-base">North Bangalore Location</p>
             </div>
           </div>

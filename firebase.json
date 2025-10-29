@@ -6,6 +6,13 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      {
+        "source": "https://godrejpropertiez.in{,/**}",
+        "destination": "https://www.godrejpropertiez.in",
+        "type": 301
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
