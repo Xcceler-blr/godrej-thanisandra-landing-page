@@ -9,6 +9,18 @@ import { useNavigate } from "react-router-dom";
 import { pushToDataLayer } from "@/lib/analytics";
 
 type FormType = 'bookhome' | 'enquire' | null;
+
+// Background images array for hero carousel
+const BACKGROUND_IMAGES = [
+  "/Assets/godrej.webp",
+  "/Assets/hero-bg-2.webp",
+  // "/Assets/hero-bg-3.webp",
+  // "/Assets/hero-bg-4.webp",
+  "/Assets/hero-bg-5.webp",
+  "/Assets/hero-bg-6.webp",
+  "/Assets/hero-bg-7.webp",
+];
+
 export const HeroSection = () => {
   const [isFormOpen, setIsFormOpen] = useState<FormType>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -17,10 +29,22 @@ export const HeroSection = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Fix hydration issues
   useEffect(() => {
     setIsClient(true);
+  }, []);
+
+  // Auto-slide background images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        (prevIndex + 1) % BACKGROUND_IMAGES.length
+      );
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
   // Purpose mapping function (same as ContactForm)
@@ -132,17 +156,40 @@ export const HeroSection = () => {
 
   return (
     <>
-            <section id="hero" ref={ref} className={`relative min-h-[100vh] flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-17 md:pt-28 pb-8 md:pb-0 transition-opacity duration-700 ${isClient && isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-        {/* Background Image as <img> for LCP */}
-        <img
-          src="/Assets/godrej.webp"
-          alt="Godrej Thanisandra"
-          className="absolute inset-0 w-full h-full object-cover z-0 hero-bg-image"
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
-          decoding="async"
-          width="1920"
-          height="1080"
-        />
+            <section id="hero" ref={ref} className={`relative min-h-[85vh] md:min-h-[100vh] flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-17 md:pt-28 pb-8 md:pb-0 transition-opacity duration-700 ${isClient && isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+        {/* Background Images Carousel */}
+        <div className="absolute inset-0 z-0">
+          {BACKGROUND_IMAGES.map((image, index) => (
+            <img
+              key={image}
+              src={image}
+              alt={`Godrej Thanisandra ${index + 1}`}
+              className={`absolute inset-0 w-full h-full object-cover hero-bg-image transition-opacity duration-1000 ease-in-out ${
+                index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+              decoding="async"
+              width="1920"
+              height="1080"
+            />
+          ))}
+        </div>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-24 md:bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
+          {BACKGROUND_IMAGES.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentImageIndex(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentImageIndex 
+                  ? 'bg-white w-8' 
+                  : 'bg-white/50 hover:bg-white/75'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
 
         {/* Mobile Layout - Logo and Content */}
         <div className="absolute top-16 left-4 right-4 bottom-4 z-20 md:hidden flex flex-col justify-between">
@@ -295,21 +342,21 @@ export const HeroSection = () => {
           <div className="flex flex-col gap-3 md:gap-6 w-full md:w-auto md:ml-16 mt-8 md:mt-0 mb-8 md:mb-0">
             <div 
               onClick={() => handleScrollToSection('floor-plan')}
-              className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
+              className="bg-black/40 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
             >
               <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2">2-3 BHK</h3>
               <p className="text-white/90 text-xs md:text-base">Premium Apartments</p>
             </div>
             <div 
               onClick={() => handleScrollToSection('godrej-amenities')}
-              className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
+              className="bg-black/40 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
             >
               <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2">45+</h3>
               <p className="text-white/90 text-xs md:text-base">World-Class Amenities</p>
             </div>
             <div 
               onClick={() => handleScrollToSection('location-advantages')}
-              className="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
+              className="bg-black/40 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
             >
               <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2">Prime</h3>
               <p className="text-white/90 text-xs md:text-base">North Bangalore Location</p>
