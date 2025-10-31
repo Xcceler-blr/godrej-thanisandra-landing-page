@@ -13,12 +13,10 @@ type FormType = 'bookhome' | 'enquire' | null;
 // Background images array for hero carousel
 const BACKGROUND_IMAGES = [
   "/Assets/godrej.webp",
-  "/Assets/hero-bg-2.webp",
-  // "/Assets/hero-bg-3.webp",
-  // "/Assets/hero-bg-4.webp",
+  "/Assets/hero-bg-2.png",
+  "/Assets/hero-bg-3.webp",
   "/Assets/hero-bg-5.webp",
   "/Assets/hero-bg-6.webp",
-  "/Assets/hero-bg-7.webp",
 ];
 
 export const HeroSection = () => {
@@ -30,10 +28,52 @@ export const HeroSection = () => {
   const navigate = useNavigate();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  // Helper: Ensure inputs are scrolled into view above the keyboard
+  const handleInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLElement;
+    // Defer to next frame so layout has applied any viewport changes
+    requestAnimationFrame(() => {
+      try {
+        target.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      } catch {}
+    });
+  };
 
   // Fix hydration issues
   useEffect(() => {
     setIsClient(true);
+  }, []);
+
+  // Set a CSS variable for the visible viewport height to avoid keyboard overlap
+  useEffect(() => {
+    const docEl = document.documentElement;
+
+    const setViewportVar = () => {
+      const vv = (window as any).visualViewport;
+      const height = vv?.height ?? window.innerHeight;
+      // Store as px value; use with min(100svh, var(--vvh)) where supported
+      docEl.style.setProperty('--vvh', `${height}px`);
+    };
+
+    setViewportVar();
+
+    const vv = (window as any).visualViewport;
+    if (vv) {
+      vv.addEventListener('resize', setViewportVar);
+      vv.addEventListener('scroll', setViewportVar);
+    }
+    window.addEventListener('resize', setViewportVar);
+    window.addEventListener('orientationchange', setViewportVar);
+
+    return () => {
+      if (vv) {
+        vv.removeEventListener('resize', setViewportVar);
+        vv.removeEventListener('scroll', setViewportVar);
+      }
+      window.removeEventListener('resize', setViewportVar);
+      window.removeEventListener('orientationchange', setViewportVar);
+    };
   }, []);
 
   // Auto-slide background images
@@ -161,7 +201,7 @@ export const HeroSection = () => {
         <div className="absolute inset-0 z-0">
           {BACKGROUND_IMAGES.map((image, index) => (
             <img
-              key={image}
+              key={`${image}-${index}`}
               src={image}
               alt={`Godrej Thanisandra ${index + 1}`}
               className={`absolute inset-0 w-full h-full object-cover hero-bg-image transition-opacity duration-1000 ease-in-out ${
@@ -169,8 +209,21 @@ export const HeroSection = () => {
               }`}
               style={{ objectFit: 'cover', objectPosition: 'center' }}
               decoding="async"
+              loading={index === 0 ? 'eager' : 'lazy'}
               width="1920"
               height="1080"
+              onError={(e) => {
+                try {
+                  // Fallback to a known-good hero image if a slide fails
+                  if (e.currentTarget.src.endsWith(image)) {
+                    // Avoid infinite loop: only swap once
+                    e.currentTarget.src = '/Assets/godrej.webp';
+                  }
+                  // Helpful log in dev tools
+                  // eslint-disable-next-line no-console
+                  console.error('Slide image failed to load:', image);
+                } catch {}
+              }}
             />
           ))}
         </div>
@@ -198,7 +251,7 @@ export const HeroSection = () => {
             <h1 className="text-[33px] sm:text-5xl font-bold mb-2 mt-[23px] leading-tight text-white text-left">
               Godrej Thanisandra
             </h1>
-            <p className="text-lg sm:text-xl mb-4 font-semibold text-yellow-300 text-left">
+            <p className="text-lg sm:text-xl leading-[24px] mb-4 font-semibold text-yellow-300 text-left">
               Pre-launch 2 & 3 BHK apartments <br></br> starting at ₹1.62 Cr in a <br></br> 7-acre premium enclave
             </p>
           </div>
@@ -244,43 +297,66 @@ export const HeroSection = () => {
                   </Button>
                 </SheetTrigger>
 
-                <SheetContent side="bottom" className="rounded-t-[10px] max-h-[90vh] overflow-y-auto border">
-                  {/* visual handle */}
-                  <div className="w-[100px] h-1.5 bg-gray-300 rounded-full mx-auto mb-4 mt-2" />
-                  <div className="max-w-md mx-auto">
-                    <SheetHeader>
-                      <SheetTitle>Book a Site Visit</SheetTitle>
-                      <SheetDescription className="text-center">Fill in your details and we'll get back to you.</SheetDescription>
-                    </SheetHeader>
+                <SheetContent 
+                  side="bottom" 
+                  className="rounded-t-[10px] p-0 overflow-hidden border"
+                  style={{ 
+                    height: 'min(100svh, var(--vvh))',
+                    maxHeight: 'min(100svh, var(--vvh))'
+                  }}
+                >
+                  <div className="relative flex flex-col h-full">
+                    {/* visual handle */}
+                    <div className="w-[100px] h-1.5 bg-gray-300 rounded-full mx-auto my-2" />
 
-                    <form className="space-y-4 mt-4" onSubmit={handlePreLaunchSubmit}>
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Your Name"
-                        required
-                        className="w-full px-4 py-3 bg-white/5 border border-gray-200 rounded-lg text-black placeholder-black/50 focus:outline-none focus:border-yellow-300"
-                      />
-                      <input
-                        type="tel"
-                        name="phone"
-                        placeholder="Phone Number"
-                        required
-                        className="w-full px-4 py-3 bg-white/5 border border-gray-200 rounded-lg text-black placeholder-black/50 focus:outline-none focus:border-yellow-300"
-                      />
+                    <div className="max-w-md w-full mx-auto px-4">
+                      <SheetHeader>
+                        <SheetTitle>Book a Site Visit</SheetTitle>
+                        <SheetDescription className="text-center">Fill in your details and we'll get back to you.</SheetDescription>
+                      </SheetHeader>
+                    </div>
 
-                      <div className="pt-2">
+                    {/* Scrollable Content */}
+                    <div 
+                      className="flex-1 overflow-y-auto max-w-md w-full mx-auto px-4 pb-28"
+                      style={{ WebkitOverflowScrolling: 'touch' as any }}
+                    >
+                      <form id="hero-mobile-booking-offer-form" className="space-y-4 mt-4" onSubmit={handlePreLaunchSubmit}>
+                        <input
+                          type="text"
+                          name="name"
+                          placeholder="Your Name"
+                          required
+                          onFocus={handleInputFocus}
+                          className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-black placeholder-black/50 focus:outline-none focus:border-yellow-300"
+                        />
+                        <input
+                          type="tel"
+                          name="phone"
+                          placeholder="Phone Number"
+                          required
+                          onFocus={handleInputFocus}
+                          className="w-full px-4 py-3 bg-white border border-gray-200 rounded-lg text-black placeholder-black/50 focus:outline-none focus:border-yellow-300"
+                        />
+                      </form>
+                    </div>
+
+                    {/* Sticky Submit */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 border-t" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 16px)' }}>
+                      <div className="max-w-md w-full mx-auto">
                         <Button 
                           type="submit"
                           size="lg"
+                          form="hero-mobile-booking-offer-form"
                           disabled={submitting}
                           className="w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] font-bold text-lg py-3 rounded-lg"
                         >
                           {submitting ? "Submitting..." : "Book a Site Visit"}
                         </Button>
                       </div>
-                    </form>
+                    </div>
                   </div>
+
                   <SheetClose asChild>
                     <button aria-label="close" className="sr-only">Close</button>
                   </SheetClose>
@@ -297,7 +373,7 @@ export const HeroSection = () => {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 leading-tight w-full text-left">
               Godrej Thanisandra
             </h1>
-            <p className="text-[26px] text-yellow-300 mb-6 md:mb-8 font-semibold w-full text-left">
+            <p className="text-[26px] text-yellow-300 leading-7 mb-6 md:mb-8 font-semibold w-full text-left">
             Pre-launch 2 & 3 BHK apartments starting at ₹1.62 Cr<br></br> in a 7-acre premium enclave
             </p>
 
