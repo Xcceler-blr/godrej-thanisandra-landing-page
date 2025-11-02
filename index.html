@@ -34,9 +34,7 @@
     <link rel="preload" href="/Assets/Godrej.png" as="image" />
     <link rel="preload" href="/Assets/godrej-master.png" as="image" />
     
-    <!-- Critical CSS Optimization - Preload CSS for faster rendering -->
-    <link rel="preload" href="/Assets/app.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/Assets/app.css"></noscript>
+    <!-- Critical CSS loaded via Vite build -->
     
     <title>Premium Apartments at Godrej Properties Thanisandra Bangalore</title>
     <meta name="description" content="Godrej Properties Thanisandra presents luxurious residential apartments in Bangalore's growing corridor. Modern amenities, strategic location & trusted brand.">
@@ -191,19 +189,5 @@
     <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- CSS Loading Optimization -->
-    <script>
-      // Ensure CSS is loaded for browsers that don't support onload
-      (function() {
-        var cssLinks = document.querySelectorAll('link[rel="preload"][as="style"]');
-        cssLinks.forEach(function(link) {
-          if (!link.onload) {
-            link.rel = 'stylesheet';
-          }
-        });
-      })();
-    </script>
-    
   </body>
 </html>
