@@ -26,67 +26,120 @@ export const AboutSection = () => {
               <br />North Bangalore
             </h2>
             <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
-            Welcome to Godrej Properties Thanisandra, a pre-launch premium residential development in the heart of North Bangalore. Spanning an expansive 7-acre low-density community, the project is thoughtfully designed to offer the perfect balance of smart architecture, green living, and modern conveniences. 
+            Welcome to Godrej Properties Thanisandra, a pre-launch premium residential development in the heart of North Bangalore. Spanning an expansive 7-acre low-density community, the project is thoughtfully designed to offer the perfect balance of smart architecture, green living, and modern conveniences. 
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-            <div>
-              <img 
-                src="/Assets/godrej-about-section%20.png"
-                alt="Godrej Thanisandra Building"
-                className="rounded-2xl shadow-2xl w-full h-auto md:h-[400px] object-contain md:object-cover about-section-image"
-                width="700"
-                height="500"
-                loading="lazy"
-              />
-            </div>
+          <div className="mb-16">
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-8">
+              Luxury Living Refined
+            </h3>
             
-            <div className="space-y-6">
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-               Luxury Living Refined
-              </h3>
-              
-              <p className="text-muted-foreground leading-relaxed">
-              Choose from luxuriously crafted 2 & 3 BHK residences, starting at ₹1.62 Cr, with spacious layouts that maximize natural light and ventilation. Each home is intelligently planned to suit the lifestyle needs of first-time buyers, working professionals, and discerning investors. Set in the fast-growing corridor of Thanisandra, the project ensures seamless connectivity:
-              </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                  <p className="text-muted-foreground">10 minutes from Manyata Tech Park</p>
+            <div className="grid md:grid-cols-2 gap-10 max-w-7xl mx-auto">
+              <div className="space-y-8">
+                <div className="flex items-start gap-4">
+                  <img 
+                    src="/Assets/Aboutus-icons/1.svg" 
+                    alt="7-Acre Community" 
+                    className="w-[72px] h-[64px] md:w-[90px] md:h-[80px] object-contain flex-shrink-0 rounded-[7px] border border-black bg-[#fffff0]"
+                    loading="lazy"
+                  />
+                  <div>
+                    <h4 className="font-bold text-[20px] md:text-[24px] mb-1">7-Acre Low-Density Community</h4>
+                    <p className="text-muted-foreground text-[13px] md:text-[15px]">Spread across 7 acres of green, low-density development.</p>
+                  </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
-                  <p className="text-muted-foreground">20 minutes from Kempegowda International Airport</p>
+
+                <div className="flex items-start gap-4">
+                  <img 
+                    src="/Assets/Aboutus-icons/2.svg" 
+                    alt="558 Premium Residences" 
+                    className="w-[72px] h-[64px] md:w-[90px] md:h-[80px] object-contain flex-shrink-0 rounded-[7px] border border-black bg-[#fffff0]"
+                    loading="lazy"
+                  />
+                  <div>
+                    <h4 className="font-bold text-[20px] md:text-[24px] mb-1">558 Premium Residences</h4>
+                    <p className="text-muted-foreground text-[13px] md:text-[15px]">Exclusive community with 558+ premium residences</p>
+                  </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-2"></div>
-                  <p className="text-muted-foreground">Close proximity to top schools, hospitals, and shopping destinations </p>
+
+                <div className="flex items-start gap-4">
+                  <img 
+                    src="/Assets/Aboutus-icons/3.svg" 
+                    alt="2 & 3 BHK Luxury Homes" 
+                    className="w-[72px] h-[64px] md:w-[90px] md:h-[80px] object-contain flex-shrink-0 rounded-[7px] border border-black bg-[#fffff0]"
+                    loading="lazy"
+                  />
+                  <div>
+                    <h4 className="font-bold text-[20px] md:text-[24px] mb-1">2 & 3 BHK Luxury Homes</h4>
+                    <p className="text-muted-foreground text-[13px] md:text-[15px]">Luxuriously crafted 2 & 3 BHK residences starting at ₹1.62 Cr</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <img 
+                    src="/Assets/Aboutus-icons/4.svg" 
+                    alt="Intelligent Design" 
+                    className="w-[72px] h-[64px] md:w-[90px] md:h-[80px] object-contain flex-shrink-0 rounded-[7px] border border-black bg-[#fffff0]"
+                    loading="lazy"
+                  />
+                  <div>
+                    <h4 className="font-bold text-[20px] md:text-[24px] mb-1">Intelligent Design & Spacious Layouts</h4>
+                    <p className="text-muted-foreground text-[13px] md:text-[15px]">Spacious layouts designed for maximum natural light & ventilation.</p>
+                  </div>
                 </div>
               </div>
-              
-              <div className="flex justify-center md:justify-start">
-                <Button
-                  variant="cta" 
-                  size="lg"
-                  onClick={() => setIsFormOpen(true)}
-                  className="mt-6 w-auto"
-                >
-                  Learn More About Project
-                </Button>
+
+              <div className="space-y-8">
+                <div className="flex items-start gap-4">
+                  <img 
+                    src="/Assets/Aboutus-icons/5.svg" 
+                    alt="Sustainable Living" 
+                    className="w-[72px] h-[64px] md:w-[90px] md:h-[80px] object-contain flex-shrink-0 rounded-[7px] border border-black bg-[#fffff0]"
+                    loading="lazy"
+                  />
+                  <div>
+                    <h4 className="font-bold text-[20px] md:text-[24px] mb-1">Sustainable Living</h4>
+                    <p className="text-muted-foreground text-[13px] md:text-[15px]">Nature-themed landscaping & sustainable architecture</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <img 
+                    src="/Assets/Aboutus-icons/6.svg" 
+                    alt="Clubhouse & Lifestyle Amenities" 
+                    className="w-[72px] h-[64px] md:w-[90px] md:h-[80px] object-contain flex-shrink-0 rounded-[7px] border border-black bg-[#fffff0]"
+                    loading="lazy"
+                  />
+                  <div>
+                    <h4 className="font-bold text-[20px] md:text-[24px] mb-1">Clubhouse & Lifestyle Amenities</h4>
+                    <p className="text-muted-foreground text-[13px] md:text-[15px]">Exclusive clubhouse with fitness, wellness & recreation zones.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <img 
+                    src="/Assets/Aboutus-icons/7.svg" 
+                    alt="Modern Tower Configurations" 
+                    className="w-[72px] h-[64px] md:w-[90px] md:h-[80px] object-contain flex-shrink-0 rounded-[7px] border border-black bg-[#fffff0]"
+                    loading="lazy"
+                  />
+                  <div>
+                    <h4 className="font-bold text-[20px] md:text-[24px] mb-1">Modern Tower Configurations</h4>
+                    <p className="text-muted-foreground text-[13px] md:text-[15px]">2B + G + 13 floors across 10 architecturally designed towers</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Godrej Legacy */}
           <div className="bg-card rounded-3xl p-4 md:p-6 shadow-xl">
             <div className="text-center mb-12">
               <h3 className="text-4xl md:text-5xl font-bold mb-4">
                 The <span style={{ color: '#B9105E' }}>Godrej Legacy</span>
               </h3>
               <p className="text-muted-foreground max-w-3xl mx-auto">
-              With Godrej Properties’ trusted legacy, this landmark development combines world-class design with unmatched comfort — making it one of the most promising residential addresses in North Bangalore. 
+              With Godrej Properties' trusted legacy, this landmark development combines world-class design with unmatched comfort — making it one of the most promising residential addresses in North Bangalore. 
               </p>
             </div>
             
