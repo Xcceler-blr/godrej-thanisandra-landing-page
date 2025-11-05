@@ -1,17 +1,15 @@
 // Service Worker for Asset Caching and Memory Management
-const CACHE_NAME = 'godrej-thanisandra-v1';
-const STATIC_CACHE = 'static-v1';
-const DYNAMIC_CACHE = 'dynamic-v1';
+const CACHE_NAME = 'godrej-thanisandra-v2'; // Incremented version
+const STATIC_CACHE = 'static-v2';
+const DYNAMIC_CACHE = 'dynamic-v2';
 
 // Development mode logging
 if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
   console.log('Service Worker running in development mode');
 }
 
-// Assets to cache immediately
+// Assets to cache immediately (excluding index.html - always fetch fresh)
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
   '/Assets/favicon.ico',
   '/Assets/godrej-master.png',
   '/Assets/Godrej.png'
@@ -85,6 +83,16 @@ self.addEventListener('fetch', (event) => {
       return; // Let browser handle these requests normally
     }
 
+    // ALWAYS fetch fresh HTML - never cache index.html or root
+    if (
+      request.destination === 'document' ||
+      url.pathname === '/' ||
+      url.pathname.endsWith('.html')
+    ) {
+      event.respondWith(fetch(request)); // Always get fresh HTML
+      return;
+    }
+
     // Handle different types of requests
     if (request.destination === 'image') {
       event.respondWith(handleImageRequest(request));
@@ -155,30 +163,23 @@ async function handleAssetRequest(request) {
   }
 }
 
-// Handle page requests
+// Handle page requests - Network first for HTML
 async function handlePageRequest(request) {
   try {
+    // Always fetch fresh HTML
+    const response = await fetch(request);
+    return response;
+  } catch (error) {
+    console.error('Page fetch failed:', error);
+    // Try cache as fallback
     const cache = await caches.open(STATIC_CACHE);
     const cachedResponse = await cache.match(request);
     
     if (cachedResponse) {
       return cachedResponse;
     }
-
-    const response = await fetch(request);
-    if (response.ok) {
-      try {
-        const responseToCache = response.clone();
-        await cache.put(request, responseToCache);
-      } catch (cacheError) {
-        console.warn('Failed to cache page:', cacheError);
-        // Continue without caching
-      }
-    }
-    return response;
-  } catch (error) {
-    console.error('Page fetch failed:', error);
-    return new Response('', { status: 404 });
+    
+    return new Response('Offline', { status: 503 });
   }
 }
 
