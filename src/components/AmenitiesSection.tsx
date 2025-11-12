@@ -121,7 +121,7 @@ export const AmenitiesSection = () => {
               <Button 
                 variant="default" 
                 size="lg"
-                className="text-white"
+                className="text-white !text-[24px] !h-[68px]"
                 style={{background: '#B9105E', border: 'none'}}
                 onMouseOver={e => { e.currentTarget.style.background = '#B9105E'; e.currentTarget.style.color = '#fff'; }}
                 onMouseOut={e => { e.currentTarget.style.background = '#B9105E'; e.currentTarget.style.color = '#fff'; }}

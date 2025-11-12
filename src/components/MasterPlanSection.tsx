@@ -128,7 +128,7 @@ export const MasterPlanSection = () => {
                 <Button 
                   variant="default" 
                   size="lg"
-                  className="gap-2 !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e]"
+                  className="gap-2 !bg-[#B9105E] !text-white !text-[20px] !border-none hover:!bg-[#a00d4e]"
                   onClick={() => setIsFormOpen('expert')}
                 >
                   Talk to Our Expert

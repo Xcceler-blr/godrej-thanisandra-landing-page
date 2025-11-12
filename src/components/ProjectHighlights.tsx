@@ -143,7 +143,7 @@ export const ProjectHighlights = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-white text-white" 
+                className="border-white text-white !text-[24px] !h-[68px]" 
                 style={{background: '#B9105E', border: 'none'}}
                 onMouseOver={e => { e.currentTarget.style.background = '#B9105E'; e.currentTarget.style.color = '#fff'; }}
                 onMouseOut={e => { e.currentTarget.style.background = '#B9105E'; e.currentTarget.style.color = '#fff'; }}

@@ -129,6 +129,18 @@ export const AboutSection = () => {
                     <p className="text-muted-foreground text-[13px] md:text-[15px]">2B + G + 13 floors across 10 architecturally designed towers</p>
                   </div>
                 </div>
+                {/* CTA as a separate list item to inherit the same column spacing */}
+                <div>
+                  <Button
+                    variant="cta"
+                    size="lg"
+                    className="w-full h-[78px] text-[24px]"
+                    onClick={() => setIsFormOpen(true)}
+                    aria-label="Open enquiry form"
+                  >
+                    Speak to us
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
