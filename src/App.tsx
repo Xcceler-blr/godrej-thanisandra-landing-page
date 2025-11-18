@@ -6,6 +6,7 @@ import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import Navbar from "@/components/Navbar";
 import { AutoPopupForm } from "@/components/AutoPopupForm";
 import { FloatingConsultButton } from "@/components/FloatingConsultButton";
+import { ChatWidget } from "@/components/ChatWidget";
 
 // Optimized QueryClient with memory management
 const queryClient = new QueryClient({
@@ -33,6 +34,7 @@ const App = ({ children }: { children?: React.ReactNode }) => (
       <Navbar />
       <AutoPopupForm />
       <FloatingConsultButton />
+      <ChatWidget />
       <div className="screenshot-friendly">
         {children}
       </div>
