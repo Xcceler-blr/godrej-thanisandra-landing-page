@@ -15,9 +15,9 @@ export const ChatWidget = () => {
 
       function getGreeting() {
         const hour = new Date().getHours();
-        if (hour < 12) return 'Good morning';
-        if (hour < 17) return 'Good afternoon';
-        return 'Good evening';
+        if (hour < 12) return 'Good Morning';
+        if (hour < 17) return 'Good Afternoon';
+        return 'Good Evening';
       }
 
       const state = {
@@ -30,6 +30,7 @@ export const ChatWidget = () => {
       };
 
       const chatFab = document.getElementById('godrejChatFab');
+      const chatFabWrapper = document.getElementById('godrejChatFabWrapper');
       const chatWindow = document.getElementById('godrejChatWindow');
       const chatBody = document.getElementById('godrejChatBody');
       const chatFooter = document.getElementById('godrejChatFooter');
@@ -41,7 +42,7 @@ export const ChatWidget = () => {
       function openChat() {
         chatWindow.style.display = 'block';
         chatWindow.setAttribute('aria-hidden', 'false');
-        chatFab.style.display = 'none';
+        if (chatFabWrapper) chatFabWrapper.style.display = 'none';
         if (startBtn) startBtn.style.display = 'none';
         
         // Update greeting based on current time when chat opens
@@ -57,7 +58,7 @@ export const ChatWidget = () => {
       function closeChat() {
         chatWindow.style.display = 'none';
         chatWindow.setAttribute('aria-hidden', 'true');
-        chatFab.style.display = 'flex';
+        if (chatFabWrapper) chatFabWrapper.style.display = 'flex';
       }
 
       chatFab.addEventListener('click', openChat);
@@ -180,7 +181,19 @@ export const ChatWidget = () => {
             showLoading();
             setTimeout(() => {
               hideLoading();
-              askContactInfo();
+              if (opt === 'No') {
+                // Show phone number instead of asking for contact info
+                appendBot('No problem! For more information, please contact us at:<br/><strong style="font-size:17px;color:#0ea5e9;">+91 8861113311</strong>');
+                clearFooter();
+                const closeBtn = document.createElement('button');
+                closeBtn.className = 'godrej-btn';
+                closeBtn.textContent = 'Close';
+                closeBtn.onclick = closeChat;
+                chatFooter.appendChild(closeBtn);
+              } else {
+                // Continue to contact form if "Yes"
+                askContactInfo();
+              }
             }, 800);
           };
           options.appendChild(b);
@@ -344,20 +357,41 @@ export const ChatWidget = () => {
   return (
     <>
       <style>{`
-        .godrej-chat-fab {
+        .godrej-chat-fab-wrapper {
           position: fixed;
           right: 22px;
           bottom: 22px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+          z-index: 999999;
+        }
+        .godrej-chat-label {
+          background: #7abb27;
+          color: white;
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-size: 14px;
+          font-weight: 600;
+          box-shadow: 0 4px 12px rgba(122, 187, 39, 0.3);
+          white-space: nowrap;
+          animation: pulseLabel 2s ease-in-out infinite;
+        }
+        @keyframes pulseLabel {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+        }
+        .godrej-chat-fab {
           width: 60px;
           height: 60px;
           border-radius: 50%;
-          background: linear-gradient(135deg,#0ea5e9,#7c3aed);
+          background: #7abb27;
           box-shadow: 0 8px 24px rgba(2,6,23,0.3);
           display:flex;
           align-items:center;
           justify-content:center;
           cursor:pointer;
-          z-index: 999999;
         }
         .godrej-chat-fab svg { width:28px; height:28px; color:white; }
         .godrej-chat-window {
@@ -375,7 +409,7 @@ export const ChatWidget = () => {
           display: none;
         }
         .godrej-chat-header {
-          background: linear-gradient(90deg,#0ea5e9,#7c3aed);
+          background: #7abb27;
           color: white;
           padding: 14px;
           display:flex;
@@ -472,10 +506,13 @@ export const ChatWidget = () => {
         .godrej-success-message { padding:12px; background:#ecfccb; color:#164e0a; border-radius:8px; text-align:center; margin-top:8px; }
       `}</style>
 
-      <div className="godrej-chat-fab" id="godrejChatFab" title="Chat with us">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8-1.355 0-2.632-.246-3.75-.687L3 20l1.287-4.25C3.917 14.245 3 13.18 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-        </svg>
+      <div className="godrej-chat-fab-wrapper" id="godrejChatFabWrapper">
+        <div className="godrej-chat-label">Chat Now</div>
+        <div className="godrej-chat-fab" id="godrejChatFab" title="Chat with us">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8-1.355 0-2.632-.246-3.75-.687L3 20l1.287-4.25C3.917 14.245 3 13.18 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        </div>
       </div>
 
       <div className="godrej-chat-window" id="godrejChatWindow" aria-hidden="true">
