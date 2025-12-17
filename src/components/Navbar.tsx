@@ -17,17 +17,16 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-40 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-md" : "bg-white/5 backdrop-blur-sm border-b border-white/10"
-      }`}
+      className={`fixed top-0 w-full z-40 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-white/5 backdrop-blur-sm border-b border-white/10"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo - Show on all screens but with different sizes */}
           <div className="flex flex-col items-start">
-            <img 
-              src="/Assets/id98Oz8z3__logos.svg" 
-              alt="Godrej Logo" 
+            <img
+              src="/Assets/id98Oz8z3__logos.svg"
+              alt="Godrej Logo"
               className="h-8 md:h-12 w-auto"
             />
             <p className="mt-1 font-bold italic" style={{
@@ -41,7 +40,7 @@ const Navbar = () => {
 
           <div className="flex items-center space-x-8">
             {/* Mobile menu button */}
-            <button 
+            <button
               className="md:hidden text-gray-700 hover:text-primary"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
@@ -57,41 +56,37 @@ const Navbar = () => {
             </button>
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-6">
-              <a 
-                href="/#floor-plan" 
-                className={`text-sm font-medium transition-colors ${
-                  isScrolled ? "text-gray-700 hover:text-primary" : "text-white hover:text-primary"
-                }`}
+              <a
+                href="/#floor-plan"
+                className={`text-sm font-medium transition-colors ${isScrolled ? "text-gray-700 hover:text-primary" : "text-white hover:text-primary"
+                  }`}
               >
                 Floor Plans
               </a>
-              <a 
-                href="/#location-advantages" 
-                className={`text-sm font-medium transition-colors ${
-                  isScrolled ? "text-gray-700 hover:text-primary" : "text-white hover:text-primary"
-                }`}
+              <a
+                href="/#location-advantages"
+                className={`text-sm font-medium transition-colors ${isScrolled ? "text-gray-700 hover:text-primary" : "text-white hover:text-primary"
+                  }`}
               >
                 Location
               </a>
-              <a 
-                href="#godrej-amenities" 
-                className={`text-sm font-medium transition-colors ${
-                  isScrolled ? "text-gray-700 hover:text-primary" : "text-white hover:text-primary"
-                }`}
+              <a
+                href="#godrej-amenities"
+                className={`text-sm font-medium transition-colors ${isScrolled ? "text-gray-700 hover:text-primary" : "text-white hover:text-primary"
+                  }`}
               >
                 Amenities
               </a>
 
               {/* Phone Button - Desktop Only */}
-              <Button 
-                variant="default" 
-                className={`${
-                  isScrolled ? "bg-primary text-black hover:bg-black hover:text-white" : "bg-white text-black hover:bg-black hover:text-white"
-                }`}
-                onClick={() => window.location.href = "tel:+918861113311"}
+              <Button
+                variant="default"
+                className={`${isScrolled ? "bg-primary text-black hover:bg-black hover:text-white" : "bg-white text-black hover:bg-black hover:text-white"
+                  }`}
+                onClick={() => window.location.href = "tel:+9196636766812"}
               >
                 <PhoneCall className="mr-2 h-4 w-4" />
-                +91 8861113311
+                +91 96636766812
               </Button>
             </div>
 
@@ -104,22 +99,22 @@ const Navbar = () => {
               <div className="container mx-auto px-4 py-6 flex flex-col space-y-6">
                 {/* Navigation Links */}
                 <div className="flex flex-col space-y-4">
-                  <a 
-                    href="/#floor-plan" 
+                  <a
+                    href="/#floor-plan"
                     className="text-base font-medium text-gray-700 hover:text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Floor Plans
                   </a>
-                  <a 
-                    href="/#location-advantages" 
+                  <a
+                    href="/#location-advantages"
                     className="text-base font-medium text-gray-700 hover:text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Location
                   </a>
-                  <a 
-                    href="#godrej-amenities" 
+                  <a
+                    href="#godrej-amenities"
                     className="text-base font-medium text-gray-700 hover:text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -129,13 +124,13 @@ const Navbar = () => {
 
                 {/* Contact Button in Mobile Menu */}
                 <div className="pt-2 border-t border-gray-200">
-                  <Button 
-                    variant="default" 
+                  <Button
+                    variant="default"
                     className="w-full bg-primary text-black hover:bg-black hover:text-white"
-                    onClick={() => window.location.href = "tel:+918861113311"}
+                    onClick={() => window.location.href = "tel:+9196636766812"}
                   >
                     <PhoneCall className="mr-2 h-4 w-4" />
-                    +91 8861113311
+                    +91 96636766812
                   </Button>
                 </div>
               </div>

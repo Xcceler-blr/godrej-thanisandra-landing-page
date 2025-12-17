@@ -44,17 +44,17 @@ export const ChatWidget = () => {
         chatWindow.setAttribute('aria-hidden', 'false');
         if (chatFabWrapper) chatFabWrapper.style.display = 'none';
         if (startBtn) startBtn.style.display = 'none';
-        
+
         // Update greeting based on current time when chat opens
         const currentGreeting = getGreeting();
         const headerTitle = document.querySelector('.godrej-chat-header .godrej-title');
         if (headerTitle) {
           headerTitle.textContent = `${currentGreeting} — Greetings from Godrej Thanisandra`;
         }
-        
+
         startConversation();
       }
-      
+
       function closeChat() {
         chatWindow.style.display = 'none';
         chatWindow.setAttribute('aria-hidden', 'true');
@@ -62,7 +62,7 @@ export const ChatWidget = () => {
       }
 
       chatFab.addEventListener('click', openChat);
-      
+
       if (closeBtn) {
         closeBtn.addEventListener('click', closeChat);
       }
@@ -74,7 +74,7 @@ export const ChatWidget = () => {
         chatBody.appendChild(div);
         chatBody.scrollTop = chatBody.scrollHeight;
       }
-      
+
       function appendUser(text: string) {
         const div = document.createElement('div');
         div.className = 'godrej-user-msg';
@@ -262,7 +262,7 @@ export const ChatWidget = () => {
               if (statusDiv) {
                 statusDiv.innerHTML = '<span style="color:#0ea5e9;">Sending...</span>';
               }
-              
+
               const payload = {
                 bhk: state.bhk,
                 dimension: state.dimension,
@@ -315,7 +315,7 @@ export const ChatWidget = () => {
                 name: (err as Error).name,
                 url: WEB_APP_URL
               });
-              
+
               if (statusDiv) {
                 statusDiv.innerHTML = '<span style="color:#dc2626;">Network error. Retrying...</span>';
               }
@@ -393,7 +393,7 @@ export const ChatWidget = () => {
           justify-content:center;
           cursor:pointer;
         }
-        .godrej-chat-fab svg { width:28px; height:28px; color:white; }
+        .godrej-chat-fab svg { width:28px; height:28px; color:white; pointer-events:none; }
         .godrej-chat-window {
           position: fixed;
           right: 22px;
@@ -508,7 +508,7 @@ export const ChatWidget = () => {
 
       <div className="godrej-chat-fab-wrapper" id="godrejChatFabWrapper">
         <div className="godrej-chat-label">Chat Now</div>
-        <div className="godrej-chat-fab" id="godrejChatFab" title="Chat with us">
+        <div className="godrej-chat-fab" id="godrejChatFab" data-tracking-id="ga4-chat-widget" title="Chat with us">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8-1.355 0-2.632-.246-3.75-.687L3 20l1.287-4.25C3.917 14.245 3 13.18 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
           </svg>
