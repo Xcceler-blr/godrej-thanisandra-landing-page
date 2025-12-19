@@ -16,6 +16,8 @@ interface ContactFormProps {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
+  subtitle?: string;
+  ctaText?: string;
   downloadUrl?: string;
 }
 
@@ -28,7 +30,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export const ContactForm = ({ isOpen, onClose, title = "Get in Touch", downloadUrl }: ContactFormProps) => {
+export const ContactForm = ({ isOpen, onClose, title = "Get in Touch", subtitle, ctaText = "Book Now", downloadUrl }: ContactFormProps) => {
   const [thankYou, setThankYou] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
@@ -84,14 +86,14 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch", downloadU
 
   const onSubmit = async (data: FormValues) => {
     setSubmitting(true);
-    
+
     try {
       // Submit to Google Forms (existing functionality)
       const formPayload = new FormData();
       formPayload.append("entry.1338687725", data.name);
       formPayload.append("entry.1492404407", data.phone);
       formPayload.append("entry.1294608166", getPurposeValue(title)); // Purpose
-      
+
       // Submit to Google Forms
       await fetch("https://docs.google.com/forms/d/e/1FAIpQLSfmhAoHV0oaodPJsJuhcXyDF554xaGkKqaQAkXTd-lCmGexaA/formResponse", {
         method: "POST",
@@ -162,56 +164,61 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch", downloadU
         onPointerDownOutside={onClose}
       >
         <div className="px-[20px] pr-[30px]">
-        <DialogHeader>
-          <DialogTitle className="text-center text-xl font-bold text-primary mb-1">
-            {thankYou ? "Thank You!" : userTitle}
-          </DialogTitle>
-          {!thankYou && title === "Book A Site Visit" && (
-            <p className="text-center text-sm text-muted-foreground" style={{ marginBottom: '20px' }}>
-              MEET THE GODREJ FAMILY
-            </p>
-          )}
-        </DialogHeader>
-        {thankYou ? (
-          <div className="py-8 text-center">
-            <p className="text-base text-muted-foreground mb-6">{thankYou}</p>
-            <Button className="mx-auto" onClick={() => { setThankYou(null); onClose(); }}>Close</Button>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name" className="flex items-center gap-2">
-                <User className="h-4 w-4 text-primary" />
-                Full Name
-              </Label>
-              <Input
-                id="name"
-                {...register("name")}
-                placeholder="Enter your full name"
-                autoComplete="name"
-              />
-              {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name.message}</p>}
+          <DialogHeader>
+            <DialogTitle className="text-center text-xl font-bold text-primary mb-1">
+              {thankYou ? "Thank You!" : userTitle}
+            </DialogTitle>
+            {!thankYou && subtitle && (
+              <p className="text-center text-sm text-muted-foreground mb-8" >
+                {subtitle}
+              </p>
+            )}
+            {!thankYou && !subtitle && title === "Book A Site Visit" && (
+              <p className="text-center text-sm text-muted-foreground" style={{ marginBottom: '20px' }}>
+                MEET THE GODREJ FAMILY
+              </p>
+            )}
+          </DialogHeader>
+          {thankYou ? (
+            <div className="py-8 text-center">
+              <p className="text-base text-muted-foreground mb-6">{thankYou}</p>
+              <Button className="mx-auto" onClick={() => { setThankYou(null); onClose(); }}>Close</Button>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="phone" className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-primary" />
-                Phone Number
-              </Label>
-              <Input
-                id="phone"
-                type="tel"
-                {...register("phone")}
-                placeholder="Enter your phone number"
-                autoComplete="tel"
-              />
-              {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone.message}</p>}
-            </div>
+          ) : (
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-2">
+              <div className="space-y-2">
+                <Label htmlFor="name" className="flex items-center gap-2">
+                  <User className="h-4 w-4 text-primary" />
+                  Full Name
+                </Label>
+                <Input
+                  id="name"
+                  {...register("name")}
+                  placeholder="Enter your full name"
+                  autoComplete="name"
+                />
+                {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name.message}</p>}
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone" className="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-primary" />
+                  Phone Number
+                </Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  {...register("phone")}
+                  placeholder="Enter your phone number"
+                  autoComplete="tel"
+                />
+                {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone.message}</p>}
+              </div>
 
-            <Button type="submit" variant="cta" className="w-full mt-6" disabled={submitting}>
-              {submitting ? "Submitting..." : "Book Now"}
-            </Button>
-          </form>
-        )}
+              <Button type="submit" variant="cta" className="w-full mt-6" disabled={submitting}>
+                {submitting ? "Submitting..." : ctaText}
+              </Button>
+            </form>
+          )}
 
         </div>
       </DialogContent>

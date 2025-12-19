@@ -12,7 +12,7 @@ type FormType = 'bookhome' | 'enquire' | null;
 
 // Background images array for hero carousel
 const BACKGROUND_IMAGES = [
-  "/Assets/godrej.webp",
+  "/Assets/goderejwoods.webp",
   "/Assets/hero-bg-2.png",
   "/Assets/hero-bg-3.webp",
   "/Assets/hero-bg-5.webp",
@@ -28,7 +28,7 @@ export const HeroSection = () => {
   const navigate = useNavigate();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
+
   // Helper: Ensure inputs are scrolled into view above the keyboard
   const handleInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     const target = e.target as HTMLElement;
@@ -36,7 +36,7 @@ export const HeroSection = () => {
     requestAnimationFrame(() => {
       try {
         target.scrollIntoView({ block: 'center', behavior: 'smooth' });
-      } catch {}
+      } catch { }
     });
   };
 
@@ -79,7 +79,7 @@ export const HeroSection = () => {
   // Auto-slide background images
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
+      setCurrentImageIndex((prevIndex) =>
         (prevIndex + 1) % BACKGROUND_IMAGES.length
       );
     }, 5000); // Change image every 5 seconds
@@ -90,7 +90,7 @@ export const HeroSection = () => {
   // Purpose mapping function (same as ContactForm)
   const PURPOSE_OPTIONS = [
     "About - Learn More About Godrej",
-    "Floor Plan - Download Floor Plans", 
+    "Floor Plan - Download Floor Plans",
     "Project Highlights - Schedule Site Visit",
     "Amenities - Schedule Amenities Tour",
     "Learn More About Location",
@@ -116,7 +116,7 @@ export const HeroSection = () => {
   const handleScrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
+      element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
@@ -127,7 +127,7 @@ export const HeroSection = () => {
   const handlePreLaunchSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
-    
+
     const formData = new FormData(e.target as HTMLFormElement);
     const name = formData.get('name') as string;
     const phone = formData.get('phone') as string;
@@ -135,13 +135,13 @@ export const HeroSection = () => {
     try {
       // Use the same purpose mapping as ContactForm
       const purposeValue = getPurposeValue("Pre-Launch Special Offer");
-      
+
       // Submit to Google Forms (same method as ContactForm)
       const formPayload = new FormData();
       formPayload.append("entry.1338687725", name);
       formPayload.append("entry.1492404407", phone);
       formPayload.append("entry.1294608166", purposeValue);
-      
+
       // Submit to Google Forms
       await fetch("https://docs.google.com/forms/d/e/1FAIpQLSfmhAoHV0oaodPJsJuhcXyDF554xaGkKqaQAkXTd-lCmGexaA/formResponse", {
         method: "POST",
@@ -169,19 +169,19 @@ export const HeroSection = () => {
 
       // Reset form
       (e.target as HTMLFormElement).reset();
-      
+
       // Show success and redirect
       toast({
         title: "Thank You!",
         description: "Your pre-launch enquiry has been submitted successfully.",
       });
-      
+
       // Close sheet (if open) then redirect to thank you page
       try {
         setIsSheetOpen(false);
-      } catch {}
+      } catch { }
       navigate('/thank-you');
-      
+
     } catch (error) {
       console.error('Pre-launch form submission error:', error);
       toast({
@@ -196,7 +196,7 @@ export const HeroSection = () => {
 
   return (
     <>
-            <section id="hero" ref={ref} className={`relative min-h-[85vh] md:min-h-[100vh] flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-17 md:pt-28 pb-8 md:pb-0 transition-opacity duration-700 ${isClient && isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+      <section id="hero" ref={ref} className={`relative min-h-[85vh] md:min-h-[100vh] flex flex-col md:flex-row items-start md:items-center justify-start md:justify-center overflow-hidden pt-17 md:pt-28 pb-8 md:pb-0 transition-opacity duration-700 ${isClient && isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
         {/* Background Images Carousel */}
         <div className="absolute inset-0 z-0">
           {BACKGROUND_IMAGES.map((image, index) => (
@@ -204,9 +204,8 @@ export const HeroSection = () => {
               key={`${image}-${index}`}
               src={image}
               alt={`Godrej Thanisandra ${index + 1}`}
-              className={`absolute inset-0 w-full h-full object-cover hero-bg-image transition-opacity duration-1000 ease-in-out ${
-                index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`absolute inset-0 w-full h-full object-cover hero-bg-image transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                }`}
               style={{ objectFit: 'cover', objectPosition: 'center' }}
               decoding="async"
               loading={index === 0 ? 'eager' : 'lazy'}
@@ -222,7 +221,7 @@ export const HeroSection = () => {
                   // Helpful log in dev tools
                   // eslint-disable-next-line no-console
                   console.error('Slide image failed to load:', image);
-                } catch {}
+                } catch { }
               }}
             />
           ))}
@@ -234,11 +233,10 @@ export const HeroSection = () => {
             <button
               key={index}
               onClick={() => setCurrentImageIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentImageIndex 
-                  ? 'bg-white w-8' 
-                  : 'bg-white/50 hover:bg-white/75'
-              }`}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentImageIndex
+                ? 'bg-white w-8'
+                : 'bg-white/50 hover:bg-white/75'
+                }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
@@ -249,8 +247,11 @@ export const HeroSection = () => {
           <div className="w-full flex flex-col items-start">
             {/* Title and Subtitle */}
             <h1 className="text-[33px] sm:text-5xl font-bold mb-2 mt-[23px] leading-tight text-white text-left">
-              Godrej Thanisandra
+              Godrej Woods
             </h1>
+            <p className="text-[18px] font-bold text-white mb-2 text-left">
+              Thanisandra, Bangalore
+            </p>
             <p className="text-lg sm:text-xl leading-[24px] mb-4 font-semibold text-yellow-300 text-left">
               Pre-launch 2 & 3 BHK apartments <br></br> starting at ₹1.62 Cr in a <br></br> 7-acre premium enclave
             </p>
@@ -260,21 +261,21 @@ export const HeroSection = () => {
           <div className="w-full">
             {/* Mobile Feature Boxes - Above Button */}
             <div className="w-full flex flex-row gap-3 mb-3">
-              <div 
+              <div
                 onClick={() => handleScrollToSection('floor-plan')}
                 className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20 cursor-pointer hover:bg-black/50 transition-colors duration-200"
               >
                 <h3 className="text-lg font-bold text-white mb-1">2-3 BHK</h3>
                 <p className="text-white/90 text-xs">Premium Apartments</p>
               </div>
-              <div 
+              <div
                 onClick={() => handleScrollToSection('godrej-amenities')}
                 className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20 cursor-pointer hover:bg-black/50 transition-colors duration-200"
               >
                 <h3 className="text-lg font-bold text-white mb-1">45+</h3>
                 <p className="text-white/90 text-xs">World-Class Amenities</p>
               </div>
-              <div 
+              <div
                 onClick={() => handleScrollToSection('location-advantages')}
                 className="flex-1 bg-black/40 backdrop-blur-sm rounded-xl p-3 text-center border border-white/20 cursor-pointer hover:bg-black/50 transition-colors duration-200"
               >
@@ -282,12 +283,12 @@ export const HeroSection = () => {
                 <p className="text-white/90 text-xs">North Bangalore Location</p>
               </div>
             </div>
-            
+
             {/* Mobile: Button below tiles */}
             <div className="w-full">
               <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                 <SheetTrigger asChild>
-                  <Button 
+                  <Button
                     type="button"
                     size="lg"
                     className="w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] font-bold text-lg py-3 rounded-lg btn-pulse"
@@ -297,10 +298,10 @@ export const HeroSection = () => {
                   </Button>
                 </SheetTrigger>
 
-                <SheetContent 
-                  side="bottom" 
+                <SheetContent
+                  side="bottom"
                   className="rounded-t-[10px] p-0 overflow-hidden border"
-                  style={{ 
+                  style={{
                     height: 'min(100svh, var(--vvh))',
                     maxHeight: 'min(100svh, var(--vvh))'
                   }}
@@ -317,7 +318,7 @@ export const HeroSection = () => {
                     </div>
 
                     {/* Scrollable Content */}
-                    <div 
+                    <div
                       className="flex-1 overflow-y-auto max-w-md w-full mx-auto px-4 pb-28"
                       style={{ WebkitOverflowScrolling: 'touch' as any }}
                     >
@@ -344,7 +345,7 @@ export const HeroSection = () => {
                     {/* Sticky Submit */}
                     <div className="absolute bottom-0 left-0 right-0 p-4 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 border-t" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 16px)' }}>
                       <div className="max-w-md w-full mx-auto">
-                        <Button 
+                        <Button
                           type="submit"
                           size="lg"
                           form="hero-mobile-booking-offer-form"
@@ -371,13 +372,16 @@ export const HeroSection = () => {
           {/* Left: Text and Buttons */}
           <div className="flex-1 flex flex-col items-start justify-center text-left text-white py-16 md:pt-20 md:pb-24 w-full">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-2 md:mb-4 leading-tight w-full text-left">
-              Godrej Thanisandra
+              Godrej Woods
             </h1>
+            <p className="text-[18px] font-bold text-white mb-2 text-left">
+              Thanisandra, Bangalore
+            </p>
             <p className="text-[26px] text-yellow-300 leading-7 mb-6 md:mb-8 font-semibold w-full text-left">
-            Pre-launch 2 & 3 BHK apartments starting at ₹1.62 Cr<br></br> in a 7-acre premium enclave
+              Pre-launch 2 & 3 BHK apartments starting at ₹1.62 Cr<br></br> in a 7-acre premium enclave
             </p>
 
-            
+
             {/* Desktop Inline Pre-Launch Form */}
             <div className="w-full max-w-md bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/20">
               {/* <h3 className="text-xl font-bold text-yellow-300 mb-4 text-center">
@@ -398,7 +402,7 @@ export const HeroSection = () => {
                   required
                   className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:border-yellow-300"
                 />
-                <Button 
+                <Button
                   type="submit"
                   size="lg"
                   disabled={submitting}
@@ -416,21 +420,21 @@ export const HeroSection = () => {
 
           {/* Right: Vertical Tiles */}
           <div className="flex flex-col gap-3 md:gap-6 w-full md:w-auto md:ml-16 mt-8 md:mt-0 mb-8 md:mb-0">
-            <div 
+            <div
               onClick={() => handleScrollToSection('floor-plan')}
               className="bg-black/40 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
             >
               <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2">2-3 BHK</h3>
               <p className="text-white/90 text-xs md:text-base">Premium Apartments</p>
             </div>
-            <div 
+            <div
               onClick={() => handleScrollToSection('godrej-amenities')}
               className="bg-black/40 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
             >
               <h3 className="text-lg md:text-2xl font-bold text-white mb-1 md:mb-2">45+</h3>
               <p className="text-white/90 text-xs md:text-base">World-Class Amenities</p>
             </div>
-            <div 
+            <div
               onClick={() => handleScrollToSection('location-advantages')}
               className="bg-black/40 backdrop-blur-md rounded-2xl p-4 md:p-6 text-center border border-white/20 min-w-0 md:min-w-[220px] h-20 md:h-auto flex flex-col justify-center cursor-pointer hover:bg-white/15 transition-colors duration-200"
             >
@@ -439,20 +443,20 @@ export const HeroSection = () => {
             </div>
           </div>
         </div>
-      {isClient && (
-        <>
-          <ContactForm 
-            isOpen={isFormOpen === 'bookhome'} 
-            onClose={() => setIsFormOpen(null)}
-            title="Hero - Book Your Dream Home Now"
-          />
-          <ContactForm 
-            isOpen={isFormOpen === 'enquire'} 
-            onClose={() => setIsFormOpen(null)}
-            title="Hero - Enquire Now"
-          />
-        </>
-      )}
+        {isClient && (
+          <>
+            <ContactForm
+              isOpen={isFormOpen === 'bookhome'}
+              onClose={() => setIsFormOpen(null)}
+              title="Hero - Book Your Dream Home Now"
+            />
+            <ContactForm
+              isOpen={isFormOpen === 'enquire'}
+              onClose={() => setIsFormOpen(null)}
+              title="Hero - Enquire Now"
+            />
+          </>
+        )}
       </section>
     </>
   );

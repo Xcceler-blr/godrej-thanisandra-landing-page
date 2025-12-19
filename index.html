@@ -1,52 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Google Tag Manager -->
-    <script>
+
+<head>
+  <!-- Google Tag Manager -->
+  <script>
     // Only load GTM in production to avoid debug console messages
     if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-T65RRZHB');
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-T65RRZHB');
     } else {
       // Initialize empty dataLayer for development
       window.dataLayer = window.dataLayer || [];
     }
-    </script>
-    <!-- End Google Tag Manager -->
-    <meta charset="UTF-8" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
+  </script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#ffffff" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    
-    <!-- Performance Optimizations -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-    
-    <!-- Preload Critical Resources -->
-    <!-- Removed main.tsx preload to avoid base64 octet-stream preload warning in prod -->
-    <link rel="preload" href="/Assets/Godrej.png" as="image" />
-    <link rel="preload" href="/Assets/godrej-master.png" as="image" />
-    
-    <!-- Critical CSS loaded via Vite build -->
-    
-    <title>Premium Apartments at Godrej Properties Thanisandra Bangalore</title>
-    <meta name="description" content="Godrej Properties Thanisandra presents luxurious residential apartments in Bangalore's growing corridor. Modern amenities, strategic location & trusted brand.">
-    <link rel="canonical" href="https://www.godrejpropertiez.in/" />
-    <link rel="icon" type="image/x-icon" href="/Assets/favicon.ico" />
-    
-    <!-- Structured Data for SEO -->
-    <script type="application/ld+json">
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+  <!-- Performance Optimizations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+  <!-- Preload Critical Resources -->
+  <!-- Removed main.tsx preload to avoid base64 octet-stream preload warning in prod -->
+  <link rel="preload" href="/Assets/Godrej.png" as="image" />
+  <link rel="preload" href="/Assets/godrej-master.png" as="image" />
+
+  <!-- Critical CSS loaded via Vite build -->
+
+  <title>Premium Apartments at Godrej Properties Thanisandra Bangalore</title>
+  <meta name="description"
+    content="Godrej Properties Thanisandra presents luxurious residential apartments in Bangalore's growing corridor. Modern amenities, strategic location & trusted brand.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.godrejpropertiez.in/" />
+  <meta property="og:title" content="Premium Apartments at Godrej Woods Thanisandra Bangalore" />
+  <meta property="og:description"
+    content="Godrej Woods Thanisandra presents luxurious residential apartments in Bangalore's growing corridor. Modern amenities, strategic location & trusted brand." />
+  <meta property="og:image" content="https://www.godrejpropertiez.in/Assets/goderejwoods.webp" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.godrejpropertiez.in/" />
+  <meta property="twitter:title" content="Premium Apartments at Godrej Woods Thanisandra Bangalore" />
+  <meta property="twitter:description"
+    content="Godrej Woods Thanisandra presents luxurious residential apartments in Bangalore's growing corridor. Modern amenities, strategic location & trusted brand." />
+  <meta property="twitter:image" content="https://www.godrejpropertiez.in/Assets/goderejwoods.webp" />
+
+  <link rel="canonical" href="https://www.godrejpropertiez.in/" />
+  <link rel="icon" type="image/x-icon" href="/Assets/favicon.ico" />
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
@@ -181,17 +203,18 @@
       ]
     }
     </script>
-  </head>
+</head>
 
-  <body>
-    <!-- Google Tag Manager (noscript) - Only in production -->
-    <script>
+<body>
+  <!-- Google Tag Manager (noscript) - Only in production -->
+  <script>
     if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       document.write('<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T65RRZHB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>');
     }
-    </script>
-    <!-- End Google Tag Manager (noscript) -->
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  </script>
+  <!-- End Google Tag Manager (noscript) -->
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

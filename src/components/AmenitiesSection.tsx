@@ -3,14 +3,14 @@ import { Button } from "@/components/ui/button";
 import { ContactForm } from "./ContactForm";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { 
-  Waves, 
-  Dumbbell, 
-  Car, 
-  TreePine, 
-  Gamepad2, 
-  Shield, 
-  Zap, 
+import {
+  Waves,
+  Dumbbell,
+  Car,
+  TreePine,
+  Gamepad2,
+  Shield,
+  Zap,
   Wifi,
   Baby,
   BookOpen,
@@ -39,9 +39,9 @@ export const AmenitiesSection = () => {
       desc: "Enjoy movies and events in a private mini theatre."
     },
     {
-      name: "LOTUS POND",
-      image: "/Assets/Amenities/MINI-THEATRE (1).png",
-      desc: "Serene lotus pond for relaxation and scenic beauty."
+      name: "BARBEQUE PAVILION",
+      image: "/Assets/Amenities/Barbeque Pavilion.webp",
+      desc: ""
     },
     {
       name: "BADMINTON COURT",
@@ -77,6 +77,56 @@ export const AmenitiesSection = () => {
       name: "GYM",
       image: "/Assets/Amenities/gym.png",
       desc: "State-of-the-art gym for your fitness needs."
+    },
+    {
+      name: "EXPANSIVE BALCONIES",
+      image: "/Assets/Amenities/EXPANSIVE BALCONIES.webp",
+      desc: "Enjoy spacious outdoor living with expansive balconies."
+    },
+    {
+      name: "KIDS’ CENTRIC AMENITIES",
+      image: "/Assets/Amenities/KIDS’ CENTRIC AMENITIES.webp",
+      desc: "Fun and engaging activities designed for children."
+    },
+    {
+      name: "KIDS' PLAY POND",
+      image: "/Assets/Amenities/Kids' Play Pond.webp",
+      desc: "A safe and playful water area for kids."
+    },
+    {
+      name: "PICKLEBALL COURT",
+      image: "/Assets/Amenities/Pickleball Court.webp",
+      desc: "Active recreation at the dedicated pickleball court."
+    },
+    {
+      name: "CABANA WITH CHAIRS",
+      image: "/Assets/Amenities/Cabana With Chairs.webp",
+      desc: "."
+    },
+    {
+      name: "LAP POOL",
+      image: "/Assets/Amenities/Lap Pool .webp",
+      desc: "."
+    },
+    {
+      name: "PARTY DECK",
+      image: "/Assets/Amenities/Party Deck.webp",
+      desc: "."
+    },
+    {
+      name: "OUTDOOR GYM",
+      image: "/Assets/Amenities/Outdoor Gym.webp",
+      desc: "."
+    },
+    {
+      name: "MEDITATION / YOGA DECK",
+      image: "/Assets/Amenities/MEDITATION  YOGA DECK.webp",
+      desc: "."
+    },
+    {
+      name: "MINI THEATRE",
+      image: "/Assets/Amenities/MINI THEATRE.webp",
+      desc: "."
     }
   ];
 
@@ -86,11 +136,11 @@ export const AmenitiesSection = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              <span className="text-primary">Godrej Thanisandra</span>
+              <span className="text-primary">Godrej Woods</span>
               <br />Amenities
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Experience a lifestyle of luxury with our comprehensive range of world-class 
+              Experience a lifestyle of luxury with our comprehensive range of world-class
               amenities designed for your comfort, convenience, and well-being.
             </p>
           </div>
@@ -114,15 +164,15 @@ export const AmenitiesSection = () => {
               45+ World-Class Amenities
             </h3>
             <p className="text-lg mb-6 text-white/90 max-w-2xl mx-auto">
-              From fitness and recreation to safety and convenience, 
+              From fitness and recreation to safety and convenience,
               every amenity is designed to enhance your living experience.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                variant="default" 
+              <Button
+                variant="default"
                 size="lg"
                 className="text-white !text-[24px] !h-[68px]"
-                style={{background: '#B9105E', border: 'none'}}
+                style={{ background: '#B9105E', border: 'none' }}
                 onMouseOver={e => { e.currentTarget.style.background = '#B9105E'; e.currentTarget.style.color = '#fff'; }}
                 onMouseOut={e => { e.currentTarget.style.background = '#B9105E'; e.currentTarget.style.color = '#fff'; }}
                 onClick={() => setIsFormOpen(true)}
@@ -153,8 +203,8 @@ export const AmenitiesSection = () => {
           </div>
         </div>
       </section>
-      <ContactForm 
-        isOpen={isFormOpen} 
+      <ContactForm
+        isOpen={isFormOpen}
         onClose={() => setIsFormOpen(false)}
         title="Amenities - Schedule Amenities Tour"
       />

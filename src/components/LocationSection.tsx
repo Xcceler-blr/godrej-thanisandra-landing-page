@@ -83,7 +83,7 @@ export const LocationSection = () => {
               <br />Location
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Discover the prime location benefits of Godrej Thanisandra, offering unmatched connectivity and convenience in North Bangalore.
+              Discover the prime location benefits of Godrej Woods Thanisandra, offering unmatched connectivity and convenience in North Bangalore.
             </p>
           </div>
 
@@ -166,7 +166,7 @@ export const LocationSection = () => {
           <div className="mt-16 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-3xl p-8 md:p-12">
             <div className="text-center mb-8">
               <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Why <span className="text-primary">Thanisandra</span> is the Perfect Choice
+                Why <span className="text-primary">Godrej Woods</span> is the Perfect Choice
               </h3>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Thanisandra offers the perfect blend of urban convenience and peaceful living, making it one of North Bangalore's most sought-after residential destinations.

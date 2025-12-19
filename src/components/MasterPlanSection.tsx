@@ -36,17 +36,17 @@ export const MasterPlanSection = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Godrej Thanisandra <span className="text-primary">Master Plan</span>
+              Godrej Woods Thanisandra <span className="text-primary">Master Plan</span>
               <br />& Project Details
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Explore every detail of your future home — from world-class amenities to complete project plans, all in one place.
+              Explore every detail of your future home — from world-class amenities to complete project plans, all in one place.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-0">
             <div>
-              <img 
+              <img
                 src="/Assets/godrej thanisandra blr.webp"
                 alt="Godrej Thanisandra Building"
                 className="rounded-2xl shadow-2xl w-full h-[660px] object-cover master-plan-image"
@@ -54,14 +54,14 @@ export const MasterPlanSection = () => {
                 height="600"
                 loading="lazy"
               />
-              
+
               {/* Removed View Interactive Master Plan button */}
             </div>
-            
+
             <div className="space-y-6">
               <div className="space-y-4">
                 <p className="text-muted-foreground leading-relaxed">
-                  As a resident of Godrej Thanisandra, you will enjoy an exclusive range of lifestyle amenities, including:
+                  As a resident of Godrej Woods, you will enjoy an exclusive range of lifestyle amenities, including:
                 </p>
                 <ul className="space-y-2 text-muted-foreground">
                   <li className="flex items-start">
@@ -82,23 +82,23 @@ export const MasterPlanSection = () => {
                   </li>
                 </ul>
               </div>
-              
+
               <h3 className="text-2xl md:text-3xl font-bold">
                 Comprehensive Project <span className="text-primary">Documentation</span>
               </h3>
-              
+
               <p className="text-muted-foreground leading-relaxed">
-                Access detailed project documentation including master plans, floor plans, 
-                amenity layouts, and pricing information. Our comprehensive documentation 
-                package provides all the information you need to understand the project scope 
+                Access detailed project documentation including master plans, floor plans,
+                amenity layouts, and pricing information. Our comprehensive documentation
+                package provides all the information you need to understand the project scope
                 and make an informed investment decision.
               </p>
-              
+
               <div className="grid gap-4">
                 {downloadOptions.map((option, index) => {
                   const IconComponent = option.icon;
                   return (
-                    <div 
+                    <div
                       key={index}
                       className="flex items-center gap-4 p-4 bg-background rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer"
                       onClick={() => {
@@ -116,30 +116,30 @@ export const MasterPlanSection = () => {
                         <IconComponent className="h-6 w-6 text-primary" />
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-semibold text-foreground">{option.title}</h4>
+                        <h4 className="font-semibold text-foreground text-[20px]">{option.title}</h4>
                         <p className="text-sm text-muted-foreground">{option.description}</p>
                       </div>
                     </div>
                   );
                 })}
               </div>
-              
+
               <div className="flex flex-col gap-4">
-                <Button 
-                  variant="default" 
+                <Button
+                  variant="default"
                   size="lg"
                   className="gap-2 !bg-[#B9105E] !text-white !text-[20px] !border-none hover:!bg-[#a00d4e]"
                   onClick={() => setIsFormOpen('expert')}
                 >
-                  Talk to Our Expert
+                  Request a Callback
                 </Button>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <ContactForm 
-        isOpen={isFormOpen === 'expert'} 
+      <ContactForm
+        isOpen={isFormOpen === 'expert'}
         onClose={() => { setIsFormOpen(null); setSelectedDownload(null); }}
         title={selectedDownload?.title || "Master Plan - Talk to Our Expert"}
         downloadUrl={selectedDownload?.url}

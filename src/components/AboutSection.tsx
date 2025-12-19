@@ -22,11 +22,11 @@ export const AboutSection = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              About <span className="text-primary">Godrej Thanisandra</span>
-              <br />North Bangalore
+              About <span className="text-primary">Godrej Woods</span>
+              <br />Thanisandra North Bangalore
             </h2>
             <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
-            Welcome to Godrej Properties Thanisandra, a pre-launch premium residential development in the heart of North Bangalore. Spanning an expansive 7-acre low-density community, the project is thoughtfully designed to offer the perfect balance of smart architecture, green living, and modern conveniences. 
+              Welcome to Godrej Woods Thanisandra, a pre-launch premium residential development in the heart of North Bangalore. Spanning an expansive 7-acre low-density community, the project is thoughtfully designed to offer the perfect balance of smart architecture, green living, and modern conveniences.
             </p>
           </div>
 
@@ -34,13 +34,13 @@ export const AboutSection = () => {
             <h3 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-8">
               Luxury Living Refined
             </h3>
-            
+
             <div className="grid md:grid-cols-2 gap-10 max-w-7xl mx-auto">
               <div className="space-y-8">
                 <div className="flex items-start gap-4">
-                  <img 
-                    src="/Assets/Aboutus-icons/1.svg" 
-                    alt="7-Acre Community" 
+                  <img
+                    src="/Assets/Aboutus-icons/1.svg"
+                    alt="7-Acre Community"
                     className="w-[72px] h-[64px] md:w-[90px] md:h-[80px] object-contain flex-shrink-0 rounded-[7px] border border-black bg-[#fffff0]"
                     loading="lazy"
                   />
@@ -51,9 +51,9 @@ export const AboutSection = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <img 
-                    src="/Assets/Aboutus-icons/2.svg" 
-                    alt="558 Premium Residences" 
+                  <img
+                    src="/Assets/Aboutus-icons/3.svg"
+                    alt="558 Premium Residences"
                     className="w-[72px] h-[64px] md:w-[90px] md:h-[80px] object-contain flex-shrink-0 rounded-[7px] border border-black bg-[#fffff0]"
                     loading="lazy"
                   />
@@ -64,9 +64,9 @@ export const AboutSection = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <img 
-                    src="/Assets/Aboutus-icons/3.svg" 
-                    alt="2 & 3 BHK Luxury Homes" 
+                  <img
+                    src="/Assets/Aboutus-icons/2.svg"
+                    alt="2 & 3 BHK Luxury Homes"
                     className="w-[72px] h-[64px] md:w-[90px] md:h-[80px] object-contain flex-shrink-0 rounded-[7px] border border-black bg-[#fffff0]"
                     loading="lazy"
                   />
@@ -77,9 +77,9 @@ export const AboutSection = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <img 
-                    src="/Assets/Aboutus-icons/4.svg" 
-                    alt="Intelligent Design" 
+                  <img
+                    src="/Assets/Aboutus-icons/4.svg"
+                    alt="Intelligent Design"
                     className="w-[72px] h-[64px] md:w-[90px] md:h-[80px] object-contain flex-shrink-0 rounded-[7px] border border-black bg-[#fffff0]"
                     loading="lazy"
                   />
@@ -92,9 +92,9 @@ export const AboutSection = () => {
 
               <div className="space-y-8">
                 <div className="flex items-start gap-4">
-                  <img 
-                    src="/Assets/Aboutus-icons/5.svg" 
-                    alt="Sustainable Living" 
+                  <img
+                    src="/Assets/Aboutus-icons/5.svg"
+                    alt="Sustainable Living"
                     className="w-[72px] h-[64px] md:w-[90px] md:h-[80px] object-contain flex-shrink-0 rounded-[7px] border border-black bg-[#fffff0]"
                     loading="lazy"
                   />
@@ -105,9 +105,9 @@ export const AboutSection = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <img 
-                    src="/Assets/Aboutus-icons/6.svg" 
-                    alt="Clubhouse & Lifestyle Amenities" 
+                  <img
+                    src="/Assets/Aboutus-icons/6.svg"
+                    alt="Clubhouse & Lifestyle Amenities"
                     className="w-[72px] h-[64px] md:w-[90px] md:h-[80px] object-contain flex-shrink-0 rounded-[7px] border border-black bg-[#fffff0]"
                     loading="lazy"
                   />
@@ -118,9 +118,9 @@ export const AboutSection = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <img 
-                    src="/Assets/Aboutus-icons/7.svg" 
-                    alt="Modern Tower Configurations" 
+                  <img
+                    src="/Assets/Aboutus-icons/7.svg"
+                    alt="Modern Tower Configurations"
                     className="w-[72px] h-[64px] md:w-[90px] md:h-[80px] object-contain flex-shrink-0 rounded-[7px] border border-black bg-[#fffff0]"
                     loading="lazy"
                   />
@@ -138,7 +138,7 @@ export const AboutSection = () => {
                     onClick={() => setIsFormOpen(true)}
                     aria-label="Open enquiry form"
                   >
-                    Speak to us
+                    Talk to us
                   </Button>
                 </div>
               </div>
@@ -151,10 +151,10 @@ export const AboutSection = () => {
                 The <span style={{ color: '#B9105E' }}>Godrej Legacy</span>
               </h3>
               <p className="text-muted-foreground max-w-3xl mx-auto">
-              With Godrej Properties' trusted legacy, this landmark development combines world-class design with unmatched comfort — making it one of the most promising residential addresses in North Bangalore. 
+                With Godrej Properties' trusted legacy, this landmark development combines world-class design with unmatched comfort — making it one of the most promising residential addresses in North Bangalore.
               </p>
             </div>
-            
+
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 w-full">
               {achievements.map((achievement, index) => {
                 const IconComponent = achievement.icon;
@@ -172,8 +172,8 @@ export const AboutSection = () => {
           </div>
         </div>
       </section>
-      <ContactForm 
-        isOpen={isFormOpen} 
+      <ContactForm
+        isOpen={isFormOpen}
         onClose={() => setIsFormOpen(false)}
         title="About - Learn More About Godrej Thanisandra"
       />

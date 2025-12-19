@@ -20,6 +20,8 @@ interface MapComponentProps {
     selectedLocationId?: number | null;
 }
 
+import "leaflet/dist/leaflet.css";
+
 // Helper component to handle map interactions
 function MapController({ selectedLocationId, locations, propertyCoords }: {
     selectedLocationId?: number | null,
@@ -27,6 +29,15 @@ function MapController({ selectedLocationId, locations, propertyCoords }: {
     propertyCoords: [number, number]
 }) {
     const map = useMap();
+
+    useEffect(() => {
+        // Fix for map tiles not loading correctly in some cases
+        // Invalidate size after a short delay to ensure container dimensions are correct
+        const timer = setTimeout(() => {
+            map.invalidateSize();
+        }, 250);
+        return () => clearTimeout(timer);
+    }, [map]);
 
     useEffect(() => {
         if (selectedLocationId) {

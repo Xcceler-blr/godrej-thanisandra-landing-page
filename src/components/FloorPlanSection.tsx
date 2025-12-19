@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "./ContactForm";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +7,112 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Home, Maximize, Download, Eye } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
+interface FloorPlanCardProps {
+  plan: {
+    type: string;
+    images: string[];
+  };
+  setIsFormOpen: (open: boolean) => void;
+  className?: string;
+}
+
+const FloorPlanCard = ({ plan, setIsFormOpen, className = "" }: FloorPlanCardProps) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    let intervalId: ReturnType<typeof setInterval> | null = null;
+
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 1024; // lg breakpoint
+
+      if (isMobile) {
+        // Start interval if not already running
+        if (!intervalId) {
+          intervalId = setInterval(() => {
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % plan.images.length);
+          }, 2000);
+        }
+      } else {
+        // Stop interval if running (desktop mode)
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+          setCurrentImageIndex(0); // Reset to first image
+        }
+      }
+    };
+
+    // Initial check
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [plan.images.length]);
+
+  // Handle hover for desktop
+  const handleMouseEnter = () => {
+    if (window.innerWidth >= 1024) { // Only on desktop
+      setIsHovered(true);
+      if (plan.images.length > 1) {
+        setCurrentImageIndex(1); // switch to the second image
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (window.innerWidth >= 1024) { // Only on desktop
+      setIsHovered(false);
+      setCurrentImageIndex(0); // revert to the first image
+    }
+  };
+
+
+  let price = "";
+  if (plan.type.startsWith("2BHK")) price = "1.62 Cr* ONWARDS";
+  else if (plan.type.includes("3BHK LUX - 2305")) price = "3.2 cr onwards";
+  else if (plan.type.startsWith("3BHK LUX")) price = "₹3 Cr onwards";
+  else if (plan.type.startsWith("3BHK")) price = "2.52Cr* ONWARDS";
+  else if (plan.type.startsWith("4BHK")) price = "2.52Cr* ONWARDS";
+
+  return (
+    <div
+      className={`bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col relative w-full max-w-xs sm:max-w-sm min-w-0 transition-transform duration-300 hover:scale-105 hover:shadow-xl ${className}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-xs font-semibold z-10" style={{ background: '#B9105E' }}>{price}</span>
+      <div className="relative w-full h-56 bg-gray-100">
+        {plan.images.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt={`${plan.type} - View ${index + 1}`}
+            className={`absolute inset-0 w-full h-full object-cover floor-plan-image transition-opacity duration-1000 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'} ${index === 1 ? 'blur-[3px]' : ''}`}
+            width="500"
+            height="400"
+            loading="lazy"
+          />
+        ))}
+      </div>
+      <div className="p-6 flex-1 flex flex-col justify-between min-w-0">
+        <h3 className="text-xl font-bold mb-4 text-primary break-words">{plan.type}</h3>
+        <Button
+          variant="default"
+          className="w-full gap-2 mt-auto"
+          onClick={() => setIsFormOpen(true)}
+        >
+          Know more about floor plan
+        </Button>
+      </div>
+    </div>
+  );
+};
+
 export const FloorPlanSection = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const { ref, isVisible } = useScrollAnimation();
@@ -14,25 +120,23 @@ export const FloorPlanSection = () => {
   const floorPlanTiles = [
     {
       type: "2BHK - 1193sqft",
-      image: "/Assets/godrej-2bhk%20.png"
+      images: ["/Assets/godrej-2bhk%20.png", "/Assets/2bhk_floor_plan.webp"]
     },
     {
       type: "2BHK - 1242sqft",
-      image: "/Assets/godrej-2bhk2.png"
+      images: ["/Assets/godrej-2bhk2.png", "/Assets/2bhk_floor_plan.webp"]
     },
     {
       type: "3BHK Premium - 1800 sqft",
-      image: "/Assets/godrej-3bhk%20.png"
+      images: ["/Assets/godrej-3bhk%20.png", "/Assets/3bhk_prmium_floor_plan.webp"]
     },
     {
       type: "3BHK LUX - 2185 sqft",
-      image: "/Assets/3bhk-lux.png"
-      
+      images: ["/Assets/3bhk-lux.png", "/Assets/3bhk_lux_floor plan.webp"]
     },
     {
       type: "3BHK LUX - 2305 sqft",
-      image: "/Assets/3bhk-lux-(1).png"
-
+      images: ["/Assets/3bhk-lux-(1).png", "/Assets/3bhk_lux_floor plan.webp"]
     }
   ];
 
@@ -42,67 +146,25 @@ export const FloorPlanSection = () => {
         <div className="max-w-6xl mx-auto px-2 sm:px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              <span className="text-primary">Godrej Thanisandra Bangalore</span>
+              <span className="text-primary">Godrej Woods Bangalore</span>
               <br />Floor Plans
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Explore our thoughtfully designed floor plans that maximize space utilization 
+              Explore our thoughtfully designed floor plans that maximize space utilization
               while ensuring optimal ventilation and natural light in every home.
             </p>
           </div>
 
           {/* Floor Plan Tiles Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {floorPlanTiles.slice(0, 3).map((plan, idx) => {
-              let price = "";
-              if (plan.type.startsWith("2BHK")) price = "1.62 Cr* ONWARDS";
-              else if (plan.type.includes("3BHK LUX - 2305")) price = "3.2 cr onwards";
-              else if (plan.type.startsWith("3BHK LUX")) price = "₹3 Cr onwards";
-              else if (plan.type.startsWith("3BHK")) price = "2.52Cr* ONWARDS";
-              else if (plan.type.startsWith("4BHK")) price = "2.52Cr* ONWARDS";
-              return (
-                <div key={plan.type} className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col relative w-full max-w-xs sm:max-w-sm min-w-0 mx-auto transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                  <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-xs font-semibold z-10" style={{background: '#B9105E'}}>{price}</span>
-                  <img src={plan.image} alt={plan.type} className="w-full h-56 object-cover floor-plan-image" width="500" height="400" loading="lazy" />
-                  <div className="p-6 flex-1 flex flex-col justify-between min-w-0">
-                    <h3 className="text-xl font-bold mb-4 text-primary break-words">{plan.type}</h3>
-                    <Button 
-                      variant="default" 
-                      className="w-full gap-2 mt-auto"
-                      onClick={() => setIsFormOpen(true)}
-                    >
-                      Know more about floor plan
-                    </Button>
-                  </div>
-                </div>
-              );
-            })}
+            {floorPlanTiles.slice(0, 3).map((plan) => (
+              <FloorPlanCard key={plan.type} plan={plan} setIsFormOpen={setIsFormOpen} className="mx-auto" />
+            ))}
             <div className="col-span-1 sm:col-span-2 md:col-span-3 mt-10">
               <div className="flex justify-center gap-6 flex-wrap">
-                {floorPlanTiles.slice(3).map((plan) => {
-                  let price = "";
-                  if (plan.type.startsWith("2BHK")) price = "1.62 Cr* ONWARDS";
-                  else if (plan.type.includes("3BHK LUX - 2305")) price = "3.2 cr onwards";
-                  else if (plan.type.startsWith("3BHK LUX")) price = "₹3 Cr onwards";
-                  else if (plan.type.startsWith("3BHK")) price = "2.52Cr* ONWARDS";
-                  else if (plan.type.startsWith("4BHK")) price = "2.52Cr* ONWARDS";
-                  return (
-                    <div key={plan.type} className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col relative w-full max-w-xs sm:max-w-sm min-w-0 transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                      <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-xs font-semibold z-10" style={{background: '#B9105E'}}>{price}</span>
-                      <img src={plan.image} alt={plan.type} className="w-full h-56 object-cover floor-plan-image" width="500" height="400" loading="lazy" />
-                      <div className="p-6 flex-1 flex flex-col justify-between min-w-0">
-                        <h3 className="text-xl font-bold mb-4 text-primary break-words">{plan.type}</h3>
-                        <Button 
-                          variant="default" 
-                          className="w-full gap-2 mt-auto"
-                          onClick={() => setIsFormOpen(true)}
-                        >
-                          Know more about floor plan
-                        </Button>
-                      </div>
-                    </div>
-                  );
-                })}
+                {floorPlanTiles.slice(3).map((plan) => (
+                  <FloorPlanCard key={plan.type} plan={plan} setIsFormOpen={setIsFormOpen} />
+                ))}
               </div>
             </div>
           </div>
@@ -110,10 +172,12 @@ export const FloorPlanSection = () => {
           {/* Floor Plan Highlights */}
         </div>
       </section>
-      <ContactForm 
-        isOpen={isFormOpen} 
+      <ContactForm
+        isOpen={isFormOpen}
         onClose={() => setIsFormOpen(false)}
-        title="Floor Plan - Download Floor Plans"
+        title="Know more about floor plan"
+        subtitle="Fill the form to get detailed floor plan layouts, unit sizes, and complete configuration information. Our team will share the complete plan and assist you with all your queries."
+        ctaText="Get Floor Plan Details"
       />
     </>
   );
