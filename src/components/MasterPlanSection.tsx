@@ -18,7 +18,7 @@ export const MasterPlanSection = () => {
       icon: Map,
       format: "PDF",
       size: "2.3 MB",
-      downloadUrl: "/Assets/sw.js" // TODO: replace with actual master plan PDF path
+      downloadUrl: ""
     },
     {
       title: "Brochure",
@@ -26,7 +26,7 @@ export const MasterPlanSection = () => {
       icon: Download,
       format: "PDF",
       size: "8.5 MB",
-      downloadUrl: "/Assets/sw.js" // TODO: replace with actual brochure PDF path
+      downloadUrl: ""
     }
   ];
 

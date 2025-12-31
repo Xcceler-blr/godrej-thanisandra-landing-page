@@ -1,10 +1,15 @@
 import { Button } from "./ui/button"
 import { PhoneCall } from "lucide-react"
 import { useState, useEffect } from "react"
+import { useLocation } from "react-router-dom"
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const location = useLocation()
+
+  // Check if we are on the GodrejWoods page
+  const isGodrejWoodsPage = location.pathname === '/godrejwoods'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +20,13 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (isGodrejWoodsPage) {
+      e.preventDefault()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   return (
     <nav
       className={`fixed top-0 w-full z-40 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-white/5 backdrop-blur-sm border-b border-white/10"
@@ -23,7 +35,11 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo - Show on all screens but with different sizes */}
-          <div className="flex flex-col items-start">
+          <a
+            href={isGodrejWoodsPage ? "#" : "/"}
+            className="flex flex-col items-start hover:opacity-90 transition-opacity"
+            onClick={handleLogoClick}
+          >
             <img
               src="/Assets/id98Oz8z3__logos.svg"
               alt="Godrej Logo"
@@ -36,7 +52,7 @@ const Navbar = () => {
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text'
             }}>Authorized Marketing Partner</p>
-          </div>
+          </a>
 
           <div className="flex items-center space-x-8">
             {/* Mobile menu button */}
@@ -57,14 +73,14 @@ const Navbar = () => {
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-6">
               <a
-                href="/#floor-plan"
+                href={isGodrejWoodsPage ? "#floor-plan" : "/#floor-plan"}
                 className={`text-sm font-medium transition-colors ${isScrolled ? "text-gray-700 hover:text-primary" : "text-white hover:text-primary"
                   }`}
               >
                 Floor Plans
               </a>
               <a
-                href="/#location-advantages"
+                href={isGodrejWoodsPage ? "#location-advantages" : "/#location-advantages"}
                 className={`text-sm font-medium transition-colors ${isScrolled ? "text-gray-700 hover:text-primary" : "text-white hover:text-primary"
                   }`}
               >
@@ -100,14 +116,14 @@ const Navbar = () => {
                 {/* Navigation Links */}
                 <div className="flex flex-col space-y-4">
                   <a
-                    href="/#floor-plan"
+                    href={isGodrejWoodsPage ? "#floor-plan" : "/#floor-plan"}
                     className="text-base font-medium text-gray-700 hover:text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Floor Plans
                   </a>
                   <a
-                    href="/#location-advantages"
+                    href={isGodrejWoodsPage ? "#location-advantages" : "/#location-advantages"}
                     className="text-base font-medium text-gray-700 hover:text-primary"
                     onClick={() => setMobileMenuOpen(false)}
                   >

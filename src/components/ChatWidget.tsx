@@ -245,9 +245,11 @@ export const ChatWidget = () => {
             const phone = phoneInput?.value.trim() || '';
             const extra = extraInput?.value.trim() || '';
 
-            if (!phone) {
+            // Validate phone number (must be 10 digits)
+            const phoneRegex = /^\d{10}$/;
+            if (!phone || !phoneRegex.test(phone)) {
               if (statusDiv) {
-                statusDiv.innerHTML = '<span style="color:#dc2626;">Please enter phone number.</span>';
+                statusDiv.innerHTML = '<span style="color:#dc2626;">Please enter a valid 10-digit phone number.</span>';
               }
               return;
             }
@@ -287,6 +289,36 @@ export const ChatWidget = () => {
               const data = await res.json();
 
               if (data && data.status === 'success') {
+                // Submit to HubSpot (Name and Phone only as requested)
+                try {
+                  // Import dynamically to avoid top-level import issues if not used elsewhere
+                  const { HubSpotIntegration } = await import('@/lib/hubspot-integration');
+                  await HubSpotIntegration.submitToForm('lead-capture', {
+                    name: state.name,
+                    phone: state.phone,
+                    additionalData: {
+                      source: 'Chat Widget',
+                      page_url: window.location.href
+                    }
+                  });
+                } catch (hsError) {
+                  console.warn('HubSpot submission failed:', hsError);
+                  // Don't block the UI flow if HubSpot fails, main submission succeeded
+                }
+
+                // GTM Tracking
+                try {
+                  const { pushToDataLayer } = await import('@/lib/analytics');
+                  pushToDataLayer({
+                    event: 'form_submit_success',
+                    formName: 'ChatWidget',
+                    formType: 'chat-lead',
+                    formSource: 'Chat Widget'
+                  });
+                } catch (gtmError) {
+                  console.warn('GTM tracking failed:', gtmError);
+                }
+
                 if (statusDiv) {
                   statusDiv.innerHTML = '<div class="godrej-success-message">Thank you! Your details have been submitted. We will contact you soon.</div>';
                 }

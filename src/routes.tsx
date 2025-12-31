@@ -3,6 +3,7 @@ import Index from './pages/Index';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import NotFound from './pages/NotFound';
 import ThankYou from './pages/ThankYou';
+import GodrejWoods from './pages/GodrejWoods';
 import App from './App';
 
 export const routes: RouteRecord[] = [
@@ -11,6 +12,14 @@ export const routes: RouteRecord[] = [
     element: (
       <App>
         <Index />
+      </App>
+    ),
+  },
+  {
+    path: '/godrejwoods',
+    element: (
+      <App>
+        <GodrejWoods />
       </App>
     ),
   },
