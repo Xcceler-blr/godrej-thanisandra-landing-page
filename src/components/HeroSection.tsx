@@ -164,7 +164,9 @@ export const HeroSection = () => {
         event: 'form_submit_success',
         formName: 'HeroForm',
         formType: 'site-visit',
-        formSource: 'Pre-Launch Special Offer'
+        formSource: 'Pre-Launch Special Offer',
+        userName: name,
+        userPhone: phone
       });
 
       // Reset form

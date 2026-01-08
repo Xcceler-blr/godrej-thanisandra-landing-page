@@ -15,6 +15,8 @@ export interface FormSubmitSuccessEvent {
   formName: string;
   formType?: string;
   formSource?: string;
+  userName?: string;
+  userPhone?: string;
 }
 
 // Analytics helper functions

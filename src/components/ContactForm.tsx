@@ -117,7 +117,9 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch", subtitle,
         event: 'form_submit_success',
         formName: 'ContactForm',
         formType: hubSpotFormType,
-        formSource: title
+        formSource: title,
+        userName: data.name,
+        userPhone: data.phone
       });
 
       // If a download URL is provided, trigger download before redirect

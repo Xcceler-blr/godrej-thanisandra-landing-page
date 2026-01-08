@@ -313,7 +313,9 @@ export const ChatWidget = () => {
                     event: 'form_submit_success',
                     formName: 'ChatWidget',
                     formType: 'chat-lead',
-                    formSource: 'Chat Widget'
+                    formSource: 'Chat Widget',
+                    userName: state.name,
+                    userPhone: state.phone
                   });
                 } catch (gtmError) {
                   console.warn('GTM tracking failed:', gtmError);
