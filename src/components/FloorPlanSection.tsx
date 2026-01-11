@@ -73,11 +73,11 @@ const FloorPlanCard = ({ plan, setIsFormOpen, className = "" }: FloorPlanCardPro
 
 
   let price = "";
-  if (plan.type.startsWith("2BHK")) price = "1.62 Cr* ONWARDS";
-  else if (plan.type.includes("3BHK LUX - 2305")) price = "3.2 cr onwards";
-  else if (plan.type.startsWith("3BHK LUX")) price = "₹3 Cr onwards";
-  else if (plan.type.startsWith("3BHK")) price = "2.52Cr* ONWARDS";
-  else if (plan.type.startsWith("4BHK")) price = "2.52Cr* ONWARDS";
+  if (plan.type.startsWith("2BHK")) price = "1.51 Cr* ONWARDS";
+  else if (plan.type.includes("3BHK LUX - 2305")) price = "2.91 cr onwards";
+  else if (plan.type.startsWith("3BHK LUX")) price = "₹2.91 Cr onwards";
+  else if (plan.type.startsWith("3BHK")) price = "2.51Cr* ONWARDS";
+  else if (plan.type.startsWith("4BHK")) price = "2.51Cr* ONWARDS";
 
   return (
     <div

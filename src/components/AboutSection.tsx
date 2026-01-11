@@ -138,7 +138,7 @@ export const AboutSection = () => {
                     onClick={() => setIsFormOpen(true)}
                     aria-label="Open enquiry form"
                   >
-                    Talk to us
+                    Book a Site Visit
                   </Button>
                 </div>
               </div>
@@ -175,7 +175,7 @@ export const AboutSection = () => {
       <ContactForm
         isOpen={isFormOpen}
         onClose={() => setIsFormOpen(false)}
-        title="About - Learn More About Godrej Thanisandra"
+        title="About - Book a Site Visit Now"
       />
     </>
   );

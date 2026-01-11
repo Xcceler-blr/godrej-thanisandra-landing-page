@@ -255,7 +255,7 @@ export const HeroSection = () => {
               Thanisandra, Bangalore
             </p>
             <p className="text-lg sm:text-xl leading-[24px] mb-4 font-semibold text-yellow-300 text-left">
-              Pre-launch 2 & 3 BHK apartments <br></br> starting at ₹1.62 Cr in a <br></br> 7-acre premium enclave
+              Pre-launch 2 & 3 BHK apartments <br></br> starting at ₹1.51 Cr in a <br></br> 7-acre premium enclave
             </p>
           </div>
 
@@ -296,7 +296,7 @@ export const HeroSection = () => {
                     className="w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] font-bold text-lg py-3 rounded-lg btn-pulse"
                     style={{ animation: 'btn-pulse 1.5s ease-in-out infinite' }}
                   >
-                    Book a Site Visit
+                    Talk to Us
                   </Button>
                 </SheetTrigger>
 
@@ -314,7 +314,7 @@ export const HeroSection = () => {
 
                     <div className="max-w-md w-full mx-auto px-4">
                       <SheetHeader>
-                        <SheetTitle>Book a Site Visit</SheetTitle>
+                        <SheetTitle>Talk to Us</SheetTitle>
                         <SheetDescription className="text-center">Fill in your details and we'll get back to you.</SheetDescription>
                       </SheetHeader>
                     </div>
@@ -354,7 +354,7 @@ export const HeroSection = () => {
                           disabled={submitting}
                           className="w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] font-bold text-lg py-3 rounded-lg"
                         >
-                          {submitting ? "Submitting..." : "Book a Site Visit"}
+                          {submitting ? "Submitting..." : "Submit"}
                         </Button>
                       </div>
                     </div>
@@ -380,7 +380,7 @@ export const HeroSection = () => {
               Thanisandra, Bangalore
             </p>
             <p className="text-[26px] text-yellow-300 leading-7 mb-6 md:mb-8 font-semibold w-full text-left">
-              Pre-launch 2 & 3 BHK apartments starting at ₹1.62 Cr<br></br> in a 7-acre premium enclave
+              Pre-launch 2 & 3 BHK apartments starting at ₹1.51 Cr<br></br> in a 7-acre premium enclave
             </p>
 
 
@@ -411,7 +411,7 @@ export const HeroSection = () => {
                   className="w-full !bg-[#B9105E] !text-white !border-none hover:!bg-[#a00d4e] font-bold text-lg py-3 rounded-lg disabled:opacity-50 btn-pulse"
                   style={{ animation: 'btn-pulse 1.5s ease-in-out infinite' }}
                 >
-                  {submitting ? "Submitting..." : "Book a Site Visit"}
+                  {submitting ? "Submitting..." : "Talk to Us"}
                 </Button>
               </form>
               {/* <p className="text-sm text-white text-center mt-3 font-semibold">
