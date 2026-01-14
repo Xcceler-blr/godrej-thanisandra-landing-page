@@ -82,8 +82,33 @@ export const FAQSection = () => {
     },
     {
       id: "faq-11",
-      question: "Where is the Godrej Thanisandra location and how is the connectivity?",
+      question: "Where is the godrej thanisandra bangalore location and how is the connectivity?",
       answer: "The Godrej Thanisandra location is one of its biggest advantages — it's strategically positioned on New Airport Road near Reva College, in the heart of North Bangalore. The project is just 10 minutes from Manyata Tech Park, 15 minutes from Hebbal Junction, and 25–30 minutes from Kempegowda International Airport. Residents also enjoy excellent access to schools, hospitals, malls, and the upcoming metro line, making daily commuting effortless and convenient."
+    },
+    {
+      id: "faq-12",
+      question: "What types of homes are available in Godrej North Bangalore?",
+      answer: "Godrej North Bangalore offers 1, 2, and 3 BHK apartments, including thoughtfully designed residences at Godrej Woods, featuring modern layouts, premium specifications, and green open spaces"
+    },
+    {
+      id: "faq-13",
+      question: "Why is Godrej Properties North Bangalore considered a prime real estate destination?",
+      answer: "Godrej Properties North Bangalore is considered prime due to rapid infrastructure growth, strong employment hubs, upcoming metro connectivity, and premium communities like Godrej Woods that enhance long-term livability and value."
+    },
+    {
+      id: "faq-14",
+      question: "What are the Godrej upcoming projects in North Bangalore?",
+      answer: "Godrej upcoming projects in North Bangalore include premium residential developments by Godrej Properties, strategically launched in fast-growing locations such as Thanisandra, Hebbal, Devanahalli, and Yelahanka. One of the key upcoming projects is Godrej Woods Thanisandra, a premium residential development by Godrej Properties North Bangalore, offering modern apartments, excellent connectivity, and strong long-term investment potential"
+    },
+    {
+      id: "faq-15",
+      question: "Which Godrej Properties near REVA University are located in North Bangalore?",
+      answer: "The Godrej Properties project near REVA University in North Bangalore is Godrej Woods Thanisandra. Developed by Godrej Properties North Bangalore, Godrej Woods Thanisandra is located on Thanisandra Main Road and offers excellent connectivity to REVA University, Manyata Tech Park, Hebbal, and other key areas of North Bangalore."
+    },
+    {
+      id: "faq-16",
+      question: "Which Godrej Properties offer Luxury Apartments in North Bangalore near REVA University?",
+      answer: "The Godrej Properties project offering luxury apartments in North Bangalore near REVA University is Godrej Woods Thanisandra. Developed by Godrej Properties North Bangalore, Godrej Woods Thanisandra features premium 2 BHK and 3 BHK apartments with modern architecture, high-end amenities, and excellent connectivity to REVA University, Manyata Tech Park, and Hebbal."
     }
   ];
 

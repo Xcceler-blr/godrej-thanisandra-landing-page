@@ -85,7 +85,7 @@ const FloorPlanCard = ({ plan, setIsFormOpen, setSelectedPdf, className = "" }: 
     };
 
     let price = "";
-    if (plan.type.startsWith("2BHK")) price = "1.62 Cr* ONWARDS";
+    if (plan.type.startsWith("2BHK")) price = "1.5 Cr* ONWARDS";
     else if (plan.type.includes("3BHK LUX - 2305")) price = "3.2 cr onwards";
     else if (plan.type.startsWith("3BHK LUX")) price = "₹3 Cr onwards";
     else if (plan.type.startsWith("3BHK")) price = "2.52Cr* ONWARDS";

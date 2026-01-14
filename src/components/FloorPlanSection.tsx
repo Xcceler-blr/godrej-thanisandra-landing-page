@@ -73,11 +73,11 @@ const FloorPlanCard = ({ plan, setIsFormOpen, className = "" }: FloorPlanCardPro
 
 
   let price = "";
-  if (plan.type.startsWith("2BHK")) price = "1.51 Cr* ONWARDS";
-  else if (plan.type.includes("3BHK LUX - 2305")) price = "2.91 cr onwards";
-  else if (plan.type.startsWith("3BHK LUX")) price = "₹2.91 Cr onwards";
-  else if (plan.type.startsWith("3BHK")) price = "2.51Cr* ONWARDS";
-  else if (plan.type.startsWith("4BHK")) price = "2.51Cr* ONWARDS";
+  if (plan.type.startsWith("2BHK")) price = "₹1.6 Cr* ONWARDS";
+  else if (plan.type.includes("3BHK LUX - 2305")) price = "₹3 Cr onwards";
+  else if (plan.type.startsWith("3BHK LUX")) price = "₹3 Cr onwards";
+  else if (plan.type.startsWith("3BHK")) price = "₹2.6 Cr* ONWARDS";
+  else if (plan.type.startsWith("4BHK")) price = "₹2.51Cr* ONWARDS";
 
   return (
     <div
@@ -146,7 +146,7 @@ export const FloorPlanSection = () => {
         <div className="max-w-6xl mx-auto px-2 sm:px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              <span className="text-primary">Godrej Woods Bangalore</span>
+              <span className="text-primary">Godrej Woods Thanisandra Bangalore</span>
               <br />Floor Plans
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">

@@ -255,7 +255,7 @@ export const HeroSection = () => {
               Thanisandra, Bangalore
             </p>
             <p className="text-lg sm:text-xl leading-[24px] mb-4 font-semibold text-yellow-300 text-left">
-              Pre-launch 2 & 3 BHK apartments <br></br> starting at ₹1.51 Cr in a <br></br> 7-acre premium enclave
+              Pre-launch 2 & 3 BHK apartments <br></br> starting at ₹1.6 Cr in a <br></br> 7-acre premium enclave
             </p>
           </div>
 
@@ -380,7 +380,7 @@ export const HeroSection = () => {
               Thanisandra, Bangalore
             </p>
             <p className="text-[26px] text-yellow-300 leading-7 mb-6 md:mb-8 font-semibold w-full text-left">
-              Pre-launch 2 & 3 BHK apartments starting at ₹1.51 Cr<br></br> in a 7-acre premium enclave
+              Pre-launch 2 & 3 BHK apartments starting at ₹1.6 Cr<br></br> in a 7-acre premium enclave
             </p>
 
 
