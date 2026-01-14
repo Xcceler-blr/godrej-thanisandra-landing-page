@@ -4,6 +4,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import NotFound from './pages/NotFound';
 import ThankYou from './pages/ThankYou';
 import GodrejWoods from './pages/GodrejWoods';
+import AboutUs from './pages/AboutUs';
 import App from './App';
 
 export const routes: RouteRecord[] = [
@@ -36,6 +37,14 @@ export const routes: RouteRecord[] = [
     element: (
       <App>
         <PrivacyPolicy />
+      </App>
+    ),
+  },
+  {
+    path: '/about-us',
+    element: (
+      <App>
+        <AboutUs />
       </App>
     ),
   },

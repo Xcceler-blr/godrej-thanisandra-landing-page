@@ -41,7 +41,7 @@ const Navbar = () => {
             onClick={handleLogoClick}
           >
             <img
-              src="/Assets/id98Oz8z3__logos.svg"
+              src="/Assets/godrej thanisandra (1).svg"
               alt="Godrej Logo"
               className="h-8 md:h-12 w-auto"
             />
