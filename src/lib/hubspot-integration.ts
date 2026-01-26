@@ -2,7 +2,7 @@
 export class HubSpotIntegration {
   // Your HubSpot Portal ID
   private static PORTAL_ID = '243445377';
-  
+
   // Your HubSpot Form IDs
   private static FORM_IDS = {
     'download': '3249d79f-19c0-42b1-b0fb-a1ddbd8d85ce',
@@ -27,11 +27,11 @@ export class HubSpotIntegration {
     try {
       // Create form data using the correct HubSpot Forms API format
       const formData = new FormData();
-      
+
       // Add the standard fields - using HubSpot's default field names
       formData.append('firstname', data.name);
       formData.append('mobilephone', data.phone); // This is HubSpot's standard phone field
-      
+
       // Add optional fields if they exist
       if (data.email) {
         formData.append('email', data.email);
@@ -39,12 +39,12 @@ export class HubSpotIntegration {
       if (data.consent !== undefined) {
         formData.append('consent', data.consent ? 'Yes' : 'No');
       }
-      
+
       // Add custom properties (now enabled since fields are added to HubSpot forms)
       formData.append('form_type', formType);
       formData.append('source', data.additionalData?.source || 'Website Form');
       formData.append('page_url', window.location.href);
-      
+
       // Add any additional data
       if (data.additionalData) {
         Object.entries(data.additionalData).forEach(([key, value]) => {
@@ -91,7 +91,7 @@ export class HubSpotIntegration {
     // Submit to existing form system (if any)
     // Add your existing form submission logic here
     // Example: Google Forms, custom API, etc.
-    
+
     // Submit to HubSpot Forms API
     promises.push(
       this.submitToForm(formType, {
