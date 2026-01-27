@@ -18,6 +18,7 @@ export class HubSpotIntegration {
     phone: string;
     consent?: boolean;
     additionalData?: Record<string, string>;
+    formName?: string;
   }) {
     const formId = this.FORM_IDS[formType];
     if (!formId) {
@@ -41,7 +42,8 @@ export class HubSpotIntegration {
       }
 
       // Add custom properties (now enabled since fields are added to HubSpot forms)
-      formData.append('form_type', formType);
+      // Use provided formName or fallback to formType
+      formData.append('form_type', data.formName || formType);
       formData.append('source', data.additionalData?.source || 'Website Form');
       formData.append('page_url', window.location.href);
 

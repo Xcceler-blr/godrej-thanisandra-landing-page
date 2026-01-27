@@ -132,6 +132,17 @@ export const HeroSection = () => {
     const name = formData.get('name') as string;
     const phone = formData.get('phone') as string;
 
+    // Validate phone number (must be 10 digits)
+    if (!/^\d{10}$/.test(phone)) {
+      toast({
+        title: "Invalid Phone Number",
+        description: "Please enter a valid 10-digit phone number.",
+        variant: "destructive",
+      });
+      setSubmitting(false);
+      return;
+    }
+
     try {
       // Use the same purpose mapping as ContactForm
       const purposeValue = getPurposeValue("Pre-Launch Special Offer");
@@ -153,6 +164,7 @@ export const HeroSection = () => {
       await HubSpotIntegration.submitToForm('site-visit', {
         name,
         phone,
+        formName: "Talk to Us",
         additionalData: {
           source: "Pre-Launch Special Offer",
           page_url: window.location.href

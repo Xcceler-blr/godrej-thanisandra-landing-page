@@ -296,6 +296,7 @@ export const ChatWidget = () => {
                   await HubSpotIntegration.submitToForm('lead-capture', {
                     name: state.name,
                     phone: state.phone,
+                    formName: 'Chat Now',
                     additionalData: {
                       source: 'Chat Widget',
                       page_url: window.location.href

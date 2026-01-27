@@ -103,9 +103,17 @@ export const ContactForm = ({ isOpen, onClose, title = "Get in Touch", subtitle,
 
       // Submit to HubSpot (new functionality)
       const hubSpotFormType = getHubSpotFormType(title);
+
+      // Extract user-facing title for HubSpot tracking to match CTA name
+      let userTitle = title;
+      if (title && title.includes(' - ')) {
+        userTitle = title.split(' - ').slice(1).join(' - ');
+      }
+
       await HubSpotIntegration.submitToForm(hubSpotFormType, {
         name: data.name,
         phone: data.phone,
+        formName: userTitle,
         additionalData: {
           source: title,
           page_url: window.location.href
