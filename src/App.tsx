@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import Navbar from "@/components/Navbar";
-import { AutoPopupForm } from "@/components/AutoPopupForm";
+// import { AutoPopupForm } from "@/components/AutoPopupForm";
 import { FloatingConsultButton } from "@/components/FloatingConsultButton";
 import { ChatWidget } from "@/components/ChatWidget";
 
@@ -32,7 +32,7 @@ const App = ({ children }: { children?: React.ReactNode }) => (
       <Toaster />
       <Sonner />
       <Navbar />
-      <AutoPopupForm />
+      {/* <AutoPopupForm /> */}
       <FloatingConsultButton />
       <ChatWidget />
       <div className="screenshot-friendly">
